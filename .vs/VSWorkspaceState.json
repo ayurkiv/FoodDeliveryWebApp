@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\FoodDeliveryWeb"
   ],
-  "SelectedNode": "\\C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp",
+  "SelectedNode": "\\FoodDeliveryWeb\\FoodDeliveryWeb.csproj.user",
   "PreviewInSolutionExplorer": false
 }
