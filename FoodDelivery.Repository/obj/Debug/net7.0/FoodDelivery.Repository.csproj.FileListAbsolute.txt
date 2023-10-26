@@ -1,0 +1,15 @@
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\bin\Debug\net7.0\FoodDelivery.Repository.deps.json
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\bin\Debug\net7.0\FoodDelivery.Repository.dll
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\bin\Debug\net7.0\FoodDelivery.Repository.pdb
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\bin\Debug\net7.0\FoodDelivery.Models.dll
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\bin\Debug\net7.0\FoodDelivery.Models.pdb
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\obj\Debug\net7.0\FoodDelivery.Repository.csproj.AssemblyReference.cache
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\obj\Debug\net7.0\FoodDelivery.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\obj\Debug\net7.0\FoodDelivery.Repository.AssemblyInfoInputs.cache
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\obj\Debug\net7.0\FoodDelivery.Repository.AssemblyInfo.cs
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\obj\Debug\net7.0\FoodDelivery.Repository.csproj.CoreCompileInputs.cache
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\obj\Debug\net7.0\FoodDelivery.Repository.csproj.CopyComplete
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\obj\Debug\net7.0\FoodDelivery.Repository.dll
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\obj\Debug\net7.0\refint\FoodDelivery.Repository.dll
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\obj\Debug\net7.0\FoodDelivery.Repository.pdb
+C:\Users\SystemX\Source\Repos\FoodDeliveryWebApp\FoodDelivery.Repository\obj\Debug\net7.0\ref\FoodDelivery.Repository.dll
