@@ -17,11 +17,12 @@ namespace FoodDelivery.Models
         public int AddressId { get; set; }
         public int PaymentId { get; set; }
         public string OrderStatus { get; set; }
+        public string PaymentStatus {  get; set; }
         public decimal OrderTotal { get; set; }
+        [DataType(DataType.Date)]
         public DateTime OrderDate { get; set; }
         public User User { get; set; }
         public Courier Courier { get; set; }
         public OrderItem OrderItem { get; set; }
-        public Address Address { get; set; }
     }
 }
