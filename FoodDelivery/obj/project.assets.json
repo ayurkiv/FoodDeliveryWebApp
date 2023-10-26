@@ -11217,6 +11217,7 @@
   },
   "projectFileDependencyGroups": {
     "net7.0": [
+      "FoodDelivery.Models >= 1.0.0",
       "FoodDelivery.Repository >= 1.0.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.13",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.13",
@@ -11250,6 +11251,9 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
+            "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery.Models\\FoodDelivery.Models.csproj": {
+              "projectPath": "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery.Models\\FoodDelivery.Models.csproj"
+            },
             "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery.Repository\\FoodDelivery.Repository.csproj": {
               "projectPath": "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery.Repository\\FoodDelivery.Repository.csproj"
             }

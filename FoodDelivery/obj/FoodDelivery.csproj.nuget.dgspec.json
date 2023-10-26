@@ -154,6 +154,9 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
+              "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery.Models\\FoodDelivery.Models.csproj": {
+                "projectPath": "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery.Models\\FoodDelivery.Models.csproj"
+              },
               "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery.Repository\\FoodDelivery.Repository.csproj": {
                 "projectPath": "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery.Repository\\FoodDelivery.Repository.csproj"
               }

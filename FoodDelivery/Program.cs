@@ -1,4 +1,5 @@
 using FoodDelivery.Repository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,9 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AplicationDbContextConnection")));
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddDefaultTokenProviders().AddEntityFrameworkStores<AplicationDbContext>();
+builder.Services.AddRazorPages();
+builder.Services.AddScoped<AplicationDbContext>();
 
 var app = builder.Build();
 
