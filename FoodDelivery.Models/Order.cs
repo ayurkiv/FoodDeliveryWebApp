@@ -23,6 +23,5 @@ namespace FoodDelivery.Models
         public Courier Courier { get; set; }
         public OrderItem OrderItem { get; set; }
         public Address Address { get; set; }
-        public Payment Payment { get; set; }
     }
 }

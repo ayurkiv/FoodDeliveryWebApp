@@ -15,4 +15,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.10" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FoodDelivery.Models\FoodDelivery.Models.csproj" />
+    <ProjectReference Include="..\FoodDelivery.Repository\FoodDelivery.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
