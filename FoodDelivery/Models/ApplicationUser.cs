@@ -14,9 +14,17 @@ namespace FoodDelivery.Models
 {
     public class ApplicationUser : IdentityUser
     {
+        [Key]
         public int ApplicationUserId { get; set; }
-        public string UserSurname { get; set; }
-        public int? AddressId { get; set; } // Змініть тип на int?, щоб дозволити null
-        public Address Address { get; set; }
+        public string? FirstName { get; set; }
+        public string? LastName { get; set; }
+
+
+        public int? CourierId { get; set; } 
+        public Courier? Courier { get; set; }
+
+        public int? CustomerId { get; set; }
+        public Customer? Customer { get; set; }
+
     }
 }

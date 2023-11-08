@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\FoodDelivery"
+    "\\FoodDelivery",
+    "\\FoodDelivery\\Areas",
+    "\\FoodDelivery\\Areas\\Identity",
+    "\\FoodDelivery\\Areas\\Identity\\Pages",
+    "\\FoodDelivery\\Areas\\Identity\\Pages\\Account"
   ],
+  "SelectedNode": "\\FoodDelivery\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
   "PreviewInSolutionExplorer": false
 }

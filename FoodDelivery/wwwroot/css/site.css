@@ -20,3 +20,10 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.bg-form-reister-container {
+    margin-top: 2%;
+    padding: 3% 5%;
+    background-color: orange;
+    border-radius: 10%;
+}
