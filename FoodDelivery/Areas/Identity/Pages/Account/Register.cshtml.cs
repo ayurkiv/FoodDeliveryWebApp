@@ -147,6 +147,49 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                 user.LastName = Input.LastName;
                 user.PhoneNumber = Input.PhoneNumber;
 
+
+                var customerProfile = new Customer
+                {
+                    ApplicationUser = user,
+                    ApplicationUserId = user.Id,
+                    
+                };
+                user.CustomerId = customerProfile.CustomerId;
+                var address = new Address
+                {
+                    Customer = customerProfile
+                };
+                customerProfile.Address = address;
+
+                var order = new Order 
+                {
+                    OrderItems = new List<OrderItem>(),
+                    Address = address,
+                    OrderDate = DateTime.Now
+                };
+                var menu = new Menu();
+                var foodItem = new FoodItem
+                {
+                    AddedDate = DateTime.Now,
+                    Amount = 1,
+                    Description = "IceCream",
+                    Menu = menu
+
+                };
+
+                var item = new OrderItem 
+                {
+                    FoodItem = foodItem,
+                    Amount = 1,
+                    OrderItemTotal = 100,
+                    
+                };
+                order.OrderItems.Add(item);
+                _context.Set<Order>().Add(order);
+
+
+                _context.SaveChanges();
+
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

@@ -49,11 +49,42 @@ namespace FoodDelivery.Data
                 .WithOne(u => u.Customer)
                 .HasForeignKey<Customer>(a => a.ApplicationUserId);
 
+
+            //add Adress to Customer
             builder.Entity<Address>()
                 .HasOne(a => a.Customer)
                 .WithOne(u => u.Address)
                 .HasForeignKey<Address>(a => a.CustomerId);
 
+            //Order to orderitem
+            builder.Entity<OrderItem>()
+                .HasOne(a => a.Order)
+                .WithMany(Order => Order.OrderItems)
+                .HasForeignKey(a => a.OrderId);
+
+            builder.Entity<Order>()
+                .HasMany(a => a.OrderItems);
+
+            //Customer order
+            builder.Entity<Customer>()
+                .HasMany(a => a.Orders);
+
+            builder.Entity<Order>()
+                .HasOne(a => a.Customer)
+                .WithMany(Customer => Customer.Orders)
+                .HasForeignKey(a => a.CustomerId)
+                .OnDelete(deleteBehavior: DeleteBehavior.NoAction);
+
+
+            //Ordere courier
+            builder.Entity<Courier>()
+                .HasMany(a => a.Orders);
+
+            builder.Entity<Order>()
+                .HasOne(a => a.Courier)
+                .WithMany(Customer => Customer.Orders)
+                .HasForeignKey(a => a.CourierId)
+                .OnDelete(deleteBehavior: DeleteBehavior.NoAction);
 
 
             builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());

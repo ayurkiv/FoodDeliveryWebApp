@@ -19,6 +19,7 @@ namespace FoodDelivery.Models
         public FoodItem FoodItem { get; set; }
 
         public int OrderId { get; set; }
+        public Order Order { get; set; }
 
 
     }

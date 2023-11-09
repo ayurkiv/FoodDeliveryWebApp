@@ -30,14 +30,14 @@ namespace FoodDelivery.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerId"));
 
-                    b.Property<int>("AddressId")
+                    b.Property<int?>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<string>("ApplicationUserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.HasKey("CustomerId");
@@ -168,7 +168,7 @@ namespace FoodDelivery.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("OrderId")
+                    b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
                     b.HasKey("CourierId");
@@ -233,8 +233,17 @@ namespace FoodDelivery.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
+                    b.Property<int>("CourierId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("OrderItemId")
+                        .HasColumnType("int");
 
                     b.Property<string>("OrderStatus")
                         .HasColumnType("nvarchar(max)");
@@ -245,6 +254,10 @@ namespace FoodDelivery.Migrations
                     b.HasKey("OrderId");
 
                     b.HasIndex("AddressId");
+
+                    b.HasIndex("CourierId");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("Orders");
                 });
@@ -468,7 +481,23 @@ namespace FoodDelivery.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("FoodDelivery.Models.Courier", "Courier")
+                        .WithMany("Orders")
+                        .HasForeignKey("CourierId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Customer", "Customer")
+                        .WithMany("Orders")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("Address");
+
+                    b.Navigation("Courier");
+
+                    b.Navigation("Customer");
                 });
 
             modelBuilder.Entity("FoodDelivery.Models.OrderItem", b =>
@@ -479,13 +508,15 @@ namespace FoodDelivery.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FoodDelivery.Models.Order", null)
+                    b.HasOne("FoodDelivery.Models.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("FoodItem");
+
+                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -541,8 +572,9 @@ namespace FoodDelivery.Migrations
 
             modelBuilder.Entity("Customer", b =>
                 {
-                    b.Navigation("Address")
-                        .IsRequired();
+                    b.Navigation("Address");
+
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("FoodDelivery.Models.ApplicationUser", b =>
@@ -550,6 +582,11 @@ namespace FoodDelivery.Migrations
                     b.Navigation("Courier");
 
                     b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("FoodDelivery.Models.Courier", b =>
+                {
+                    b.Navigation("Orders");
                 });
 
             modelBuilder.Entity("FoodDelivery.Models.FoodItem", b =>

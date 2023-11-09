@@ -21,11 +21,14 @@ namespace FoodDelivery.Models
         public Address? Address { get; set; }
 
 
-        [ForeignKey("OrderId")]
+        public int OrderItemId { get; set; }
         public ICollection<OrderItem> OrderItems { get; set; }
 
+        public int CustomerId { get; set; }
+        public Customer Customer { get; set; }
 
-        
+        public int CourierId { get; set; }
+        public Courier? Courier { get; set; }
     }
 
 }
