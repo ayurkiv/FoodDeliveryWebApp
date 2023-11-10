@@ -87,6 +87,17 @@ namespace FoodDelivery.Data
                 .OnDelete(deleteBehavior: DeleteBehavior.NoAction);
 
 
+            //FoodItem to Menu
+            builder.Entity<Menu>()
+                .HasMany(a => a.FoodItems);
+
+            builder.Entity<FoodItem>()
+                .HasOne(a => a.Menu)
+                .WithMany(Menu => Menu.FoodItems)
+                .HasForeignKey(a => a.MenuId)
+                .OnDelete(deleteBehavior: DeleteBehavior.NoAction);
+
+
             builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
         }
     }

@@ -15,12 +15,16 @@ namespace FoodDelivery.Models
         public DateTime AddedDate { get; set; }
 
 
-        [ForeignKey(nameof(Menu))]
-        public int MenuId { get; set; }
-        public Menu Menu { get; set; }
+        public int? MenuId { get; set; }
+        public Menu? Menu { get; set; }
 
 
         public OrderItem OrderItem { get; set; }
+
+        public FoodItem() 
+        {
+            AddedDate = DateTime.Now;
+        }
     }
 
 

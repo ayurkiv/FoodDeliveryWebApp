@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodDelivery.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231109091723_mig1")]
+    [Migration("20231109173705_mig1")]
     partial class mig1
     {
         /// <inheritdoc />
@@ -85,9 +85,6 @@ namespace FoodDelivery.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ApplicationUserId")
                         .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
@@ -199,7 +196,7 @@ namespace FoodDelivery.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("MenuId")
+                    b.Property<int?>("MenuId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
@@ -220,6 +217,9 @@ namespace FoodDelivery.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MenuId"));
 
+                    b.Property<int?>("FoodItemId")
+                        .HasColumnType("int");
+
                     b.HasKey("MenuId");
 
                     b.ToTable("Menus");
@@ -236,7 +236,7 @@ namespace FoodDelivery.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CourierId")
+                    b.Property<int?>("CourierId")
                         .HasColumnType("int");
 
                     b.Property<int>("CustomerId")
@@ -468,10 +468,9 @@ namespace FoodDelivery.Migrations
             modelBuilder.Entity("FoodDelivery.Models.FoodItem", b =>
                 {
                     b.HasOne("FoodDelivery.Models.Menu", "Menu")
-                        .WithMany()
+                        .WithMany("FoodItems")
                         .HasForeignKey("MenuId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("Menu");
                 });
@@ -487,8 +486,7 @@ namespace FoodDelivery.Migrations
                     b.HasOne("FoodDelivery.Models.Courier", "Courier")
                         .WithMany("Orders")
                         .HasForeignKey("CourierId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("Customer", "Customer")
                         .WithMany("Orders")
@@ -596,6 +594,11 @@ namespace FoodDelivery.Migrations
                 {
                     b.Navigation("OrderItem")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FoodDelivery.Models.Menu", b =>
+                {
+                    b.Navigation("FoodItems");
                 });
 
             modelBuilder.Entity("FoodDelivery.Models.Order", b =>

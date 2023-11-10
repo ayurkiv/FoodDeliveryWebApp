@@ -30,7 +30,6 @@ namespace FoodDelivery.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    ApplicationUserId = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CourierId = table.Column<int>(type: "int", nullable: true),
@@ -60,7 +59,8 @@ namespace FoodDelivery.Migrations
                 columns: table => new
                 {
                     MenuId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1")
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FoodItemId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -224,7 +224,7 @@ namespace FoodDelivery.Migrations
                     Amount = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     AddedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MenuId = table.Column<int>(type: "int", nullable: false)
+                    MenuId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -233,8 +233,7 @@ namespace FoodDelivery.Migrations
                         name: "FK_FoodItems_Menus_MenuId",
                         column: x => x.MenuId,
                         principalTable: "Menus",
-                        principalColumn: "MenuId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "MenuId");
                 });
 
             migrationBuilder.CreateTable(
@@ -271,7 +270,7 @@ namespace FoodDelivery.Migrations
                     AddressId = table.Column<int>(type: "int", nullable: false),
                     OrderItemId = table.Column<int>(type: "int", nullable: false),
                     CustomerId = table.Column<int>(type: "int", nullable: false),
-                    CourierId = table.Column<int>(type: "int", nullable: false)
+                    CourierId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

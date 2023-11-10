@@ -154,6 +154,7 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                     ApplicationUserId = user.Id,
                     
                 };
+                user.Customer = customerProfile;
                 user.CustomerId = customerProfile.CustomerId;
                 var address = new Address
                 {
@@ -165,12 +166,11 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                 {
                     OrderItems = new List<OrderItem>(),
                     Address = address,
-                    OrderDate = DateTime.Now
+                    Customer = customerProfile
                 };
                 var menu = new Menu();
                 var foodItem = new FoodItem
                 {
-                    AddedDate = DateTime.Now,
                     Amount = 1,
                     Description = "IceCream",
                     Menu = menu
@@ -185,6 +185,7 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                     
                 };
                 order.OrderItems.Add(item);
+                customerProfile.Orders.Add(order);
                 _context.Set<Order>().Add(order);
 
 

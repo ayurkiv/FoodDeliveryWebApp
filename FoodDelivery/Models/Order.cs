@@ -27,8 +27,14 @@ namespace FoodDelivery.Models
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
 
-        public int CourierId { get; set; }
+        public int? CourierId { get; set; }
         public Courier? Courier { get; set; }
+
+
+        public Order ()
+        {
+            OrderDate = DateTime.Now;
+        }
     }
 
 }
