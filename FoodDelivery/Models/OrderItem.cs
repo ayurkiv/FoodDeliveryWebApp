@@ -6,21 +6,18 @@ namespace FoodDelivery.Models
     public class OrderItem
     {
         [Key]
-        public int OrderItemId { get; set; }
+        public int Id { get; set; }
         [Required, MinLength(1)]
         public int Amount { get; set; }
 
-        [Column(TypeName = "decimal(18, 2)")]
+        [Column(TypeName = "decimal(10, 2)")]
         public decimal OrderItemTotal { get; set; }
 
-
-
-        public int FoodItemId { get; set; }
+        [Required]
         public FoodItem FoodItem { get; set; }
 
-        public int OrderId { get; set; }
-        public Order Order { get; set; }
-
+        public int? OrderId { get; set; }
+        public Order? Order { get; set; }
 
     }
 

@@ -17,12 +17,7 @@ namespace FoodDelivery.Models
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
 
-
-        public int? CourierId { get; set; } 
-        public Courier? Courier { get; set; }
-
-        public int? CustomerId { get; set; }
         public Customer? Customer { get; set; }
-
+        public Courier? Courier { get; set; }
     }
 }

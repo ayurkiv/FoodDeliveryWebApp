@@ -146,50 +146,22 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.PhoneNumber = Input.PhoneNumber;
-
-
-                var customerProfile = new Customer
+                var customer = new Customer()
                 {
-                    ApplicationUser = user,
                     ApplicationUserId = user.Id,
-                    
-                };
-                user.Customer = customerProfile;
-                user.CustomerId = customerProfile.CustomerId;
-                var address = new Address
-                {
-                    Customer = customerProfile
-                };
-                customerProfile.Address = address;
-
-                var order = new Order 
-                {
-                    OrderItems = new List<OrderItem>(),
-                    Address = address,
-                    Customer = customerProfile
-                };
-                var menu = new Menu();
-                var foodItem = new FoodItem
-                {
-                    Amount = 1,
-                    Description = "IceCream",
-                    Menu = menu
-
-                };
-
-                var item = new OrderItem 
-                {
-                    FoodItem = foodItem,
-                    Amount = 1,
-                    OrderItemTotal = 100,
-                    
-                };
-                order.OrderItems.Add(item);
-                customerProfile.Orders.Add(order);
-                _context.Set<Order>().Add(order);
-
-
+                }; 
+                _context.Customers.Add(customer);
                 _context.SaveChanges();
+                
+                Console.WriteLine("Customer.Id: " + customer.Id);
+                Console.WriteLine("AplicationUser.Customer.Id: " + user.Customer.Id);
+
+                var address = new Address()
+                {
+                    Customer = customer,
+                };
+
+                _context.Add(address);
 
                 if (result.Succeeded)
                 {

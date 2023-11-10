@@ -8,11 +8,8 @@ namespace FoodDelivery.Models
         [Key]
         public int CourierId { get; set; }
 
-
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
-
-        public int? OrderId { get; set; }
         public ICollection<Order>? Orders { get; set; }
     }
 

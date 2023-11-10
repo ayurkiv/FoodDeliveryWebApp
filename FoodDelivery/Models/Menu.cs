@@ -7,7 +7,6 @@ namespace FoodDelivery.Models
         [Key]
         public int MenuId { get; set; }
 
-        public int? FoodItemId { get; set; }
         public ICollection<FoodItem>? FoodItems { get; set; }
 
     }
