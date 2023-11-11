@@ -1,0 +1,39 @@
+﻿.topic-register {
+    font-family: 'Poppins', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 600;
+}
+
+.topic-form {
+    font-family: 'Poppins', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 22px;
+    margin: 3% 0;
+}
+
+.bg-form-reister-container {
+    margin: 2% 0% 5% 0%;
+    padding: 3% 3% 4% 3%;
+    background-color: #F8F8F8;
+    border-radius: 20px;
+}
+
+.btn-register, .btn-register:focus {
+    font-family: 'Poppins', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 500;
+    background-color: #FC8019;
+    border: 3px #FC8019 solid;
+}
+
+    .btn-register:hover, .btn-register:active {
+        border: 3px #FC8019 solid;
+        color: #FC8019;
+        background-color: transparent;
+    }
+
+.form-input {
+    border-radius: 10px;
+}
+
+    .form-input:focus {
+        box-shadow: 0 0 2px 0.1rem #FC8019;
+    }
