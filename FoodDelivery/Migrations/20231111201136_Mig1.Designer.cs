@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodDelivery.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231111190339_Mig1")]
+    [Migration("20231111201136_Mig1")]
     partial class Mig1
     {
         /// <inheritdoc />

@@ -74,7 +74,7 @@ namespace FoodDelivery.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpPost]
+        [HttpGet]
         public IActionResult Delete(int id)
         {
             var category = _context.Categories.Where(x => x.Id == id).FirstOrDefault();
