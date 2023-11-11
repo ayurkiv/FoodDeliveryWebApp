@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodDelivery.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231111123038_Mig")]
-    partial class Mig
+    [Migration("20231111190339_Mig1")]
+    partial class Mig1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -145,6 +145,27 @@ namespace FoodDelivery.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("FoodDelivery.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("MenuId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuId");
+
+                    b.ToTable("Categories");
+                });
+
             modelBuilder.Entity("FoodDelivery.Models.Courier", b =>
                 {
                     b.Property<int>("Id")
@@ -179,6 +200,9 @@ namespace FoodDelivery.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -195,6 +219,8 @@ namespace FoodDelivery.Migrations
                         .HasColumnType("decimal(10, 2)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.HasIndex("MenuId");
 
@@ -436,6 +462,15 @@ namespace FoodDelivery.Migrations
                     b.Navigation("Customer");
                 });
 
+            modelBuilder.Entity("FoodDelivery.Models.Category", b =>
+                {
+                    b.HasOne("FoodDelivery.Models.Menu", "Menu")
+                        .WithMany("Categories")
+                        .HasForeignKey("MenuId");
+
+                    b.Navigation("Menu");
+                });
+
             modelBuilder.Entity("FoodDelivery.Models.Courier", b =>
                 {
                     b.HasOne("FoodDelivery.Models.ApplicationUser", "ApplicationUser")
@@ -447,6 +482,10 @@ namespace FoodDelivery.Migrations
 
             modelBuilder.Entity("FoodDelivery.Models.FoodItem", b =>
                 {
+                    b.HasOne("FoodDelivery.Models.Category", "Category")
+                        .WithMany("FoodItems")
+                        .HasForeignKey("CategoryId");
+
                     b.HasOne("FoodDelivery.Models.Menu", "Menu")
                         .WithMany("FoodItems")
                         .HasForeignKey("MenuId");
@@ -454,6 +493,8 @@ namespace FoodDelivery.Migrations
                     b.HasOne("FoodDelivery.Models.OrderItem", "OrderItem")
                         .WithOne("FoodItem")
                         .HasForeignKey("FoodDelivery.Models.FoodItem", "OrderItemId");
+
+                    b.Navigation("Category");
 
                     b.Navigation("Menu");
 
@@ -562,6 +603,11 @@ namespace FoodDelivery.Migrations
                     b.Navigation("Customer");
                 });
 
+            modelBuilder.Entity("FoodDelivery.Models.Category", b =>
+                {
+                    b.Navigation("FoodItems");
+                });
+
             modelBuilder.Entity("FoodDelivery.Models.Courier", b =>
                 {
                     b.Navigation("Orders");
@@ -569,6 +615,8 @@ namespace FoodDelivery.Migrations
 
             modelBuilder.Entity("FoodDelivery.Models.Menu", b =>
                 {
+                    b.Navigation("Categories");
+
                     b.Navigation("FoodItems");
                 });
 

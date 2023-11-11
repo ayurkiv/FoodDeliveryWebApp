@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FoodDelivery.Migrations
 {
     /// <inheritdoc />
-    public partial class Mig : Migration
+    public partial class Mig1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -207,6 +207,25 @@ namespace FoodDelivery.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MenuId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Categories_Menus_MenuId",
+                        column: x => x.MenuId,
+                        principalTable: "Menus",
+                        principalColumn: "MenuId");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Address",
                 columns: table => new
                 {
@@ -294,11 +313,17 @@ namespace FoodDelivery.Migrations
                     Price = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     AddedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     MenuId = table.Column<int>(type: "int", nullable: true),
+                    CategoryId = table.Column<int>(type: "int", nullable: true),
                     OrderItemId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_FoodItems", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FoodItems_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_FoodItems_Menus_MenuId",
                         column: x => x.MenuId,
@@ -358,6 +383,11 @@ namespace FoodDelivery.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Categories_MenuId",
+                table: "Categories",
+                column: "MenuId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Couriers_ApplicationUserId",
                 table: "Couriers",
                 column: "ApplicationUserId",
@@ -370,6 +400,11 @@ namespace FoodDelivery.Migrations
                 column: "ApplicationUserId",
                 unique: true,
                 filter: "[ApplicationUserId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FoodItems_CategoryId",
+                table: "FoodItems",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FoodItems_MenuId",
@@ -431,10 +466,13 @@ namespace FoodDelivery.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Menus");
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "OrderItems");
+
+            migrationBuilder.DropTable(
+                name: "Menus");
 
             migrationBuilder.DropTable(
                 name: "Orders");
