@@ -7,6 +7,7 @@ namespace FoodDelivery.Models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public string? Title { get; set; }
         public ICollection<FoodItem>? FoodItems { get; set; }
         public int? MenuId { get; set; }
         public Menu? Menu { get; set; }
