@@ -37,3 +37,10 @@
     .form-input:focus {
         box-shadow: 0 0 2px 0.1rem #FC8019;
     }
+.form-check-input:checked {
+    background-color: #FC8019;
+    border-color: #FC8019;
+}
+.form-check-input:focus {
+    box-shadow: none;
+}
