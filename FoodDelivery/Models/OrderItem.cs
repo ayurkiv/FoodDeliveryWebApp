@@ -5,7 +5,7 @@ namespace FoodDelivery.Models
 {
     public class OrderItem
     {
-        [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required, MinLength(1)]
         public int Amount { get; set; }
@@ -13,12 +13,9 @@ namespace FoodDelivery.Models
         [Column(TypeName = "decimal(10, 2)")]
         public decimal OrderItemTotal { get; set; }
 
-        [Required]
-        public FoodItem FoodItem { get; set; }
+        public FoodItem? FoodItem { get; set; }
 
         public int? OrderId { get; set; }
         public Order? Order { get; set; }
-
     }
-
 }

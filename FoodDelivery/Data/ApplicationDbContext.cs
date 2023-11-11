@@ -22,6 +22,8 @@ namespace FoodDelivery.Data
         public DbSet<Courier> Couriers { get; set; }
         public DbSet<Address> Address { get; set; }
         public DbSet<FoodItem> FoodItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<Menu> Menus { get; set; }
 
 
@@ -37,6 +39,16 @@ namespace FoodDelivery.Data
 
 
             //add AspNetUsers connection with my own database
+            builder.Entity<Order>()
+                .HasOne(o => o.Customer)
+                .WithMany(c => c.Orders)
+                .HasForeignKey(o => o.CustomerId)
+                .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Order>()
+                .HasOne(o => o.Courier)
+                .WithMany(c => c.Orders)
+                .HasForeignKey(o => o.CourierId)
+                .OnDelete(DeleteBehavior.Restrict);
 
 
             builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());

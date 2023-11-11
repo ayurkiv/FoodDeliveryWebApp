@@ -6,26 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FoodDelivery.Migrations
 {
     /// <inheritdoc />
-    public partial class mig : Migration
+    public partial class Mig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Address",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    StreetNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Address", x => x.Id);
-                });
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -189,19 +174,18 @@ namespace FoodDelivery.Migrations
                 name: "Couriers",
                 columns: table => new
                 {
-                    CourierId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Couriers", x => x.CourierId);
+                    table.PrimaryKey("PK_Couriers", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Couriers_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -210,62 +194,76 @@ namespace FoodDelivery.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    AddressId = table.Column<int>(type: "int", nullable: true)
+                    ApplicationUserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Customers", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Customers_Address_AddressId",
-                        column: x => x.AddressId,
-                        principalTable: "Address",
-                        principalColumn: "Id");
-                    table.ForeignKey(
                         name: "FK_Customers_AspNetUsers_ApplicationUserId",
                         column: x => x.ApplicationUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
-                name: "Order",
+                name: "Address",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    StreetNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CustomerId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Address", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Address_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Orders",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     OrderStatus = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OrderTotal = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AddressId = table.Column<int>(type: "int", nullable: false),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
+                    OrderTotal = table.Column<decimal>(type: "decimal(10,2)", nullable: true),
+                    OrderDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    AddressId = table.Column<int>(type: "int", nullable: true),
+                    CustomerId = table.Column<int>(type: "int", nullable: true),
                     CourierId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Order", x => x.Id);
+                    table.PrimaryKey("PK_Orders", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Order_Address_AddressId",
+                        name: "FK_Orders_Address_AddressId",
                         column: x => x.AddressId,
                         principalTable: "Address",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Order_Couriers_CourierId",
+                        name: "FK_Orders_Couriers_CourierId",
                         column: x => x.CourierId,
                         principalTable: "Couriers",
-                        principalColumn: "CourierId");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Order_Customers_CustomerId",
+                        name: "FK_Orders_Customers_CustomerId",
                         column: x => x.CustomerId,
                         principalTable: "Customers",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
-                name: "OrderItem",
+                name: "OrderItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -276,11 +274,11 @@ namespace FoodDelivery.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_OrderItem", x => x.Id);
+                    table.PrimaryKey("PK_OrderItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderItem_Order_OrderId",
+                        name: "FK_OrderItems_Orders_OrderId",
                         column: x => x.OrderId,
-                        principalTable: "Order",
+                        principalTable: "Orders",
                         principalColumn: "Id");
                 });
 
@@ -290,12 +288,12 @@ namespace FoodDelivery.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Amount = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     AddedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    MenuId = table.Column<int>(type: "int", nullable: false),
+                    MenuId = table.Column<int>(type: "int", nullable: true),
                     OrderItemId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -305,14 +303,20 @@ namespace FoodDelivery.Migrations
                         name: "FK_FoodItems_Menus_MenuId",
                         column: x => x.MenuId,
                         principalTable: "Menus",
-                        principalColumn: "MenuId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "MenuId");
                     table.ForeignKey(
-                        name: "FK_FoodItems_OrderItem_OrderItemId",
+                        name: "FK_FoodItems_OrderItems_OrderItemId",
                         column: x => x.OrderItemId,
-                        principalTable: "OrderItem",
+                        principalTable: "OrderItems",
                         principalColumn: "Id");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Address_CustomerId",
+                table: "Address",
+                column: "CustomerId",
+                unique: true,
+                filter: "[CustomerId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -357,20 +361,15 @@ namespace FoodDelivery.Migrations
                 name: "IX_Couriers_ApplicationUserId",
                 table: "Couriers",
                 column: "ApplicationUserId",
-                unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Customers_AddressId",
-                table: "Customers",
-                column: "AddressId",
                 unique: true,
-                filter: "[AddressId] IS NOT NULL");
+                filter: "[ApplicationUserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Customers_ApplicationUserId",
                 table: "Customers",
                 column: "ApplicationUserId",
-                unique: true);
+                unique: true,
+                filter: "[ApplicationUserId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
                 name: "IX_FoodItems_MenuId",
@@ -385,24 +384,26 @@ namespace FoodDelivery.Migrations
                 filter: "[OrderItemId] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_AddressId",
-                table: "Order",
-                column: "AddressId");
+                name: "IX_OrderItems_OrderId",
+                table: "OrderItems",
+                column: "OrderId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_CourierId",
-                table: "Order",
+                name: "IX_Orders_AddressId",
+                table: "Orders",
+                column: "AddressId",
+                unique: true,
+                filter: "[AddressId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Orders_CourierId",
+                table: "Orders",
                 column: "CourierId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Order_CustomerId",
-                table: "Order",
+                name: "IX_Orders_CustomerId",
+                table: "Orders",
                 column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_OrderItem_OrderId",
-                table: "OrderItem",
-                column: "OrderId");
         }
 
         /// <inheritdoc />
@@ -433,19 +434,19 @@ namespace FoodDelivery.Migrations
                 name: "Menus");
 
             migrationBuilder.DropTable(
-                name: "OrderItem");
+                name: "OrderItems");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "Address");
 
             migrationBuilder.DropTable(
                 name: "Couriers");
 
             migrationBuilder.DropTable(
                 name: "Customers");
-
-            migrationBuilder.DropTable(
-                name: "Address");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

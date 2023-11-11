@@ -1,17 +1,15 @@
 ﻿using FoodDelivery.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 public class Customer
 {
-    [Key]
+    [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
-    [Required]
-    public string ApplicationUserId { get; set; }
-    [Required]
-    public ApplicationUser ApplicationUser { get; set; }
+    public string? ApplicationUserId { get; set; }
+    public ApplicationUser? ApplicationUser { get; set; }
 
-    public int? AddressId { get; set; }
     public Address? Address { get; set; }
 
     public ICollection<Order>? Orders { get; set; }

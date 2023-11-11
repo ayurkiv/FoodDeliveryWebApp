@@ -146,29 +146,22 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.PhoneNumber = Input.PhoneNumber;
-                var customer = new Customer()
-                {
-                    ApplicationUserId = user.Id,
-                }; 
-                _context.Customers.Add(customer);
-                _context.SaveChanges();
+
                 
-                Console.WriteLine("Customer.Id: " + customer.Id);
-                Console.WriteLine("AplicationUser.Customer.Id: " + user.Customer.Id);
 
-                var address = new Address()
-                {
-                    Customer = customer,
-                };
-
-                _context.Add(address);
 
                 if (result.Succeeded)
                 {
+                    var customer = new Customer()
+                    {
+                        ApplicationUserId = user.Id,
+                    };
+                    _context.Customers.Add(customer);
+
+                    _context.SaveChanges();
+
                     _logger.LogInformation("User created a new account with password.");
 
-
-                    
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
