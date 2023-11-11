@@ -77,13 +77,26 @@ namespace FoodDelivery.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var category = _context.Categories.Where(x => x.Id == id).FirstOrDefault();
+            var viewModel = _context.Categories.Where(x => x.Id == id)
+                .Select(x => new CategoryViewModel()
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                })
+                .FirstOrDefault();
+
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(CategoryViewModel vm)
+        {
+            var category = _context.Categories.Where(x => x.Id == vm.Id).FirstOrDefault();
             if (category != null)
             {
                 _context.Categories.Remove(category);
                 _context.SaveChanges();
             }
-
             return RedirectToAction("Index");
         }
 
