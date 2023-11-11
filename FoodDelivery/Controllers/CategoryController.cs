@@ -23,7 +23,7 @@ namespace FoodDelivery.Controllers
 
                 }).ToList();
 
-            return View();
+            return View(listFromDb);
         }
 
         [HttpGet]
