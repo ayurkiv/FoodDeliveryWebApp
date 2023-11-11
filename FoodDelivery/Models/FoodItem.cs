@@ -19,6 +19,9 @@ namespace FoodDelivery.Models
         public int? MenuId { get; set; }
         public Menu? Menu { get; set; }
 
+        public int? CategoryId { get; set; }
+        public Category? Category { get; set; }
+
         public int? OrderItemId { get; set; }
         public OrderItem? OrderItem { get; set; }
 
