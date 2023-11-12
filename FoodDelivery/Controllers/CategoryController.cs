@@ -42,7 +42,7 @@ namespace FoodDelivery.Controllers
             _context.Categories.Add(model);
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
@@ -71,7 +71,7 @@ namespace FoodDelivery.Controllers
                     _context.SaveChanges();
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
@@ -97,7 +97,7 @@ namespace FoodDelivery.Controllers
                 _context.Categories.Remove(category);
                 _context.SaveChanges();
             }
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
     }

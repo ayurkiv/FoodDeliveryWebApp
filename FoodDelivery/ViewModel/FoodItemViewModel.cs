@@ -17,5 +17,7 @@ namespace FoodDelivery.ViewModel
 
         public int? CategoryId { get; set; }
         public IFormFile? Image { get; set; }
+
+        public string? CategoryTitle { get; set; }
     }
 }

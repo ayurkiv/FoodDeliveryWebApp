@@ -17,6 +17,14 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\0b2ce195-799e-4980-842d-3ea06810215b_Фотомеханик.JPG",
+      "PackagePath": "staticwebassets\\images\\FoodItems\\0b2ce195-799e-4980-842d-3ea06810215b_Фотомеханик.JPG"
+    },
+    {
+      "Id": "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\bf235c97-bd4c-4695-9a7e-336317006a87_Фотомеханик.JPG",
+      "PackagePath": "staticwebassets\\images\\FoodItems\\bf235c97-bd4c-4695-9a7e-336317006a87_Фотомеханик.JPG"
+    },
+    {
       "Id": "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
