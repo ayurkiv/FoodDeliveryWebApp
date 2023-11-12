@@ -31,10 +31,7 @@
                 @Html.DisplayNameFor(model => model.AddedDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.MenuId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CategoryTitle)
+                @Html.DisplayNameFor(model => model.CategoryName)
             </th>
             <th></th>
         </tr>
@@ -61,14 +58,11 @@
                 @Html.DisplayFor(modelItem => item.AddedDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.MenuId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryTitle)
+                @Html.DisplayFor(modelItem => item.CategoryName)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id=item.Id })
             </td>
         </tr>

@@ -35,9 +35,8 @@ namespace FoodDelivery.Controllers
                 Amount = item.Amount,
                 Price = item.Price,
                 AddedDate = item.AddedDate,
-                MenuId = item.MenuId,
-                CategoryTitle = item.Category.Title,
                 CategoryId = item.CategoryId,
+                CategoryName = item.Category.Title
                 // Map other properties as needed
             }).ToList();
 
@@ -48,7 +47,11 @@ namespace FoodDelivery.Controllers
         public IActionResult Create()
         {
             FoodItemViewModel vm = new FoodItemViewModel();
-            ViewBag.Category = new SelectList(_context.Categories, "Id", "Title");
+            // Отримайте список категорій з бази даних або іншого джерела
+            var categories = _context.Categories.ToList();
+
+            // Передайте список категорій в ViewBag
+            ViewBag.Categories = new SelectList(categories, "Id", "Title");
             return View(vm);
         }
 
@@ -70,7 +73,6 @@ namespace FoodDelivery.Controllers
                         AddedDate = DateTime.Now,
                         // Map other properties accordingly
                         CategoryId = vm.CategoryId,
-                        MenuId = vm.MenuId,
                         // Additional mappings as needed
                     };
 
@@ -111,71 +113,169 @@ namespace FoodDelivery.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var item = _context.FoodItems.Where(x => x.Id == id).FirstOrDefault();
+            // Отримайте FoodItem за його ідентифікатором з бази даних
+            FoodItem foodItem = _context.FoodItems.Find(id);
 
-            // Create a FoodItemViewModel and map properties from FoodItem
-            var viewModel = new FoodItemViewModel
+            if (foodItem == null)
             {
-                Id = item.Id,
-                Name = item.Name,
-                CategoryId = item.CategoryId,
-                // Map other properties as needed
+                // Обробка випадку, коли не знайдено FoodItem за вказаним ідентифікатором
+                return NotFound();
+            }
+
+            // Отримайте список категорій з бази даних або іншого джерела
+            var categories = _context.Categories.ToList();
+            FoodItemViewModel vm = new FoodItemViewModel
+            {
+                Id = foodItem.Id,
+                Name = foodItem.Name,
+                Description = foodItem.Description,
+                Amount = foodItem.Amount,
+                Price = foodItem.Price,
+                CategoryId = foodItem.CategoryId,
+                // Заповніть інші властивості відповідно
             };
 
-            ViewBag.Category = new SelectList(_context.Categories, "Id", "Title", viewModel.CategoryId);
-
-            // Pass the FoodItemViewModel to the view
-            return View(viewModel);
+            // Передайте список категорій та FoodItemViewModel в ViewBag
+            ViewBag.Categories = new SelectList(categories, "Id", "Title");
+            return View(vm);
         }
-        [HttpPost]
-        public async Task<IActionResult> Edit(FoodItemViewModel model)
-        {
 
+        [HttpPost]
+        public async Task<IActionResult> Edit(FoodItemViewModel vm)
+        {
             if (ModelState.IsValid)
             {
-                try
+                // Отримайте FoodItem за його ідентифікатором з бази даних
+                FoodItem model = _context.FoodItems.Find(vm.Id);
+
+                if (model == null)
                 {
-                    
-                    // Retrieve the existing item from the database
-                    var existingItem = await _context.FoodItems.FindAsync(model.Id);
+                    // Обробка випадку, коли не знайдено FoodItem за вказаним ідентифікатором
+                    return NotFound();
+                }
 
-                    // Update the properties of the existing item with the new values
-                    existingItem.Name = model.Name;
-                    existingItem.CategoryId = model.CategoryId;
-                    // Update other properties as needed
+                // Оновіть властивості FoodItem на основі властивостей FoodItemViewModel
+                model.Name = vm.Name;
+                model.Description = vm.Description;
+                model.Amount = vm.Amount;
+                model.Price = vm.Price;
+                model.CategoryId = vm.CategoryId;
 
-                    // Check if a new image is provided
-                    if (model.Image != null)
+                if (vm.Image != null)
+                {
+                    // Оновіть зображення, якщо воно надано
+                    string savePath = "/Images/FoodItems/";
+                    string wwwRootPath = _webHostEnvironment.WebRootPath;
+                    string fileName = Guid.NewGuid().ToString() + "_" + vm.Image.FileName;
+                    string imagePath = Path.Combine(wwwRootPath + savePath, fileName);
+
+                    // Збережіть нове зображення на сервері
+                    using (var fileStream = new FileStream(imagePath, FileMode.Create))
                     {
-                        // Save the new image file to the wwwroot/images folder
-                        string wwwRootPath = _webHostEnvironment.WebRootPath;
-                        string fileName = Guid.NewGuid().ToString() + "_" + model.Image.FileName;
-                        string imagePath = Path.Combine(wwwRootPath, "images", fileName);
-
-                        using (var fileStream = new FileStream(imagePath, FileMode.Create))
-                        {
-                            await model.Image.CopyToAsync(fileStream);
-                        }
-
-                        // Set the Image property in the existing item
-                        existingItem.Image = fileName;
+                        await vm.Image.CopyToAsync(fileStream);
                     }
 
-                    // Update the item in the database
-                    _context.Update(existingItem);
-                    await _context.SaveChangesAsync();
+                    // Оновіть властивість Image у FoodItem
+                    model.Image = fileName;
                 }
-                catch (DbUpdateConcurrencyException)
-                {
-                    throw;
-                }
+
+                // Оновіть запис в базі даних
+                _context.Entry(model).State = EntityState.Modified;
+                await _context.SaveChangesAsync();
 
                 return RedirectToAction(nameof(Index));
             }
+            else
+            {
+                foreach (var modelStateKey in ViewData.ModelState.Keys)
+                {
+                    var modelStateVal = ViewData.ModelState[modelStateKey];
+                    foreach (var error in modelStateVal.Errors)
+                    {
+                        Console.WriteLine($"Key: {modelStateKey}, Error: {error.ErrorMessage}");
+                    }
+                }
 
-            // If ModelState is not valid, reload the page with the existing model
-            ViewBag.Category = new SelectList(_context.Categories, "Id", "Title", model.CategoryId);
-            return View(model);
+            }
+            // Якщо ModelState не є дійсним, поверніть сторінку редагування з помилками валідації
+            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Title", vm.CategoryId);
+            return View(vm);
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            // Отримайте FoodItem за його ідентифікатором з бази даних
+            FoodItem foodItem = _context.FoodItems.Find(id);
+
+            if (foodItem == null)
+            {
+                // Обробка випадку, коли не знайдено FoodItem за вказаним ідентифікатором
+                return NotFound();
+            }
+
+            // Create a FoodItemViewModel and populate it with data from the FoodItem
+            FoodItemViewModel vm = new FoodItemViewModel
+            {
+                Id = foodItem.Id,
+                Name = foodItem.Name,
+                Description = foodItem.Description,
+                Amount = foodItem.Amount,
+                Price = foodItem.Price,
+                AddedDate = foodItem.AddedDate,
+                CategoryId = foodItem.CategoryId,
+                // Populate other properties as needed
+            };
+
+            return View(vm);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            // Отримайте FoodItem за його ідентифікатором з бази даних
+            FoodItem foodItem = _context.FoodItems.Find(id);
+
+            if (foodItem == null)
+            {
+                // Обробка випадку, коли не знайдено FoodItem за вказаним ідентифікатором
+                return NotFound();
+            }
+
+            // Видаліть FoodItem з бази даних
+            _context.FoodItems.Remove(foodItem);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpGet]
+        public IActionResult Details(int id)
+        {
+            // Retrieve the FoodItem from the database based on the provided id
+            var foodItem = _context.FoodItems.Find(id);
+
+            if (foodItem == null)
+            {
+                // Handle the case where the FoodItem with the given id is not found
+                return NotFound();
+            }
+
+            // Map the FoodItem entity to your FoodItemViewModel if needed
+            FoodItemViewModel vm = new FoodItemViewModel
+            {
+                Id = foodItem.Id,
+                Name = foodItem.Name,
+                Description = foodItem.Description,
+                Amount = foodItem.Amount,
+                Price = foodItem.Price,
+                AddedDate = foodItem.AddedDate,
+                CategoryName = foodItem.Category?.Title,
+                ImageUrl = foodItem.Image
+            };
+
+            return View(vm);
         }
 
     }

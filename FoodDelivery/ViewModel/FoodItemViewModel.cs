@@ -1,4 +1,6 @@
 ﻿using FoodDelivery.Models;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodDelivery.ViewModel
@@ -12,12 +14,13 @@ namespace FoodDelivery.ViewModel
         public decimal Price { get; set; }
         public DateTime AddedDate { get; set; }
 
-
-        public int? MenuId { get; set; }
-
         public int? CategoryId { get; set; }
         public IFormFile? Image { get; set; }
 
-        public string? CategoryTitle { get; set; }
+        public string? ImageUrl { get; set; }
+
+        [DisplayName("Category")]
+        public string? CategoryName { get; set; }
+
     }
 }

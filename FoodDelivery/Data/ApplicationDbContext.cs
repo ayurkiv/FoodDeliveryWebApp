@@ -24,7 +24,6 @@ namespace FoodDelivery.Data
         public DbSet<FoodItem> FoodItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
-        public DbSet<Menu> Menus { get; set; }
         public DbSet<Category> Categories { get; set; }
 
 

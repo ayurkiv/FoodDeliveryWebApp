@@ -16,10 +16,6 @@ namespace FoodDelivery.Models
         public decimal Price { get; set; }
         public DateTime AddedDate { get; set; }
 
-
-        public int? MenuId { get; set; }
-        public Menu? Menu { get; set; }
-
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
 
