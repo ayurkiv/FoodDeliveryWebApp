@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.IO;
-
+using FoodDelivery.Utilities;
 
 namespace FoodDelivery.Controllers
 {
@@ -23,10 +23,13 @@ namespace FoodDelivery.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 1)
         {
-            var items = _context.FoodItems.Include(x => x.Category).ToList();
-            var viewModels = items.Select(item => new FoodItemViewModel
+            // Retrieve all FoodItems from the database
+            var items = _context.FoodItems.Include(x => x.Category).OrderBy(x => x.Id).ToList();
+
+            // Create a PaginatedList to pass to the view
+            var paginatedList = new PaginatedList<FoodItemViewModel>(items.Select(item => new FoodItemViewModel
             {
                 // Map properties from FoodItem to FoodItemViewModel
                 Id = item.Id,
@@ -38,9 +41,9 @@ namespace FoodDelivery.Controllers
                 CategoryId = item.CategoryId,
                 CategoryName = item.Category.Title
                 // Map other properties as needed
-            }).ToList();
+            }).ToList(), items.Count, page, pageSize);
 
-            return View(viewModels);
+            return View(paginatedList);
         }
 
         [HttpGet]

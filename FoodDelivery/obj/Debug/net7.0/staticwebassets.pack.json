@@ -37,6 +37,14 @@
       "PackagePath": "staticwebassets\\images\\FoodItems\\bf235c97-bd4c-4695-9a7e-336317006a87_Фотомеханик.JPG"
     },
     {
+      "Id": "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\d08b0493-47e2-4df9-b52d-d464a38b03e9_20231008_215815.jpg",
+      "PackagePath": "staticwebassets\\images\\FoodItems\\d08b0493-47e2-4df9-b52d-d464a38b03e9_20231008_215815.jpg"
+    },
+    {
+      "Id": "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\d5c6d788-38f1-440d-97e1-90cee15b891b_20231008_215815.jpg",
+      "PackagePath": "staticwebassets\\images\\FoodItems\\d5c6d788-38f1-440d-97e1-90cee15b891b_20231008_215815.jpg"
+    },
+    {
       "Id": "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
