@@ -152,6 +152,9 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
+                    // Присвоюємо роль "Customer"
+                    await _userManager.AddToRoleAsync(user, "Customer");
+
                     var customer = new Customer()
                     {
                         ApplicationUserId = user.Id,

@@ -1,10 +1,14 @@
 ﻿using FoodDelivery.Data;
 using FoodDelivery.Models;
 using FoodDelivery.Utilities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FoodDelivery.Controllers
+namespace FoodDelivery.Areas.Admin.Controllers
 {
+
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -40,7 +44,7 @@ namespace FoodDelivery.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            CategoryViewModel newCategory = new CategoryViewModel();  
+            CategoryViewModel newCategory = new CategoryViewModel();
 
             return View(newCategory);
         }
@@ -59,10 +63,10 @@ namespace FoodDelivery.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var viewModel =_context.Categories.Where(x => x.Id == id)
+            var viewModel = _context.Categories.Where(x => x.Id == id)
                 .Select(x => new CategoryViewModel()
                 {
-                    Id=x.Id,
+                    Id = x.Id,
                     Title = x.Title,
                 }).FirstOrDefault();
 
@@ -75,9 +79,9 @@ namespace FoodDelivery.Controllers
             if (ModelState.IsValid)
             {
                 var categoryFromDb = _context.Categories.FirstOrDefault(x => x.Id == vm.Id);
-                if(categoryFromDb != null)
+                if (categoryFromDb != null)
                 {
-                    categoryFromDb.Title = vm.Title;    
+                    categoryFromDb.Title = vm.Title;
                     _context.Categories.Update(categoryFromDb);
                     _context.SaveChanges();
                 }

@@ -2,6 +2,8 @@ using FoodDelivery.Data;
 using FoodDelivery.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +18,9 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllersWithViews();
+
+// Зареєструйте ваш DbInitializer
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
 var app = builder.Build();
 
@@ -39,36 +44,29 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapControllerRoute(
+    name: "adminArea",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
 
-
+// Викликайте DbInitializer для ініціалізації бази даних
 using (var scope = app.Services.CreateScope())
 {
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    var roles = new[] { "Admin", "Customer" };
-    foreach (var role in roles)
+    var services = scope.ServiceProvider;
+    try
     {
-        if(!await roleManager.RoleExistsAsync(role))
-            await roleManager.CreateAsync(new IdentityRole(role));
+        var initializer = services.GetRequiredService<IDbInitializer>();
+        initializer.Initialize();
+    }
+    catch (Exception ex)
+    {
+        var logger = services.GetRequiredService<ILogger<Program>>();
+        logger.LogError(ex, "An error occurred while seeding the database.");
     }
 }
-
-using (var scope = app.Services.CreateScope())
-{
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
-    string Email = "admin@admin.com";
-    string password = "Admin12!";
-    if(await userManager.FindByEmailAsync(Email) == null)
-    {
-        var Admin = new ApplicationUser();
-        Admin.Email = Email;
-        Admin.UserName = Email;
-        await userManager.CreateAsync(Admin, password);
-        userManager.AddToRoleAsync(Admin, "Admin");
-    }
-}
-
 
 app.Run();

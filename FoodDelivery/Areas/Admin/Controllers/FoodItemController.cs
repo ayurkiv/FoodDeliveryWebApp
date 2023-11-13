@@ -8,9 +8,13 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using FoodDelivery.Utilities;
+using Microsoft.AspNetCore.Authorization;
 
-namespace FoodDelivery.Controllers
+namespace FoodDelivery.Areas.Admin.Controllers
 {
+
+    [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class FoodItemController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -63,7 +67,7 @@ namespace FoodDelivery.Controllers
         {
             if (ModelState.IsValid)
             {
-                if(vm.Image != null)
+                if (vm.Image != null)
                 {
                     // Map ViewModel to Model
                     FoodItem model = new FoodItem
