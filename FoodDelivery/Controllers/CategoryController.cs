@@ -1,5 +1,6 @@
 ﻿using FoodDelivery.Data;
 using FoodDelivery.Models;
+using FoodDelivery.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodDelivery.Controllers
@@ -13,17 +14,27 @@ namespace FoodDelivery.Controllers
             _context = context;
         }
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 10)
         {
-            var listFromDb = _context.Categories
-                .ToList().Select( x=> new CategoryViewModel()
+            var categories = _context.Categories
+                .OrderBy(x => x.Id) // Order by a suitable property
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .Select(x => new CategoryViewModel
                 {
                     Id = x.Id,
                     Title = x.Title,
+                    // Map other properties as needed
+                })
+                .ToList();
 
-                }).ToList();
+            // Calculate the total number of categories in the database
+            int totalItems = _context.Categories.Count();
 
-            return View(listFromDb);
+            // Create a PaginatedList to pass to the view
+            var paginatedList = new PaginatedList<CategoryViewModel>(categories, totalItems, page, pageSize);
+
+            return View(paginatedList);
         }
 
         [HttpGet]
