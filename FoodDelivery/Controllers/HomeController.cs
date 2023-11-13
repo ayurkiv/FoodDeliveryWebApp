@@ -1,27 +1,48 @@
-﻿using FoodDelivery.Models;
+﻿using FoodDelivery.Data;
+using FoodDelivery.Models;
+using FoodDelivery.Utilities;
+using FoodDelivery.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 
 namespace FoodDelivery.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 10)
         {
-            return View();
-        }
+            var items = _context.FoodItems.Include(x => x.Category)
+                .OrderBy(x => x.AddedDate)  // Додайте цей рядок для сортування
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var viewModels = items.Select(item => new FoodItemViewModel
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Description = item.Description,
+                Amount = item.Amount,
+                Price = item.Price,
+                AddedDate = item.AddedDate,
+                CategoryId = item.CategoryId,
+                CategoryName = item.Category?.Title,
+                ImageUrl = $"/Images/FoodItems/{item.Image}"
+                // Додайте інші властивості за необхідності
+            }).ToList();
+
+            var totalItems = _context.FoodItems.Count();
+            var paginatedList = new PaginatedList<FoodItemViewModel>(viewModels, totalItems, page, pageSize);
+
+            return View(paginatedList);
         }
     }
 }
