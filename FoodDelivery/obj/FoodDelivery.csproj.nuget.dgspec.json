@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj": {}
+    "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj": {}
   },
   "projects": {
-    "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj": {
+    "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj",
+        "projectUniqueName": "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj",
         "projectName": "FoodDelivery",
-        "projectPath": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj",
-        "packagesPath": "C:\\Users\\proko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\obj\\",
+        "projectPath": "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj",
+        "packagesPath": "C:\\Users\\SystemX\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\proko\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SystemX\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -90,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
