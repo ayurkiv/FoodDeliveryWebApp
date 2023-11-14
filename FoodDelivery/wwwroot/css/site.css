@@ -21,7 +21,9 @@ html {
 body {
   margin-bottom: 60px;
 }
-
+.font-popins {
+    font-family: 'Poppins', 'Arial Narrow', Arial, sans-serif;
+}
 .bg-form-reister-container {
     margin-top: 2%;
     padding: 3% 5%;

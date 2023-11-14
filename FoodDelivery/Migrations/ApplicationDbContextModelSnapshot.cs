@@ -150,15 +150,10 @@ namespace FoodDelivery.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("MenuId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MenuId");
 
                     b.ToTable("Categories");
                 });
@@ -206,9 +201,6 @@ namespace FoodDelivery.Migrations
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MenuId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
@@ -222,26 +214,11 @@ namespace FoodDelivery.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("MenuId");
-
                     b.HasIndex("OrderItemId")
                         .IsUnique()
                         .HasFilter("[OrderItemId] IS NOT NULL");
 
                     b.ToTable("FoodItems");
-                });
-
-            modelBuilder.Entity("FoodDelivery.Models.Menu", b =>
-                {
-                    b.Property<int>("MenuId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MenuId"));
-
-                    b.HasKey("MenuId");
-
-                    b.ToTable("Menus");
                 });
 
             modelBuilder.Entity("FoodDelivery.Models.Order", b =>
@@ -462,15 +439,6 @@ namespace FoodDelivery.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Models.Category", b =>
-                {
-                    b.HasOne("FoodDelivery.Models.Menu", "Menu")
-                        .WithMany("Categories")
-                        .HasForeignKey("MenuId");
-
-                    b.Navigation("Menu");
-                });
-
             modelBuilder.Entity("FoodDelivery.Models.Courier", b =>
                 {
                     b.HasOne("FoodDelivery.Models.ApplicationUser", "ApplicationUser")
@@ -486,17 +454,11 @@ namespace FoodDelivery.Migrations
                         .WithMany("FoodItems")
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("FoodDelivery.Models.Menu", "Menu")
-                        .WithMany("FoodItems")
-                        .HasForeignKey("MenuId");
-
                     b.HasOne("FoodDelivery.Models.OrderItem", "OrderItem")
                         .WithOne("FoodItem")
                         .HasForeignKey("FoodDelivery.Models.FoodItem", "OrderItemId");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Menu");
 
                     b.Navigation("OrderItem");
                 });
@@ -611,13 +573,6 @@ namespace FoodDelivery.Migrations
             modelBuilder.Entity("FoodDelivery.Models.Courier", b =>
                 {
                     b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("FoodDelivery.Models.Menu", b =>
-                {
-                    b.Navigation("Categories");
-
-                    b.Navigation("FoodItems");
                 });
 
             modelBuilder.Entity("FoodDelivery.Models.Order", b =>

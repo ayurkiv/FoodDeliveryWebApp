@@ -2,7 +2,7 @@
 @model PaginatedList<FoodDelivery.ViewModel.FoodItemViewModel>
 
 
-<div class="mt-4">
+<div class="mt-4 container">
     <div class="mt-4 mb-2">
         <a href="@Url.Action("Index", new { category = "All", page = Model.CurrentPage, pageSize = Model.PageSize })" class="btn btn-outline-primary mr-2 @(ViewBag.Category == null || ViewBag.Category == "All" ? "active" : "")">All</a>
         @foreach (var category in ViewBag.Categories)
@@ -11,18 +11,20 @@
         }
     </div>
 
-    <div class="row">
+    <div class="row mt-3">
         @foreach (var item in Model.Items)
         {
             <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                <img src="@Url.Content(item.ImageUrl)" class="card-img-top" alt="Food Item Image" style="height: 200px; object-fit: cover;">
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Name</h5>
-                        <p class="card-text text-muted">@item.CategoryName</p>
-                        <p class="card-text">Price: $@item.Price</p>
-                        <a href="#" class="btn btn-primary">Buy</a>
+                <div class="card h-100 card-container">
+                    <img src="@Url.Content(item.ImageUrl)" class="card-img-top image-container" alt="Food Item Image" style="height: 200px; object-fit: cover;">
+                    <div class="card-body col-md-12">
+                        <div class="col-md-12 mb-3">
+                            <h5 class="card-title m-0 font-popins fw-600 fs-5">@item.Name</h5>
+                            <p class="card-text text-muted m-0 font-popins fw-light fs-8">@item.CategoryName</p>
+                        </div>
+                        <p class="card-text font-popins fw-normal fs-6">@item.Price $</p>
                     </div>
+                    <a href="#" class="btn btn-primary btn-register card-btn-container w-100">Buy</a>
                 </div>
             </div>
         }

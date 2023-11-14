@@ -1,0 +1,17 @@
+﻿.card-container {
+    background-color: #F8F8F8;
+    border-radius: 20px;
+    border: none;
+    transition: all 0.3s ease;
+}
+.card-container:hover{
+    transform: translate(0, -5px);
+    transition: all 0.3s ease;
+}
+.image-container {
+    border-radius: 20px 20px 0 0;
+}
+.card-btn-container {
+    border-radius: 0 0 20px 20px;
+    transition: all 0.5s ease;
+}

@@ -26,7 +26,7 @@ namespace FoodDelivery.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index(int page = 1, int pageSize = 1)
+        public IActionResult Index(int page = 1, int pageSize = 10)
         {
             // Retrieve all FoodItems from the database
             var items = _context.FoodItems.Include(x => x.Category).OrderBy(x => x.Id).ToList();
