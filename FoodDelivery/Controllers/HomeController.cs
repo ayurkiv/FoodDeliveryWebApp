@@ -18,32 +18,42 @@ namespace FoodDelivery.Controllers
             _context = context;
         }
 
-        public IActionResult Index(int page = 1, int pageSize = 10)
+        public IActionResult Index(string category, int page = 1, int pageSize = 3)
         {
-            var items = _context.FoodItems.Include(x => x.Category)
-                .OrderBy(x => x.AddedDate)  // Додайте цей рядок для сортування
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            // Отримання категорій для панелі сортування
+            var categories = _context.Categories.ToList();
+            ViewBag.Categories = categories;
 
-            var viewModels = items.Select(item => new FoodItemViewModel
+            // Запит для отримання продуктів
+            var query = _context.FoodItems
+                .Include(Item => Item.Category)
+                .Select(item => new FoodItemViewModel
+                {
+                    Id = item.Id,
+                    Name = item.Name,
+                    Description = item.Description,
+                    Price = item.Price,
+                    ImageUrl = $"/Images/FoodItems/{item.Image}",
+                    CategoryName = item.Category.Title
+                });
+
+            // Фільтрація за категорією
+            if (!string.IsNullOrEmpty(category) && category.ToLower() != "all")
             {
-                Id = item.Id,
-                Name = item.Name,
-                Description = item.Description,
-                Amount = item.Amount,
-                Price = item.Price,
-                AddedDate = item.AddedDate,
-                CategoryId = item.CategoryId,
-                CategoryName = item.Category?.Title,
-                ImageUrl = $"/Images/FoodItems/{item.Image}"
-                // Додайте інші властивості за необхідності
-            }).ToList();
+                query = query.Where(item => item.CategoryName.ToLower() == category.ToLower());
+            }
 
-            var totalItems = _context.FoodItems.Count();
-            var paginatedList = new PaginatedList<FoodItemViewModel>(viewModels, totalItems, page, pageSize);
+            // Сортування за категорією
+            query = query.OrderBy(item => item.CategoryName);
+
+            // Створення об'єкта PaginatedList для пагінації
+            var paginatedList = new PaginatedList<FoodItemViewModel>(
+                query.ToList(), query.Count(), page, pageSize);
+
+            ViewBag.Category = category;
 
             return View(paginatedList);
         }
+
     }
 }
