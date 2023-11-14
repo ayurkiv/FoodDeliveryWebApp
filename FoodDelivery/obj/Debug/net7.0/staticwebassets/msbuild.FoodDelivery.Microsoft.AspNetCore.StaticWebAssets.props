@@ -112,6 +112,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\FoodItems\8a753f58-21c9-49db-96b1-8fb2148c1bd1_20231008_215815.jpg))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\FoodItems\96135650-8fee-4b51-8422-cff24f60b92f_20231008_215815.jpg))">
+      <SourceType>Package</SourceType>
+      <SourceId>FoodDelivery</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/FoodDelivery</BasePath>
+      <RelativePath>images/FoodItems/96135650-8fee-4b51-8422-cff24f60b92f_20231008_215815.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\FoodItems\96135650-8fee-4b51-8422-cff24f60b92f_20231008_215815.jpg))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\FoodItems\996a5953-b684-4c0e-81d4-bda8eeeec177_20231008_215815.jpg))">
       <SourceType>Package</SourceType>
       <SourceId>FoodDelivery</SourceId>

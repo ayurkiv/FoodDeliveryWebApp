@@ -4,10 +4,9 @@ using FoodDelivery.Utilities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FoodDelivery.Areas.Admin.Controllers
+namespace FoodDelivery.Controllers
 {
-
-    [Area("Admin")]
+    
     [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {

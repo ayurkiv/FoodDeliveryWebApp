@@ -10,10 +10,9 @@ using System.IO;
 using FoodDelivery.Utilities;
 using Microsoft.AspNetCore.Authorization;
 
-namespace FoodDelivery.Areas.Admin.Controllers
+namespace FoodDelivery.Controllers
 {
 
-    [Area("Admin")]
     [Authorize(Roles = "Admin")]
     public class FoodItemController : Controller
     {

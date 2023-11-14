@@ -2,6 +2,7 @@
 using FoodDelivery.Models;
 using FoodDelivery.Utilities;
 using FoodDelivery.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
