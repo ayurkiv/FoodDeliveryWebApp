@@ -10,7 +10,7 @@
                 <!-- Зміст модального вікна тут -->
                 <h5 id="modalFoodItemName" class="m-0 fw-600 fs-5"></h5>
                 <p id="modalFoodItemCategory" class="mb-3 font-popins fw-light text-muted"></p>
-                <p id="modelFoodDescription" class="mb-3 font-popins fw-lighter fs-7"></p>
+                <p id="modelFoodDescription" class="mb-4 font-popins fw-lighter fs-7"></p>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="d-flex align-items-center">
                         <img class="me-2" src="svg/price.svg" />
@@ -18,11 +18,11 @@
                     </div>
                     <div class="d-flex align-items-center">
                         <img class="me-2" src="svg/weight.svg" />
-                        <p id="modalFoodItemWeight" class="card-text font-popins fw-medium fs-6">250 g</p>
+                        <p id="modalFoodItemWeight" class="card-text font-popins fw-medium fs-6"></p>
                     </div>
                     <div class="d-flex align-items-center">
                         <img class="me-2" src="svg/timeToReady.svg" />
-                        <p id="modalFoodItemTime" class="card-text font-popins fw-medium fs-6">25 Mins</p>
+                        <p id="modalFoodItemTimeToReady" class="card-text font-popins fw-medium fs-6"></p>
                     </div>
                 </div>
             </div>
@@ -45,7 +45,7 @@
         @foreach (var item in Model.Items)
         {
             <div class="col-md-4 mb-4">
-                <div class="card h-100 card-container" data-toggle="modal" data-target="#foodItemModal" onclick="openFoodItemModal('@item.Name', '@item.CategoryName', '@item.Price', '@item.ImageUrl', '@item.Description')">
+                <div class="card h-100 card-container" data-toggle="modal" data-target="#foodItemModal" onclick="openFoodItemModal('@item.Name', '@item.CategoryName', '@item.Price', '@item.ImageUrl', '@item.Description', '@item.Weight', '@item.TimeToReady')">
                     <img src="@Url.Content(item.ImageUrl)" class="card-img-top image-container" alt="Food Item Image" style="height: 200px; object-fit: cover;">
                     <div class="row card-body col-md-12 m-0 px-2">
                         <div class="col">
@@ -53,7 +53,7 @@
                             <p class="card-text text-muted font-popins fw-light fs-8 mb-3">@item.CategoryName</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="card-text font-popins fw-medium fs-6 m-0"><img src="svg/price.svg" class="me-2" />$@item.Price</p>
-                                <p class="card-text font-popins fw-medium fs-6 m-0"><img src="svg/timeToReady.svg" class="me-2" /> 25 Mins<!-- item.TimeToReady --></p>
+                                <p class="card-text font-popins fw-medium fs-6 m-0"><img src="svg/timeToReady.svg" class="me-2" /> @item.TimeToReady Mins<!-- item.TimeToReady --></p>
                             </div>
                         </div>
                         <!-- <div class="col d-flex justify-content-end align-items-start pe-0">

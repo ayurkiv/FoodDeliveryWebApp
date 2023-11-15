@@ -18,7 +18,7 @@ namespace FoodDelivery.Controllers
             _context = context;
         }
 
-        public IActionResult Index(string category, int page = 1, int pageSize = 3)
+        public IActionResult Index(string category, int page = 1, int pageSize = 6)
         {
             // Отримання категорій для панелі сортування
             var categories = _context.Categories.ToList();
@@ -34,7 +34,10 @@ namespace FoodDelivery.Controllers
                     Description = item.Description,
                     Price = item.Price,
                     ImageUrl = $"/Images/FoodItems/{item.Image}",
-                    CategoryName = item.Category.Title
+                    CategoryName = item.Category.Title,
+                    TimeToReady = item.TimeToReady,
+                    Weight = item.Weight,
+                    Available = item.Available
                 });
 
             // Фільтрація за категорією

@@ -10,6 +10,8 @@ namespace FoodDelivery.Models
         [Required, MinLength(1)]
         public int Amount { get; set; }
 
+        public int OrderItemWeight { get; set; }
+
         [Column(TypeName = "decimal(10, 2)")]
         public decimal OrderItemTotal { get; set; }
 

@@ -10,10 +10,12 @@ namespace FoodDelivery.Models
         public string? Name { get; set; }
         public string? Description { get; set; }
         public string? Image {  get; set; }
-        public int Amount { get; set; }
 
-        [Column(TypeName = "decimal(10, 2)")]
-        public decimal Price { get; set; }
+        public bool Available { get; set; }
+        public int TimeToReady { get; set; }
+        public int Weight {  get; set; }
+
+        public float Price { get; set; }
         public DateTime AddedDate { get; set; }
 
         public int? CategoryId { get; set; }
@@ -22,6 +24,10 @@ namespace FoodDelivery.Models
         public int? OrderItemId { get; set; }
         public OrderItem? OrderItem { get; set; }
 
-        public FoodItem() => AddedDate = DateTime.Now;
+        public FoodItem()
+        {
+            AddedDate = DateTime.Now;
+            Available = true;
+        }
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodDelivery.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231114164853_MigrationDB")]
-    partial class MigrationDB
+    [Migration("20231115194835_Mig1")]
+    partial class Mig1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -192,8 +192,8 @@ namespace FoodDelivery.Migrations
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Amount")
-                        .HasColumnType("int");
+                    b.Property<bool>("Available")
+                        .HasColumnType("bit");
 
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
@@ -210,8 +210,14 @@ namespace FoodDelivery.Migrations
                     b.Property<int?>("OrderItemId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(10, 2)");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
+
+                    b.Property<int>("TimeToReady")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Weight")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -250,6 +256,9 @@ namespace FoodDelivery.Migrations
                     b.Property<decimal?>("OrderTotal")
                         .HasColumnType("decimal(10, 2)");
 
+                    b.Property<int?>("WeightTotal")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AddressId")
@@ -279,6 +288,9 @@ namespace FoodDelivery.Migrations
 
                     b.Property<decimal>("OrderItemTotal")
                         .HasColumnType("decimal(10, 2)");
+
+                    b.Property<int>("OrderItemWeight")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

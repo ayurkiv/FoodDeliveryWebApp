@@ -38,11 +38,13 @@ namespace FoodDelivery.Controllers
                 Id = item.Id,
                 Name = item.Name,
                 Description = item.Description,
-                Amount = item.Amount,
                 Price = item.Price,
                 AddedDate = item.AddedDate,
                 CategoryId = item.CategoryId,
-                CategoryName = item.Category.Title
+                CategoryName = item.Category?.Title,
+                Available = item.Available,
+                Weight = item.Weight,
+                TimeToReady = item.TimeToReady,
                 // Map other properties as needed
             }).ToList(), items.Count, page, pageSize);
 
@@ -74,12 +76,11 @@ namespace FoodDelivery.Controllers
                         // Assuming properties in FoodItemViewModel are the same as in FoodItem
                         Name = vm.Name,
                         Description = vm.Description,
-                        Amount = vm.Amount,
                         Price = vm.Price,
                         AddedDate = DateTime.Now,
-                        // Map other properties accordingly
+                        TimeToReady = vm.TimeToReady,
+                        Weight = vm.Weight,
                         CategoryId = vm.CategoryId,
-                        // Additional mappings as needed
                     };
 
                     // Save the image file to the wwwroot/images folder
@@ -135,9 +136,12 @@ namespace FoodDelivery.Controllers
                 Id = foodItem.Id,
                 Name = foodItem.Name,
                 Description = foodItem.Description,
-                Amount = foodItem.Amount,
                 Price = foodItem.Price,
                 CategoryId = foodItem.CategoryId,
+                Weight = foodItem.Weight,
+                Available = foodItem.Available,
+                TimeToReady = foodItem.TimeToReady,
+                ImageUrl = foodItem.Image
                 // Заповніть інші властивості відповідно
             };
 
@@ -163,9 +167,12 @@ namespace FoodDelivery.Controllers
                 // Оновіть властивості FoodItem на основі властивостей FoodItemViewModel
                 model.Name = vm.Name;
                 model.Description = vm.Description;
-                model.Amount = vm.Amount;
                 model.Price = vm.Price;
                 model.CategoryId = vm.CategoryId;
+                model.Weight = vm.Weight;
+                model.Available = vm.Available;
+                model.TimeToReady = vm.TimeToReady;
+
 
                 if (vm.Image != null)
                 {
@@ -226,7 +233,6 @@ namespace FoodDelivery.Controllers
                 Id = foodItem.Id,
                 Name = foodItem.Name,
                 Description = foodItem.Description,
-                Amount = foodItem.Amount,
                 Price = foodItem.Price,
                 AddedDate = foodItem.AddedDate,
                 CategoryId = foodItem.CategoryId,
@@ -274,7 +280,6 @@ namespace FoodDelivery.Controllers
                 Id = foodItem.Id,
                 Name = foodItem.Name,
                 Description = foodItem.Description,
-                Amount = foodItem.Amount,
                 Price = foodItem.Price,
                 AddedDate = foodItem.AddedDate,
                 CategoryName = foodItem.Category?.Title,

@@ -26,7 +26,7 @@
                 @Html.DisplayNameFor(model => model.Items.First().Description)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Items.First().Amount)
+                @Html.DisplayNameFor(model => model.Items.First().Available)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Items.First().Price)
@@ -36,6 +36,12 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Items.First().CategoryName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Items.First().Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Items.First().TimeToReady)
             </th>
             <th></th>
         </tr>
@@ -54,7 +60,7 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Amount)
+                    @Html.DisplayFor(modelItem => item.Available)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Price)
@@ -64,6 +70,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CategoryName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Weight)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TimeToReady)
                 </td>
                 <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
