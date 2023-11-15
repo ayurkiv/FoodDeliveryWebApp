@@ -1,4 +1,23 @@
-﻿.card-container {
+﻿
+.btn-check:active + .btn-outline-primary, .btn-check:checked + .btn-outline-primary, .btn-outline-primary.active, .btn-outline-primary.dropdown-toggle.show, .btn-outline-primary:active {
+    color: #fff;
+    background-color: #FC8019;
+    border-color: #FC8019;
+}
+.btn-outline-primary {
+    color: #6c757d;
+    border-color: #6c757d;
+}
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #FC8019;
+    border-color: #FC8019;
+}
+.btn-outline-primary:focus, .btn-outline-primary:active{
+    box-shadow: none;
+}
+/*Card*/
+.card-container {
     background-color: #F8F8F8;
     border-radius: 20px;
     border: none;
@@ -38,4 +57,38 @@
 }
 .btn-model{
     border-radius: 0 0 16px 16px;
+}
+.fw-medium {
+    font-weight: 500;
+}
+/*Pagination*/
+.pagination-bg {
+    border-radius: 0.25rem;
+    border-color: #FC8019;
+}
+.pagination-link:focus {
+    color: #FC8019;
+    box-shadow: none;
+}
+.pagination-link:hover {
+    background-color: #fc801914;
+}
+.pagination-link {
+    box-shadow: none;
+    color: #FC8019;
+}
+.pagination-link:hover{
+    color: #FC8019;
+}
+.pagination-bg.active .pagination-link {
+    background-color: #FC8019;
+    border-color: #FC8019;
+}
+.pagination-bg:first-child .pagination-link {
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+}
+.pagination-bg:last-child .pagination-link {
+    border-top-right-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
 }
