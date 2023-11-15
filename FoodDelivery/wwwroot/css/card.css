@@ -15,3 +15,27 @@
     border-radius: 0 0 20px 20px;
     transition: all 0.5s ease;
 }
+.modal-place {
+    top: 40%;
+    transform: translateY(-40%);
+    border: none;
+    border-radius: 16px;
+    border: none;
+}
+.modal-image{
+    border-radius: 16px 16px 0 0;
+}
+.modal-bg {
+    overflow-y: hidden;
+    background-color: rgb(0, 0, 0, 0.05);
+    backdrop-filter: blur(5px);
+}
+.fs-7{
+    font-size: 14px;
+}
+.fs-8{
+    font-size: 12px;
+}
+.btn-model{
+    border-radius: 0 0 16px 16px;
+}

@@ -1,6 +1,24 @@
 ﻿@using FoodDelivery.Utilities
 @model PaginatedList<FoodDelivery.ViewModel.FoodItemViewModel>
 
+<!-- Модальне вікно -->
+<div class="modal fade modal-bg h-100" id="foodItemModal" tabindex="-1" role="dialog" aria-labelledby="foodItemModalLabel" aria-hidden="true">
+    <div class="modal-dialog h-100" role="document">
+        <div class="modal-content modal-place">
+            <img id="modalFoodItemImage" src="#" class="card-img-top image-container modal-image" alt="Food Item Image" style="height: 200px; object-fit: cover;">
+            <div class="modal-body font-popins">
+                <!-- Зміст модального вікна тут -->
+                <h5 id="modalFoodItemName" class="m-0 fw-600 fs-5"></h5>
+                <p id="modalFoodItemCategory" class="mb-3 font-popins fw-light text-muted"></p>
+                <p id="modelFoodDescription" class="mb-3 font-popins fw-lighter fs-7"></p>
+                <p id="modalFoodItemPrice" class="m-0 fw-normal fs-6"></p>
+
+            </div>
+            <a href="#" class="btn btn-primary btn-register card-btn-container w-100 btn-model">Add to cart</a>
+        </div>
+    </div>
+</div>
+
 
 <div class="mt-4 container">
     <div class="mt-4 mb-2">
@@ -15,7 +33,7 @@
         @foreach (var item in Model.Items)
         {
             <div class="col-md-4 mb-4">
-                <div class="card h-100 card-container">
+                <div class="card h-100 card-container" data-toggle="modal" data-target="#foodItemModal" onclick="openFoodItemModal('@item.Name', '@item.CategoryName', '@item.Price', '@item.ImageUrl', '@item.Description')">
                     <img src="@Url.Content(item.ImageUrl)" class="card-img-top image-container" alt="Food Item Image" style="height: 200px; object-fit: cover;">
                     <div class="card-body col-md-12">
                         <div class="col-md-12 mb-3">
@@ -24,7 +42,7 @@
                         </div>
                         <p class="card-text font-popins fw-normal fs-6">@item.Price $</p>
                     </div>
-                    <a href="#" class="btn btn-primary btn-register card-btn-container w-100">Buy</a>
+                    <!-- <a href="#" class="btn btn-primary btn-register card-btn-container w-100">Buy</a> -->
                 </div>
             </div>
         }
