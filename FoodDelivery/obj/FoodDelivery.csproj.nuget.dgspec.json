@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj": {}
+    "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj": {
+    "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj",
+        "projectUniqueName": "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj",
         "projectName": "FoodDelivery",
-        "projectPath": "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj",
+        "projectPath": "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj",
         "packagesPath": "C:\\Users\\SystemX\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SystemX\\Source\\Repos\\FoodDeliveryWebApp\\FoodDelivery\\obj\\",
+        "outputPath": "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\SystemX\\AppData\\Roaming\\NuGet\\NuGet.Config",

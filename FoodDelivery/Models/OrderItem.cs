@@ -7,13 +7,11 @@ namespace FoodDelivery.Models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required, MinLength(1)]
         public int Amount { get; set; }
 
         public int OrderItemWeight { get; set; }
 
-        [Column(TypeName = "decimal(10, 2)")]
-        public decimal OrderItemTotal { get; set; }
+        public float OrderItemTotal { get; set; }
 
         public FoodItem? FoodItem { get; set; }
 
