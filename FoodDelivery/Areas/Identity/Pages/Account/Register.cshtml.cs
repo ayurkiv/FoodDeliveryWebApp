@@ -158,6 +158,12 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                     };
                     _context.Customers.Add(customer);
 
+                    var cart = new Cart()
+                    {
+                        CustomerId = customer.Id,
+                    };
+                    _context.Carts.Add(cart);
+
                     _context.SaveChanges();
 
                     _logger.LogInformation("User created a new account with password.");

@@ -7,12 +7,11 @@ namespace FoodDelivery.Models
     {
         public int Id { get; set; }
 
-        public float? OrderTotal { get; set; }
+        public float? CartTotal { get; set; }
 
         public ICollection<OrderItem>? OrderItems { get; set; }
 
         public int? CustomerId { get; set; }
-        public Customer? Customer { get; set; }
     }
 
 }

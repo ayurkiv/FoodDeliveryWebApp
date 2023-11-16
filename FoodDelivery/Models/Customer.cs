@@ -12,6 +12,8 @@ public class Customer
 
     public Address? Address { get; set; }
 
+    public Cart? Cart { get; set; }
+
     public ICollection<Order>? Orders { get; set; }
 }
 

@@ -9,8 +9,7 @@ namespace FoodDelivery.Models
         public int Id { get; set; }
         public string? OrderStatus { get; set; }
 
-        [Column(TypeName = "decimal(10, 2)")]
-        public decimal? OrderTotal { get; set; }
+        public float? OrderTotal { get; set; }
         public int? WeightTotal { get; set; }
         public DateTime? OrderDate { get; set; }
 
