@@ -21,13 +21,13 @@ namespace FoodDelivery.Models
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
 
-        public int? OrderItemId { get; set; }
-        public OrderItem? OrderItem { get; set; }
+		public ICollection<OrderItem>? OrderItems { get; set; }
 
-        public FoodItem()
+		public FoodItem()
         {
             AddedDate = DateTime.Now;
             Available = true;
-        }
-    }
+			OrderItems = new List<OrderItem>();
+		}
+	}
 }

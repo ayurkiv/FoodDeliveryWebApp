@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FoodDelivery.ViewModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodDelivery.Models
@@ -9,9 +10,9 @@ namespace FoodDelivery.Models
 
         public float? CartTotal { get; set; }
 
-        public ICollection<OrderItem>? OrderItems { get; set; }
+		public List<OrderItemViewModel> OrderItems { get; set; }
 
-        public int? CustomerId { get; set; }
+		public int? CustomerId { get; set; }
     }
 
 }

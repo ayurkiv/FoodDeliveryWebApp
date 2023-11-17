@@ -227,9 +227,6 @@ namespace FoodDelivery.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("OrderItemId")
-                        .HasColumnType("int");
-
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
@@ -242,10 +239,6 @@ namespace FoodDelivery.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("OrderItemId")
-                        .IsUnique()
-                        .HasFilter("[OrderItemId] IS NOT NULL");
 
                     b.ToTable("FoodItems");
                 });
@@ -306,6 +299,9 @@ namespace FoodDelivery.Migrations
                     b.Property<int?>("CartId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("FoodItemId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
@@ -318,6 +314,8 @@ namespace FoodDelivery.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CartId");
+
+                    b.HasIndex("FoodItemId");
 
                     b.HasIndex("OrderId");
 
@@ -503,13 +501,7 @@ namespace FoodDelivery.Migrations
                         .WithMany("FoodItems")
                         .HasForeignKey("CategoryId");
 
-                    b.HasOne("FoodDelivery.Models.OrderItem", "OrderItem")
-                        .WithOne("FoodItem")
-                        .HasForeignKey("FoodDelivery.Models.FoodItem", "OrderItemId");
-
                     b.Navigation("Category");
-
-                    b.Navigation("OrderItem");
                 });
 
             modelBuilder.Entity("FoodDelivery.Models.Order", b =>
@@ -541,11 +533,17 @@ namespace FoodDelivery.Migrations
                         .WithMany("OrderItems")
                         .HasForeignKey("CartId");
 
+                    b.HasOne("FoodDelivery.Models.FoodItem", "FoodItem")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("FoodItemId");
+
                     b.HasOne("FoodDelivery.Models.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId");
 
                     b.Navigation("Cart");
+
+                    b.Navigation("FoodItem");
 
                     b.Navigation("Order");
                 });
@@ -637,14 +635,14 @@ namespace FoodDelivery.Migrations
                     b.Navigation("Orders");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Models.Order", b =>
+            modelBuilder.Entity("FoodDelivery.Models.FoodItem", b =>
                 {
                     b.Navigation("OrderItems");
                 });
 
-            modelBuilder.Entity("FoodDelivery.Models.OrderItem", b =>
+            modelBuilder.Entity("FoodDelivery.Models.Order", b =>
                 {
-                    b.Navigation("FoodItem");
+                    b.Navigation("OrderItems");
                 });
 #pragma warning restore 612, 618
         }

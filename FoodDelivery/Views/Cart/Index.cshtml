@@ -1,0 +1,55 @@
+﻿@model IEnumerable<FoodDelivery.ViewModel.OrderItemViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItemId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodItemName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItemTotal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderItemId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodItemName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderItemTotal)
+            </td>
+            <td>
+                    <form method="post" action="Delete">
+                        <input type="hidden" name="id" value="@item.OrderItemId" /> <!-- Замініть це значення на реальний id, який ви хочете видалити -->
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

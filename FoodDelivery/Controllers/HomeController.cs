@@ -66,8 +66,6 @@ namespace FoodDelivery.Controllers
 		[HttpPost]
 		public IActionResult AddToCart(int id)
 		{
-			Console.WriteLine("AddToCart: " + id);
-
 			//Отримати ідентифікатор користувача
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -79,14 +77,10 @@ namespace FoodDelivery.Controllers
 
 			if (user != null && user.Customer != null)
 			{
-				Console.WriteLine("UserName: " + user.UserName);
-
 				// Отримати товар з бази даних
 				var foodItem = _context.FoodItems.SingleOrDefault(item => item.Id == id);
 				if (foodItem != null)
 				{
-					Console.WriteLine("FoodItemName: " + foodItem.Name);
-
 					// Додати товар до корзини користувача
 					var orderItem = new OrderItem
 					{
