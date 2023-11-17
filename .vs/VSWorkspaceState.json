@@ -1,9 +1,7 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\FoodDelivery",
-    "\\FoodDelivery\\ViewModel"
+    ""
   ],
-  "SelectedNode": "\\FoodDelivery\\ViewModel\\FoodItemViewModel.cs",
+  "SelectedNode": "\\FoodDelivery.sln",
   "PreviewInSolutionExplorer": false
 }

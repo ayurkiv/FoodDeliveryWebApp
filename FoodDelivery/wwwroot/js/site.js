@@ -2,7 +2,7 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-function openFoodItemModal(name, category, price, imageUrl, description, weight, timeToReady, Id) {
+function openFoodItemModal(name, category, price, imageUrl, description, weight, timeToReady, id) {
     // Заповніть модальне вікно даними
     document.getElementById('modalFoodItemImage').src = imageUrl;
     document.getElementById('modalFoodItemName').innerText = name;
@@ -18,7 +18,7 @@ function openFoodItemModal(name, category, price, imageUrl, description, weight,
     addToCartButton.addEventListener('click', function () {
         // Викликайте функцію або робіть інші необхідні дії при натисканні кнопки
         // Наприклад, викликайте функцію addToCart з параметром item.Id
-        addToCart(Id);
+        addToCart(id);
     });
 
 
@@ -27,6 +27,8 @@ function openFoodItemModal(name, category, price, imageUrl, description, weight,
     $('#foodItemModal').modal('show');
 }
 function addToCart(itemId) {
-    // Здійсніть AJAX-виклик до методу контролера для додавання товару до корзини
-    $.post("/Home/AddToCart", { itemId: itemId })
+    // Здійсніть AJAX-виклик до методу
+    //контролера для додавання товару до корзини
+    $.post("/Home/AddToCart/?id=" + itemId) //це працює
+    //$.post("/Home/AddToCart", { itemId: itemId }) //це ні
 }

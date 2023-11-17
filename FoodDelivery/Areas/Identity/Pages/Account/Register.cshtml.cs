@@ -162,11 +162,7 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                     };
                     _context.Customers.Add(customer);
 
-                    var cart = new Cart()
-                    {
-                        Customer = customer,
-                    };
-                    _context.Carts.Add(cart);
+					user.Customer.Cart = new Cart();
 
                     _context.SaveChanges();
 

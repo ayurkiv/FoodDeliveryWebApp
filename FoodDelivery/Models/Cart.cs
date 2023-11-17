@@ -15,6 +15,10 @@ namespace FoodDelivery.Models
 
         public int? CustomerId { get; set; }
         public Customer? Customer { get; set; }
-    }
+		public Cart()
+		{
+			OrderItems = new List<OrderItem>();
+		}
+	}
 
 }
