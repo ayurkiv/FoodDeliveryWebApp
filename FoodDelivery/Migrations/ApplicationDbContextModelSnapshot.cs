@@ -142,6 +142,29 @@ namespace FoodDelivery.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("FoodDelivery.Models.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<float?>("CartTotal")
+                        .HasColumnType("real");
+
+                    b.Property<int?>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId")
+                        .IsUnique()
+                        .HasFilter("[CustomerId] IS NOT NULL");
+
+                    b.ToTable("Carts");
+                });
+
             modelBuilder.Entity("FoodDelivery.Models.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -250,8 +273,8 @@ namespace FoodDelivery.Migrations
                     b.Property<string>("OrderStatus")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("OrderTotal")
-                        .HasColumnType("decimal(10, 2)");
+                    b.Property<float?>("OrderTotal")
+                        .HasColumnType("real");
 
                     b.Property<int?>("WeightTotal")
                         .HasColumnType("int");
@@ -280,16 +303,21 @@ namespace FoodDelivery.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CartId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("OrderItemTotal")
-                        .HasColumnType("decimal(10, 2)");
+                    b.Property<float>("OrderItemTotal")
+                        .HasColumnType("real");
 
                     b.Property<int>("OrderItemWeight")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CartId");
 
                     b.HasIndex("OrderId");
 
@@ -451,6 +479,15 @@ namespace FoodDelivery.Migrations
                     b.Navigation("Customer");
                 });
 
+            modelBuilder.Entity("FoodDelivery.Models.Cart", b =>
+                {
+                    b.HasOne("Customer", "Customer")
+                        .WithOne("Cart")
+                        .HasForeignKey("FoodDelivery.Models.Cart", "CustomerId");
+
+                    b.Navigation("Customer");
+                });
+
             modelBuilder.Entity("FoodDelivery.Models.Courier", b =>
                 {
                     b.HasOne("FoodDelivery.Models.ApplicationUser", "ApplicationUser")
@@ -500,9 +537,15 @@ namespace FoodDelivery.Migrations
 
             modelBuilder.Entity("FoodDelivery.Models.OrderItem", b =>
                 {
+                    b.HasOne("FoodDelivery.Models.Cart", "Cart")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("CartId");
+
                     b.HasOne("FoodDelivery.Models.Order", "Order")
                         .WithMany("OrderItems")
                         .HasForeignKey("OrderId");
+
+                    b.Navigation("Cart");
 
                     b.Navigation("Order");
                 });
@@ -562,6 +605,8 @@ namespace FoodDelivery.Migrations
                 {
                     b.Navigation("Address");
 
+                    b.Navigation("Cart");
+
                     b.Navigation("Orders");
                 });
 
@@ -575,6 +620,11 @@ namespace FoodDelivery.Migrations
                     b.Navigation("Courier");
 
                     b.Navigation("Customer");
+                });
+
+            modelBuilder.Entity("FoodDelivery.Models.Cart", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("FoodDelivery.Models.Category", b =>

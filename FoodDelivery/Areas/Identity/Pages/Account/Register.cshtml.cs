@@ -142,8 +142,12 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
-                user.FirstName = Input.FirstName;
+
+				var result = await _userManager.CreateAsync(user, Input.Password);
+
+				await _userManager.AddToRoleAsync(user, "Customer");
+
+				user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.PhoneNumber = Input.PhoneNumber;
 
@@ -160,7 +164,7 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
 
                     var cart = new Cart()
                     {
-                        CustomerId = customer.Id,
+                        Customer = customer,
                     };
                     _context.Carts.Add(cart);
 

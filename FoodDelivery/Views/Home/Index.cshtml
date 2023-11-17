@@ -1,7 +1,8 @@
 ﻿@using FoodDelivery.Utilities
 @model PaginatedList<FoodDelivery.ViewModel.FoodItemViewModel>
 
-<!-- Модальне вікно -->
+
+<!-- Модальне вікно Details -->
 <div class="modal fade modal-bg h-100" id="foodItemModal" tabindex="-1" role="dialog" aria-labelledby="foodItemModalLabel" aria-hidden="true">
     <div class="modal-dialog h-100" role="document">
         <div class="modal-content modal-place">
@@ -26,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="btn btn-primary btn-register card-btn-container w-100 btn-model">Add to cart</a>
+            <button id="addToCartButton" class="btn btn-primary btn-register card-btn-container w-100 btn-model">Add to cart</button>
         </div>
     </div>
 </div>
@@ -45,7 +46,7 @@
         @foreach (var item in Model.Items)
         {
             <div class="col-md-4 mb-4">
-                <div class="card h-100 card-container" data-toggle="modal" data-target="#foodItemModal" onclick="openFoodItemModal('@item.Name', '@item.CategoryName', '@item.Price', '@item.ImageUrl', '@item.Description', '@item.Weight', '@item.TimeToReady')">
+                <div class="card h-100 card-container" data-toggle="modal" data-target="#foodItemModal" onclick="openFoodItemModal('@item.Name', '@item.CategoryName', '@item.Price', '@item.ImageUrl', '@item.Description', '@item.Weight', '@item.TimeToReady', '@item.Id')">
                     <img src="@Url.Content(item.ImageUrl)" class="card-img-top image-container" alt="Food Item Image" style="height: 200px; object-fit: cover;">
                     <div class="row card-body col-md-12 m-0 px-2">
                         <div class="col">
