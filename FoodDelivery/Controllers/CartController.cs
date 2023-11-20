@@ -1,12 +1,13 @@
 ﻿using FoodDelivery.Data;
 using FoodDelivery.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace FoodDelivery.Controllers
 {
-
+    [Authorize(Roles = "Customer")]
     public class CartController : Controller
     {
 		private readonly ApplicationDbContext _context;
@@ -60,9 +61,9 @@ namespace FoodDelivery.Controllers
 			_context.OrderItems.Remove(orderItem);
 			_context.SaveChanges();
 
-			// Перенаправити користувача на сторінку корзини з оновленими даними
-			return RedirectToAction(null);
-		}
+            // Перенаправити користувача на сторінку корзини з оновленими даними
+            return RedirectToAction(nameof(Index));
+        }
 
-	}
+    }
 }
