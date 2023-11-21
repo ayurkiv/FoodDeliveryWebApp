@@ -14,21 +14,48 @@ function openFoodItemModal(name, category, price, imageUrl, description, weight,
 
     var addToCartButton = document.getElementById('addToCartButton');
 
+    // Відкрийте модальне вікно
+    $('#foodItemModal').modal('show');
     // Додайте обробник подій для кнопки
     addToCartButton.addEventListener('click', function () {
         // Викликайте функцію або робіть інші необхідні дії при натисканні кнопки
         // Наприклад, викликайте функцію addToCart з параметром item.Id
         addToCart(id);
+        $('#foodItemModal').modal('hide');
     });
 
 
 
-    // Відкрийте модальне вікно
-    $('#foodItemModal').modal('show');
 }
 function addToCart(itemId) {
-    // Здійсніть AJAX-виклик до методу
-    //контролера для додавання товару до корзини
-    $.post("/Home/AddToCart/?id=" + itemId) //це працює
-    //$.post("/Home/AddToCart", { itemId: itemId }) //це ні
+    $.ajax({
+        url: "/Home/AddToCart/?id=" + itemId,
+        type: "POST",
+        statusCode: {
+            401: function(){
+                window.alert('Unauthorized');
+            }
+
+        }
+    });
+}
+
+function deleteCartItem(orderItemId) {
+    //if (confirm('Are you sure you want to delete this item?')) {
+    var token = $('input[name="__RequestVerificationToken"]').val();
+
+    $.ajax({
+        url: '/Cart/Delete/' + orderItemId,
+        type: 'DELETE',
+        headers: {
+            'RequestVerificationToken': token
+        },
+        success: function () {
+            location.reload(); // or update the view accordingly
+        },
+        error: function () {
+            alert('Error deleting item.');
+        }
+    });
+    //}
 }

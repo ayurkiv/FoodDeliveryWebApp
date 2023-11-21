@@ -64,7 +64,7 @@ namespace FoodDelivery.Controllers
 
 		[Authorize(Roles = "Customer")]
 		[HttpPost]
-		public IActionResult AddToCart(int id)
+        public IActionResult AddToCart(int id)
 		{
 			//Отримати ідентифікатор користувача
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);

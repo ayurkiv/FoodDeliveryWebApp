@@ -4,7 +4,6 @@
     ViewData["Title"] = "Cart";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <h1>Cart</h1>
 
@@ -47,31 +46,7 @@
                             @Html.DisplayFor(modelItem => item.OrderItemTotal)
                         </td>
                         <td>
-                        <td>
-                            <button class="btn btn-danger" onclick="deleteItem(@item.OrderItemId)">Delete</button>
-                        </td>
-
-                        <script>
-                            function deleteItem(orderItemId) {
-                                //if (confirm('Are you sure you want to delete this item?')) {
-                                var token = $('input[name="__RequestVerificationToken"]').val();
-
-                                $.ajax({
-                                    url: '/Cart/Delete/' + orderItemId,
-                                    type: 'DELETE',
-                                    headers: {
-                                        'RequestVerificationToken': token
-                                    },
-                                    success: function () {
-                                        location.reload(); // or update the view accordingly
-                                    },
-                                    error: function () {
-                                        alert('Error deleting item.');
-                                    }
-                                });
-                                //}
-                            }
-                        </script>
+                            <button class="btn btn-danger" onclick="deleteCartItem(@item.OrderItemId)">Delete</button>
                         </td>
                     </tr>
                 }
@@ -89,3 +64,4 @@
     }
 
 </div>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
