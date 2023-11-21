@@ -11,6 +11,8 @@ namespace FoodDelivery.Models
         public string? ApplicationUserId { get; set; }
         public ApplicationUser? ApplicationUser { get; set; }
         public ICollection<Order>? Orders { get; set; }
+
+        public string? Status {  get; set; }
     }
 
 }

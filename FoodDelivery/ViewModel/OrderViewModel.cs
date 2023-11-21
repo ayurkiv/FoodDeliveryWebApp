@@ -1,11 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FoodDelivery.Models;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
-namespace FoodDelivery.Models
+namespace FoodDelivery.ViewModel
 {
-    public class Order
+    public class OrderViewModel
     {
-        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string? DeliveryStatus { get; set; }
         public string? PaymentStatus { get; set; }
@@ -17,18 +17,10 @@ namespace FoodDelivery.Models
         public ICollection<OrderItem>? OrderItems { get; set; }
 
         public int? AddressId { get; set; }
-        public Address? Address { get; set; }
 
         public int? CustomerId { get; set; }
-        public Customer? Customer { get; set; }
 
         public int? CourierId { get; set; }
-        public Courier? Courier { get; set; }
 
-        public Order ()
-        {
-            OrderDate = DateTime.Now;
-        }
     }
-
 }
