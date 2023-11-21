@@ -1,10 +1,10 @@
 ﻿using FoodDelivery.Data;
+using FoodDelivery.Models;
 using FoodDelivery.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
-
 namespace FoodDelivery.Controllers
 {
     [Authorize(Roles = "Customer")]
@@ -64,6 +64,59 @@ namespace FoodDelivery.Controllers
             // Перенаправити користувача на сторінку корзини з оновленими даними
             return RedirectToAction(nameof(Index));
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Checkout()
+        {
+            // Отримати ідентифікатор поточного користувача
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
+            // Отримати користувача та його корзину з бази даних
+            var user = _context.Users
+                .Include(u => u.Customer)
+                .ThenInclude(c => c.Cart)
+                .SingleOrDefault(u => u.Id == userId);
+
+            if (user == null || user.Customer == null || user.Customer.Cart == null)
+            {
+                // Обробити ситуацію, коли користувач або корзина не знайдені
+                return NotFound();
+            }
+
+            // Отримати елементи корзини для обробки замовлення
+            var cartItems = _context.OrderItems
+                .Where(item => item.Cart.Customer.ApplicationUserId == userId)
+                .ToList();
+
+            if (cartItems.Count == 0)
+            {
+                // Обробити ситуацію, коли корзина порожня
+                return RedirectToAction(nameof(Index));
+            }
+
+            // Створити нове замовлення
+            var order = new Order
+            {
+                DeliveryStatus = "Pending", // Позначити, що замовлення очікує доставки
+                PaymentStatus = "Pending",  // Позначити, що платіж ще не проведено
+                OrderItems = cartItems,
+                OrderTotal = cartItems.Sum(item => item.OrderItemTotal),
+                WeightTotal = cartItems.Sum(item => item.OrderItemWeight),
+                AddressId = user.Customer.Address?.Id,
+                CustomerId = user.Customer.Id
+            };
+
+            // Очистити корзину користувача
+            user.Customer.Cart.OrderItems?.Clear();
+
+            // Додати замовлення до бази даних
+            _context.Orders.Add(order);
+
+            // Зберегти зміни в базі даних
+            _context.SaveChanges();
+
+            // Перенаправити користувача на сторінку підтвердження замовлення
+            return RedirectToAction("Index", "Order", new { id = order.Id });
+        }
     }
 }
