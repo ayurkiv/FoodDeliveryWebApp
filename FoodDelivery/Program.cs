@@ -19,7 +19,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 builder.Services.AddControllersWithViews();
 
-// Зареєструйте ваш DbInitializer
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ DbInitializer
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 
 var app = builder.Build();
@@ -59,7 +59,7 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
-// Викликайте DbInitializer для ініціалізації бази даних
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DbInitializer пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
