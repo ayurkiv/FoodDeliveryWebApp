@@ -40,7 +40,7 @@ namespace FoodDelivery.Controllers
 
 
 
-		[HttpDelete]
+		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public IActionResult Delete(int id)
 		{
@@ -63,7 +63,7 @@ namespace FoodDelivery.Controllers
 			_context.SaveChanges();
 
             // Перенаправити користувача на сторінку корзини з оновленими даними
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Cart");
         }
 
         [HttpPost]
@@ -118,7 +118,7 @@ namespace FoodDelivery.Controllers
             _context.SaveChanges();
 
             // Перенаправити користувача на сторінку підтвердження замовлення
-            return RedirectToAction("Index", "Order", new { id = order.Id });
+            return RedirectToAction("Confirmation", "Order", new { id = order.Id });
         }
     }
 }

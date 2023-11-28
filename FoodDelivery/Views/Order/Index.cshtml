@@ -1,85 +1,39 @@
-﻿@model FoodDelivery.ViewModel.OrderViewModel
+﻿@using FoodDelivery.ViewModel
+@model List<OrderViewModel>
 
 @{
-    ViewData["Title"] = "Order Details";
+    ViewData["Title"] = "Order History";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Order Details</h1>
+<h1>Order History</h1>
 
-<div>
-    <h3>Order Information</h3>
-    <dl class="row">
-        <dt class="col-sm-2">Order ID:</dt>
-        <dd class="col-sm-10">@Model.Id</dd>
-
-        <!-- Add other properties of OrderViewModel as needed -->
-    </dl>
-</div>
-
-<div>
-    <h3>Order Items</h3>
-    <table class="table">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Delivery Status</th>
+            <th>Payment Status</th>
+            <th>Order Total</th>
+            <th>Weight Total</th>
+            <th>Order Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
             <tr>
-                <th>Item ID</th>
-                <th>Food Item Name</th>
-                <th>Amount</th>
-                <th>Order Item Total</th>
+                <td>@order.Id</td>
+                <td>@order.DeliveryStatus</td>
+                <td>@order.PaymentStatus</td>
+                <td>@order.OrderTotal</td>
+                <td>@order.WeightTotal</td>
+                <td>@order.OrderDate</td>
+                <td>
+                    <a asp-controller="Order" asp-action="Details" asp-route-id="@order.Id">Details</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.OrderItems)
-            {
-                <tr>
-                    <td>@item.OrderItemId</td>
-                    <td>@item.FoodItemName</td>
-                    <td>@item.Amount</td>
-                    <td>@item.OrderItemTotal</td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-
-<div>
-    <h3>Delivery Address</h3>
-    @if (Model.Address != null)
-    {
-        <dl class="row">
-            <dt class="col-sm-2">City:</dt>
-            <dd class="col-sm-10">@Model.Address.City</dd>
-            <dt class="col-sm-2">Street:</dt>
-            <dd class="col-sm-10">@Model.Address.Street</dd>
-            <dt class="col-sm-2">Street Number:</dt>
-            <dd class="col-sm-10">@Model.Address.StreetNumber</dd>
-        </dl>
-    }
-    else
-    {
-        <p>No delivery address available.</p>
-        <!-- Add a form for entering a new address -->
-        <form asp-action="ChangeAddress" method="post">
-            @Html.AntiForgeryToken()
-            <h4>Enter Delivery Address</h4>
-            <div class="form-group">
-                <label for="City">City:</label>
-                <input type="text" class="form-control" id="City" name="City" required>
-            </div>
-            <div class="form-group">
-                <label for="Street">Street:</label>
-                <input type="text" class="form-control" id="Street" name="Street" required>
-            </div>
-            <div class="form-group">
-                <label for="StreetNumber">Street Number:</label>
-                <input type="text" class="form-control" id="StreetNumber" name="StreetNumber" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Save Address</button>
-        </form>
-    }
-</div>
-
-<form method="post" action="@Url.Action("action", "Controller")">
-    <button type="submit" class="btn btn-warning">Pay</button>
-</form>
-
+        }
+    </tbody>
+</table>
