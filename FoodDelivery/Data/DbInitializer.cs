@@ -22,7 +22,7 @@ public class DbInitializer : IDbInitializer
             // Створюємо роль "Admin", якщо її немає
             _roleManager.CreateAsync(new IdentityRole("Admin")).GetAwaiter().GetResult();
             _roleManager.CreateAsync(new IdentityRole("Customer")).GetAwaiter().GetResult();
-
+            _roleManager.CreateAsync(new IdentityRole("Courier")).GetAwaiter().GetResult();
         }
 
         string Email = "admin@admin.com";

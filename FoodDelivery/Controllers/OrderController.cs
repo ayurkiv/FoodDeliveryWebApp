@@ -120,10 +120,10 @@ namespace FoodDelivery.Controllers
                 OrderTotal = order.OrderTotal,
                 WeightTotal = order.WeightTotal,
                 OrderDate = order.OrderDate,
-                OrderItems = order.OrderItems.Select(oi => new OrderItemViewModel
+                OrderItems = order.OrderItems?.Select(oi => new OrderItemViewModel
                 {
                     OrderItemId = oi.Id,
-                    FoodItemName = oi.FoodItem.Name,
+                    FoodItemName = oi.FoodItem?.Name,
                     Amount = oi.Amount,
                     OrderItemTotal = oi.OrderItemTotal
                 }).ToList(),

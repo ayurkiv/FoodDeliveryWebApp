@@ -20,7 +20,9 @@ namespace FoodDelivery.Controllers
 			_context = context;
 		}
 
-		[HttpGet]
+
+        [AllowAnonymous]
+        [HttpGet]
 		public IActionResult Index(string category, int page = 1, int pageSize = 6)
 		{
 			// Отримання категорій для панелі сортування
