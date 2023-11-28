@@ -59,24 +59,3 @@ function deleteCartItem(orderItemId) {
     });
     //}
 }
-
-function checkout() {
-    //if (confirm('Are you sure you want to proceed with the checkout?')) {
-    var token = $('input[name="__RequestVerificationToken"]').val();
-
-    $.ajax({
-        url: '/Cart/Checkout',
-        type: 'POST',
-        headers: {
-            'RequestVerificationToken': token
-        },
-        success: function () {
-            // Redirect to the order confirmation page or update the view accordingly
-            //window.location.href = '/Order/Index'; // Adjust the URL if needed
-        },
-        error: function () {
-            alert('Error processing checkout.');
-        }
-    });
-    //}
-}

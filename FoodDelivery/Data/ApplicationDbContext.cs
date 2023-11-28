@@ -62,7 +62,6 @@ namespace FoodDelivery.Data
         {
             builder.Property(u => u.LastName);
             builder.Property(u => u.FirstName);
-
         }
 
     }

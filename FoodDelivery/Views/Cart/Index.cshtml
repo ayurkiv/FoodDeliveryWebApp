@@ -52,9 +52,11 @@
                 }
             </tbody>
         </table>
-        <div>
-            <a onclick="checkout()" class="btn btn-warning">Checkout</a>
-        </div>
+        <form method="post" action="@Url.Action("Checkout", "Cart")">
+            @Html.AntiForgeryToken() <!-- Include anti-forgery token for security -->
+            <button type="submit" class="btn btn-warning">Checkout</button>
+        </form>
+
     }
     else
     {

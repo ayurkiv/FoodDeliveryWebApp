@@ -17,6 +17,7 @@ namespace FoodDelivery.Controllers
 			_context = context;
 		}
 
+        [HttpGet]
 		public IActionResult Index()
         {
 			// Отримати ідентифікатор поточного користувача
@@ -64,6 +65,7 @@ namespace FoodDelivery.Controllers
             // Перенаправити користувача на сторінку корзини з оновленими даними
             return RedirectToAction(nameof(Index));
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Checkout()
