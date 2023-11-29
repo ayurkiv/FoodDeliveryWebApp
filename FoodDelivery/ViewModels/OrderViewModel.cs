@@ -1,14 +1,16 @@
 ﻿using FoodDelivery.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
+using FoodDelivery.Common;
 
 namespace FoodDelivery.ViewModel
 {
     public class OrderViewModel
     {
         public int Id { get; set; }
-        public string? DeliveryStatus { get; set; }
-        public string? PaymentStatus { get; set; }
+
+        public DeliveryStatus DeliveryStatus { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
 
         public float? OrderTotal { get; set; }
         public int? WeightTotal { get; set; }

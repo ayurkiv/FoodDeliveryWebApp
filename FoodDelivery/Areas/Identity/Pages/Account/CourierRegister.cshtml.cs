@@ -186,7 +186,8 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                     else
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
+                        //return LocalRedirect(returnUrl);
+                        return Redirect(Url.Action("Index", "Courier"));
                     }
                 }
                 foreach (var error in result.Errors)

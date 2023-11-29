@@ -263,8 +263,8 @@ namespace FoodDelivery.Migrations
                     b.Property<int?>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<string>("DeliveryStatus")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("DeliveryStatus")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("OrderDate")
                         .HasColumnType("datetime2");
@@ -272,8 +272,8 @@ namespace FoodDelivery.Migrations
                     b.Property<float?>("OrderTotal")
                         .HasColumnType("real");
 
-                    b.Property<string>("PaymentStatus")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PaymentStatus")
+                        .HasColumnType("int");
 
                     b.Property<int?>("WeightTotal")
                         .HasColumnType("int");

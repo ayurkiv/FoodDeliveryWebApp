@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FoodDelivery.Common;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodDelivery.Models
@@ -7,8 +8,12 @@ namespace FoodDelivery.Models
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string? DeliveryStatus { get; set; }
-        public string? PaymentStatus { get; set; }
+
+        [EnumDataType(typeof(DeliveryStatus))]
+        public DeliveryStatus DeliveryStatus { get; set; }
+
+        [EnumDataType(typeof(PaymentStatus))]
+        public PaymentStatus PaymentStatus { get; set; }
 
         public float? OrderTotal { get; set; }
         public int? WeightTotal { get; set; }

@@ -1,4 +1,5 @@
-﻿using FoodDelivery.Data;
+﻿using FoodDelivery.Common;
+using FoodDelivery.Data;
 using FoodDelivery.Models;
 using FoodDelivery.ViewModel;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +12,7 @@ namespace FoodDelivery.Controllers
     public class CartController : Controller
     {
 		private readonly ApplicationDbContext _context;
-
+        
 		public CartController(ApplicationDbContext context)
 		{
 			_context = context;
@@ -99,8 +100,8 @@ namespace FoodDelivery.Controllers
             // Створити нове замовлення
             var order = new Order
             {
-                DeliveryStatus = "Pending", // Позначити, що замовлення очікує доставки
-                PaymentStatus = "Pending",  // Позначити, що платіж ще не проведено
+                DeliveryStatus = DeliveryStatus.Pending, // Позначити, що замовлення очікує доставки
+                PaymentStatus = PaymentStatus.Pending,  // Позначити, що платіж ще не проведено
                 OrderItems = cartItems,
                 OrderTotal = cartItems.Sum(item => item.OrderItemTotal),
                 WeightTotal = cartItems.Sum(item => item.OrderItemWeight),
