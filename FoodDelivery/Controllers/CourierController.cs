@@ -1,4 +1,5 @@
-﻿using FoodDelivery.Data;
+﻿using FoodDelivery.Common;
+using FoodDelivery.Data;
 using FoodDelivery.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -71,6 +72,40 @@ namespace FoodDelivery.Controllers
             }).ToList();
 
             return View(orderViewModels);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangeDeliveryStatus(int id)
+        {
+            // Отримати ідентифікатор поточного кур'єра
+            var courierId = GetCurrentCourierId();
+
+            if (courierId == null)
+            {
+                // Обробити ситуацію, коли користувач не є кур'єром
+                return NotFound();
+            }
+
+            // Знайти замовлення за його ідентифікатором та перевірити, чи кур'єр працює над ним
+            var order = _context.Orders
+                .Include(o => o.Courier)
+                .SingleOrDefault(o => o.Id == id && o.Courier.Id == courierId);
+
+            if (order == null)
+            {
+                // Обробити ситуацію, коли замовлення не знайдено або кур'єр не працює над ним
+                return NotFound();
+            }
+
+            // Змінити статус доставки
+            order.DeliveryStatus = DeliveryStatus.Delivered;
+
+            // Зберегти зміни в базі даних
+            _context.SaveChanges();
+
+            // Повернути користувача на сторінку зі списком замовлень
+            return RedirectToAction("Index");
         }
     }
 }

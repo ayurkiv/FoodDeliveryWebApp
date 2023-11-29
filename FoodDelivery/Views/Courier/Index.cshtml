@@ -26,7 +26,10 @@
                 <td>@order.WeightTotal</td>
                 <td>@order.OrderDate</td>
                 <td>
-                    @* Додайте форму або кнопку для зміни статусу доставки *@
+                    <form method="post" action="@Url.Action("ChangeDeliveryStatus", "Courier", new { id = order.Id })">
+                        @Html.AntiForgeryToken() <!-- Include anti-forgery token for security -->
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </td>
             </tr>
         }
