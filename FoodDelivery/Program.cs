@@ -24,6 +24,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 //  Services
 builder.Services.AddScoped<CategoryService>();
+builder.Services.AddScoped<FoodItemService>();
 
 
 var app = builder.Build();
@@ -63,7 +64,7 @@ app.MapControllerRoute(
 
 app.MapRazorPages();
 
-// ���������� DbInitializer ��� ������������ ���� �����
+//DbInitializer
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
