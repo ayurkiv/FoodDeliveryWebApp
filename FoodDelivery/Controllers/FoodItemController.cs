@@ -288,7 +288,6 @@ namespace FoodDelivery.Controllers
 
             return View(vm);
         }
-
     }
 }
 

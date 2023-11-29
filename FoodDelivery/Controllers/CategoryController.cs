@@ -1,38 +1,30 @@
-﻿using FoodDelivery.Data;
-using FoodDelivery.Models;
+﻿using FoodDelivery.Models;
+using FoodDelivery.ViewModel;
+using Microsoft.AspNetCore.Mvc;
 using FoodDelivery.Utilities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+using FoodDelivery.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace FoodDelivery.Controllers
 {
-    
     [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly CategoryService _categoryService;
 
-        public CategoryController(ApplicationDbContext context)
+        public CategoryController(CategoryService categoryService)
         {
-            _context = context;
+            _categoryService = categoryService;
         }
+
         [HttpGet]
         public IActionResult Index(int page = 1, int pageSize = 10)
         {
-            var categories = _context.Categories
-                .OrderBy(x => x.Id) // Order by a suitable property
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .Select(x => new CategoryViewModel
-                {
-                    Id = x.Id,
-                    Title = x.Title,
-                    // Map other properties as needed
-                })
-                .ToList();
+            var categories = _categoryService.GetPaginatedCategories(page, pageSize);
 
             // Calculate the total number of categories in the database
-            int totalItems = _context.Categories.Count();
+            int totalItems = _categoryService.GetTotalItems();
 
             // Create a PaginatedList to pass to the view
             var paginatedList = new PaginatedList<CategoryViewModel>(categories, totalItems, page, pageSize);
@@ -44,31 +36,20 @@ namespace FoodDelivery.Controllers
         public IActionResult Create()
         {
             CategoryViewModel newCategory = new CategoryViewModel();
-
             return View(newCategory);
         }
 
         [HttpPost]
         public IActionResult Create(CategoryViewModel vm)
         {
-            Category model = new Category();
-            model.Title = vm.Title;
-            _context.Categories.Add(model);
-            _context.SaveChanges();
-
+            int categoryId = _categoryService.CreateCategory(vm);
             return RedirectToAction(nameof(Index));
         }
 
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            var viewModel = _context.Categories.Where(x => x.Id == id)
-                .Select(x => new CategoryViewModel()
-                {
-                    Id = x.Id,
-                    Title = x.Title,
-                }).FirstOrDefault();
-
+            var viewModel = _categoryService.GetCategoryById(id);
             return View(viewModel);
         }
 
@@ -77,13 +58,7 @@ namespace FoodDelivery.Controllers
         {
             if (ModelState.IsValid)
             {
-                var categoryFromDb = _context.Categories.FirstOrDefault(x => x.Id == vm.Id);
-                if (categoryFromDb != null)
-                {
-                    categoryFromDb.Title = vm.Title;
-                    _context.Categories.Update(categoryFromDb);
-                    _context.SaveChanges();
-                }
+                _categoryService.UpdateCategory(vm);
             }
             return RedirectToAction(nameof(Index));
         }
@@ -91,28 +66,15 @@ namespace FoodDelivery.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var viewModel = _context.Categories.Where(x => x.Id == id)
-                .Select(x => new CategoryViewModel()
-                {
-                    Id = x.Id,
-                    Title = x.Title,
-                })
-                .FirstOrDefault();
-
+            var viewModel = _categoryService.GetCategoryById(id);
             return View(viewModel);
         }
 
         [HttpPost]
         public IActionResult Delete(CategoryViewModel vm)
         {
-            var category = _context.Categories.Where(x => x.Id == vm.Id).FirstOrDefault();
-            if (category != null)
-            {
-                _context.Categories.Remove(category);
-                _context.SaveChanges();
-            }
+            _categoryService.DeleteCategory(vm.Id);
             return RedirectToAction(nameof(Index));
         }
-
     }
 }

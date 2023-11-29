@@ -1,5 +1,6 @@
 using FoodDelivery.Data;
 using FoodDelivery.Models;
+using FoodDelivery.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,8 +20,11 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
 
 builder.Services.AddControllersWithViews();
 
-// ����������� ��� DbInitializer
+//  DbInitializer
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+//  Services
+builder.Services.AddScoped<CategoryService>();
+
 
 var app = builder.Build();
 
