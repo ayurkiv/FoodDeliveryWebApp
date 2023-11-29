@@ -98,17 +98,17 @@ namespace FoodDelivery.Controllers
             }
 
             // Створити нове замовлення
+
+            // Create a new order with the order address
             var order = new Order
             {
-                DeliveryStatus = DeliveryStatus.Pending, // Позначити, що замовлення очікує доставки
-                PaymentStatus = PaymentStatus.Pending,  // Позначити, що платіж ще не проведено
+                DeliveryStatus = DeliveryStatus.Pending,
+                PaymentStatus = PaymentStatus.Pending,
                 OrderItems = cartItems,
                 OrderTotal = cartItems.Sum(item => item.OrderItemTotal),
                 WeightTotal = cartItems.Sum(item => item.OrderItemWeight),
-                AddressId = user.Customer.Address?.Id,
-                CustomerId = user.Customer.Id
+                CustomerId = user.Customer?.Id
             };
-
             // Очистити корзину користувача
             user.Customer.Cart.OrderItems?.Clear();
 

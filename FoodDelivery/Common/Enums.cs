@@ -11,10 +11,4 @@
         Pending,
         Completed
     }
-    public enum UserRoles
-    {
-        Admin,
-        Customer,
-        Courier
-    }
 }
