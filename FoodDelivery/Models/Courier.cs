@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FoodDelivery.Common;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodDelivery.Models
@@ -12,7 +13,8 @@ namespace FoodDelivery.Models
         public ApplicationUser? ApplicationUser { get; set; }
         public ICollection<Order>? Orders { get; set; }
 
-        public string? Status {  get; set; }
+        [EnumDataType(typeof(CourierStatus))]
+        public CourierStatus CourierStatus {  get; set; }
     }
 
 }

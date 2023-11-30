@@ -80,6 +80,22 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\FoodDelivery.bundle.scp.css))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\FoodItems\3ef4362d-bc3c-48eb-95a8-7a9890346ff5_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>FoodDelivery</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/FoodDelivery</BasePath>
+      <RelativePath>images/FoodItems/3ef4362d-bc3c-48eb-95a8-7a9890346ff5_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\FoodItems\3ef4362d-bc3c-48eb-95a8-7a9890346ff5_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\FoodItems\77d6acb5-e3aa-4130-a0f2-ddce35173189_018848a1-1684-73e0-8dd0-c7053cdf6919-826x0.png))">
       <SourceType>Package</SourceType>
       <SourceId>FoodDelivery</SourceId>
@@ -159,6 +175,22 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\FoodItems\dd2b75fe-37c1-4b85-baa3-6ec47f3e7092_0188489c-8cbd-7197-b98f-12809f12c4a6-826x0.png))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\FoodItems\eab2dcc6-f598-4ae3-8508-a57a3391c36d_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png))">
+      <SourceType>Package</SourceType>
+      <SourceId>FoodDelivery</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/FoodDelivery</BasePath>
+      <RelativePath>images/FoodItems/eab2dcc6-f598-4ae3-8508-a57a3391c36d_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\FoodItems\eab2dcc6-f598-4ae3-8508-a57a3391c36d_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png))</OriginalItemSpec>
     </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath($(MSBuildThisFileDirectory)..\staticwebassets\images\FoodItems\ead4aa73-8184-46cb-9870-55b991adfbf4_avatars-000778198936-ccrt1j-t500x500.jpg))">
       <SourceType>Package</SourceType>

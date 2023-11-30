@@ -11,4 +11,11 @@
         Pending,
         Completed
     }
+    public enum CourierStatus
+    {
+        Free,
+        Busy,
+        OnBreak
+    }
+
 }

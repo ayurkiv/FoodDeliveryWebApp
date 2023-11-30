@@ -192,8 +192,8 @@ namespace FoodDelivery.Migrations
                     b.Property<string>("ApplicationUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Status")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("CourierStatus")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

@@ -159,6 +159,7 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                     var courier = new Courier()
                     {
                         ApplicationUserId = user.Id,
+                        CourierStatus = Common.CourierStatus.Free
                     };
                     _context.Couriers.Add(courier);
 
