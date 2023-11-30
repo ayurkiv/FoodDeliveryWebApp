@@ -104,6 +104,18 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
             [Display(Name = "Phone")]
             public string PhoneNumber { get; set; }
 
+            [Required]
+            [Display(Name = "City")]
+            public string City { get; set; }
+
+            [Required]
+            [Display(Name = "Street")]
+            public string Street { get; set; }
+
+            [Required]
+            [Display(Name = "StreetNumber")]
+            public string StreetNumber { get; set; }
+
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
@@ -159,13 +171,24 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                     var customer = new Customer()
                     {
                         ApplicationUserId = user.Id,
+                        // Інші властивості користувача
                     };
+
+                    // Створення адреси та додавання до користувача
+                    var address = new Address()
+                    {
+                        City = Input.City,
+                        Street = Input.Street,
+                        StreetNumber = Input.StreetNumber
+                    };
+
+                    customer.Address = address;
+
                     _context.Customers.Add(customer);
 
-					user.Customer.Cart = new Cart();
+                    user.Customer.Cart = new Cart();
 
                     _context.SaveChanges();
-
                     _logger.LogInformation("User created a new account with password.");
 
 
