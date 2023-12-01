@@ -41,6 +41,35 @@
     border-radius: 16px;
     border: none;
 }
+.modal-place-warning{
+    display: none;
+}
+.modal-place-warning.active {
+    display: block;
+    position: fixed;
+    top: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 50px 5px;
+    z-index: 1;
+    border-radius: 10px;
+    background-color: #ff2c00ff;
+    animation: aniWarningAndOpacity 3s;
+}
+@keyframes aniWarningAndOpacity {
+    0% {
+        transform: translate(-50%, -50%);
+    }
+    20% {
+        transform: translate(-50%, 0);
+    }
+    70% {
+        opacity: 1; /* Залишаємо видимим протягом 80% анімації */
+    }
+    100% {
+        opacity: 0; /* Зникаємо на кінці анімації */
+    }
+}
 .modal-image{
     border-radius: 16px 16px 0 0;
 }

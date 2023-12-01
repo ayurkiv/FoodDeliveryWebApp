@@ -40,7 +40,10 @@ function addToCart(itemId) {
         type: "POST",
         statusCode: {
             401: function () {
-                window.alert('Unauthorized');
+                document.getElementsByClassName("modal-place-warning")[0].classList.add('active');
+                setTimeout(function () { 
+                    document.getElementsByClassName("modal-place-warning")[0].classList.remove('active');
+                }, 3000)
             }
         }
     });
