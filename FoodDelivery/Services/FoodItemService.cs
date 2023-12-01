@@ -1,4 +1,4 @@
-﻿using FoodDelivery.Data;
+﻿ using FoodDelivery.Data;
 using FoodDelivery.Models;
 using FoodDelivery.ViewModel;
 using Microsoft.AspNetCore.Hosting;
@@ -43,35 +43,19 @@ namespace FoodDelivery.Services
                     Available = item.Available,
                     Weight = item.Weight,
                     TimeToReady = item.TimeToReady,
+                    ImageUrl = $"/Images/FoodItems/{item.Image}",
+
                 })
                 .ToListAsync();
 
             return items;
         }
 
-        public async Task<FoodItemViewModel> GetFoodItemAsync(int id)
+        public async Task<FoodItem> GetFoodItemAsync(int id)
         {
             var foodItem = await _context.FoodItems.FindAsync(id);
 
-            if (foodItem == null)
-            {
-                return null;
-            }
-
-            var viewModel = new FoodItemViewModel
-            {
-                Id = foodItem.Id,
-                Name = foodItem.Name,
-                Description = foodItem.Description,
-                Price = foodItem.Price,
-                CategoryId = foodItem.CategoryId,
-                Weight = foodItem.Weight,
-                Available = foodItem.Available,
-                TimeToReady = foodItem.TimeToReady,
-                ImageUrl = foodItem.Image
-            };
-
-            return viewModel;
+            return foodItem;
         }
 
         public async Task<int> CreateFoodItemAsync(FoodItemViewModel viewModel)
@@ -149,5 +133,12 @@ namespace FoodDelivery.Services
 
             model.Image = fileName;
         }
+
+        public async Task AddOrderItemToCartAsync(Cart cart, OrderItem orderItem)
+        {
+            cart?.OrderItems?.Add(orderItem);
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

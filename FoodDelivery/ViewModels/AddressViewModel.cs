@@ -5,13 +5,10 @@ namespace FoodDelivery.Models
 {
     public class AddressViewModel
     {
-        [Required]
-        public string City { get; set; }
+        public string? City { get; set; }
 
-        [Required]
-        public string Street { get; set; }
+        public string? Street { get; set; }
 
-        [Required]
-        public string StreetNumber { get; set; }
+        public string? StreetNumber { get; set; }
     }
 }

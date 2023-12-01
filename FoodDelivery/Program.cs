@@ -25,6 +25,7 @@ builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 //  Services
 builder.Services.AddScoped<CategoryService>();
 builder.Services.AddScoped<FoodItemService>();
+builder.Services.AddScoped<CustomerService>();
 
 
 var app = builder.Build();

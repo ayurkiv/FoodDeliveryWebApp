@@ -5,10 +5,6 @@ namespace FoodDelivery.Utilities
 {
     public class PaginatedList<T>
     {
-        private IEnumerable<FoodItemViewModel> items;
-        private Func<int> count;
-        private int page;
-
         public List<T> Items { get; private set; }
         public int TotalItems { get; private set; }
         public int CurrentPage { get; private set; }
