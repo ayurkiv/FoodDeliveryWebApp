@@ -7,26 +7,30 @@
 
 
 <div class="container d-flex align-items-center justify-content-center">
-    <div class="w-50">
+    <div class="cart-container">
         <h1>Cart</h1>
         @if (Model.Any())
         {
             <table class="table">
                 <thead>
                     <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.OrderItemId)
+                        <th class="col-1" scope="col">
+                            <h5 class="font-popins fw-medium fs-5 m-0">Image</h5>
+                            <!--@Html.DisplayNameFor(model => model.FoodItemImage)-->
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.FoodItemName)
+                        <th class="col-1" scope="col">
+                            <h5 class="font-popins fw-medium fs-5 m-0">Name</h5>
+                            <!--@Html.DisplayNameFor(model => model.FoodItemName)-->
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.Amount)
+                        <th class="col-1" scope="col">
+                            <h5 class="font-popins fw-medium fs-5 m-0 text-center">Amount</h5>
+                            <!-- @Html.DisplayNameFor(model => model.Amount)-->
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.OrderItemTotal)
-                        </th>
-                        <th></th>
+                        <!--<th>
+                            <h5 class="text-center">Price</h5>
+                        @Html.DisplayNameFor(model => model.OrderItemTotal)
+                        </th>-->
+                        <th class="col-1"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,30 +38,32 @@
                     {
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.OrderItemId)
+                                <img src="@Url.Content($"~/images/FoodItems/{item.FoodItemImage}")" alt="Food Image" class="cart-image" />
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.FoodItemName)
+                                <p class="font-popins fw-medium fs-6 m-0">@Html.DisplayFor(modelItem => item.FoodItemName)</p>
+
+                                <p class="font-popins fw-medium m-0 text-muted">$@Html.DisplayFor(modelItem => item.OrderItemTotal)</p>
                             </td>
-                            <td>
+                            <td class="font-popins fw-medium fs-6 m-0 text-center">
                                 @Html.DisplayFor(modelItem => item.Amount)
                             </td>
+                            <!--<td class="text-center">
+                            @Html.DisplayFor(modelItem => item.OrderItemTotal)
+                            </td>-->
                             <td>
-                                @Html.DisplayFor(modelItem => item.OrderItemTotal)
-                            </td>
-                            <td>
-                                <form method="post" action="@Url.Action("Delete", "Cart", new { id = item.OrderItemId })">
+                                <form method="post" action="@Url.Action("Delete", "Cart", new { id = item.OrderItemId })" class="d-flex align-item-center justify-content-center">
                                     @Html.AntiForgeryToken() <!-- Include anti-forgery token for security -->
-                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-delete"><img src="/svg/recycle-bin.svg" class="cart-delete-btn" /></button>
                                 </form>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
-            <form method="post" action="@Url.Action("Checkout", "Cart")">
+            <form method="post" action="@Url.Action("Checkout", "Cart")" class="d-flex align-item-center justify-content-center">
                 @Html.AntiForgeryToken() <!-- Include anti-forgery token for security -->
-                <button type="submit" class="btn btn-warning">Checkout</button>
+                <button type="submit" class="btn btn-warning cart-btn-sub btn-register font-popins fw-medium fs-5">Checkout</button>
             </form>
 
         }

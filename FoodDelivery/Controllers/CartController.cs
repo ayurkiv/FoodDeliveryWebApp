@@ -30,7 +30,8 @@ namespace FoodDelivery.Controllers
 				.Select(item => new OrderItemViewModel
 				{
 					OrderItemId = item.Id,
-					FoodItemName = item.FoodItem.Name,
+                    FoodItemImage = item.FoodItem.Image,
+                    FoodItemName = item.FoodItem.Name,
 					Amount = item.Amount,
 					OrderItemTotal = item.OrderItemTotal
 				})

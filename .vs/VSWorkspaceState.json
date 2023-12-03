@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\FoodDelivery",
+    "\\FoodDelivery\\Views",
+    "\\FoodDelivery\\Views\\Cart"
   ],
-  "SelectedNode": "\\FoodDelivery.sln",
+  "SelectedNode": "\\FoodDelivery\\Views\\Cart\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

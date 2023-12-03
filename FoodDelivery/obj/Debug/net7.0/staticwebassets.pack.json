@@ -9,6 +9,18 @@
       "PackagePath": "staticwebassets\\css\\card.css"
     },
     {
+      "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\css\\cart.css",
+      "PackagePath": "staticwebassets\\css\\cart.css"
+    },
+    {
+      "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\css\\footer.css",
+      "PackagePath": "staticwebassets\\css\\footer.css"
+    },
+    {
+      "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\css\\header.css",
+      "PackagePath": "staticwebassets\\css\\header.css"
+    },
+    {
       "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\css\\register_login.css",
       "PackagePath": "staticwebassets\\css\\register_login.css"
     },
@@ -25,8 +37,20 @@
       "PackagePath": "staticwebassets\\images\\FoodItems\\3ef4362d-bc3c-48eb-95a8-7a9890346ff5_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png"
     },
     {
+      "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\615425ac-de6c-40b6-8791-c21cb780153f_d380a62d-2919-42b0-a0f6-64513c9c4ed1-826x0.png",
+      "PackagePath": "staticwebassets\\images\\FoodItems\\615425ac-de6c-40b6-8791-c21cb780153f_d380a62d-2919-42b0-a0f6-64513c9c4ed1-826x0.png"
+    },
+    {
+      "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\767fd3bd-d9eb-40b1-a7c4-f5851089716a_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png",
+      "PackagePath": "staticwebassets\\images\\FoodItems\\767fd3bd-d9eb-40b1-a7c4-f5851089716a_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png"
+    },
+    {
       "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\77d6acb5-e3aa-4130-a0f2-ddce35173189_018848a1-1684-73e0-8dd0-c7053cdf6919-826x0.png",
       "PackagePath": "staticwebassets\\images\\FoodItems\\77d6acb5-e3aa-4130-a0f2-ddce35173189_018848a1-1684-73e0-8dd0-c7053cdf6919-826x0.png"
+    },
+    {
+      "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\8344c50a-3768-4d91-862c-6bce611d1302_e5adddf5-6f73-48aa-87ef-619b27614c0f-826x0.png",
+      "PackagePath": "staticwebassets\\images\\FoodItems\\8344c50a-3768-4d91-862c-6bce611d1302_e5adddf5-6f73-48aa-87ef-619b27614c0f-826x0.png"
     },
     {
       "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\88911097-2787-4b9f-9e25-b4632d55785a_avatars-000778198936-ccrt1j-t500x500.jpg",
@@ -39,6 +63,10 @@
     {
       "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\adb16df0-ca79-4209-a383-2269929d7567_018848a1-1684-73e0-8dd0-c7053cdf6919-826x0.png",
       "PackagePath": "staticwebassets\\images\\FoodItems\\adb16df0-ca79-4209-a383-2269929d7567_018848a1-1684-73e0-8dd0-c7053cdf6919-826x0.png"
+    },
+    {
+      "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\b0835695-7765-466b-b35f-790f2a907668_classic-cheese-pizza-recipe-2-64429a0cb408b.jpg",
+      "PackagePath": "staticwebassets\\images\\FoodItems\\b0835695-7765-466b-b35f-790f2a907668_classic-cheese-pizza-recipe-2-64429a0cb408b.jpg"
     },
     {
       "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\b2a467d9-d370-43c6-b5da-4928eddbdb94_018848a1-1684-73e0-8dd0-c7053cdf6919-826x0.png",
@@ -59,6 +87,10 @@
     {
       "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\ead4aa73-8184-46cb-9870-55b991adfbf4_avatars-000778198936-ccrt1j-t500x500.jpg",
       "PackagePath": "staticwebassets\\images\\FoodItems\\ead4aa73-8184-46cb-9870-55b991adfbf4_avatars-000778198936-ccrt1j-t500x500.jpg"
+    },
+    {
+      "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\Logo\\Logo.png",
+      "PackagePath": "staticwebassets\\images\\Logo\\Logo.png"
     },
     {
       "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\js\\site.js",
@@ -299,6 +331,10 @@
     {
       "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\svg\\price.svg",
       "PackagePath": "staticwebassets\\svg\\price.svg"
+    },
+    {
+      "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\svg\\recycle-bin.svg",
+      "PackagePath": "staticwebassets\\svg\\recycle-bin.svg"
     },
     {
       "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\svg\\timeToReady.svg",
