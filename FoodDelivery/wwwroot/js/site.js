@@ -31,6 +31,7 @@ $('#foodItemModal').on('click', '#addToCartButton', function () {
 
     // Hide the modal
     $('#foodItemModal').modal('hide');
+    location.reload();
 });
 
 // Function to add item to the cart

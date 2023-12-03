@@ -5,15 +5,20 @@ using FoodDelivery.Models;
 using FoodDelivery.ViewModel;
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodDelivery.Services
+namespace FoodDelivery.Repositories
 {
-    public class CategoryService
+    public class CategoryRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public CategoryService(ApplicationDbContext context)
+        public CategoryRepository(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        public IEnumerable<Category> GetCategories()
+        {
+            return _context.Categories.ToList();
         }
 
         public List<CategoryViewModel> GetPaginatedCategories(int page, int pageSize)

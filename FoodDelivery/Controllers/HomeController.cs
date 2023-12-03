@@ -1,6 +1,6 @@
 ﻿using FoodDelivery.Data;
 using FoodDelivery.Models;
-using FoodDelivery.Services;
+using FoodDelivery.Repositories;
 using FoodDelivery.Utilities;
 using FoodDelivery.ViewModel;
 using Microsoft.AspNetCore.Authorization;
@@ -14,25 +14,25 @@ namespace FoodDelivery.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly CategoryService _categoryService;
-        private readonly FoodItemService _foodItemService;
-        private readonly CustomerService _customerService;
+        private readonly CategoryRepository _categoryRepository;
+        private readonly FoodItemRepository _foodItemRepository;
+        private readonly CustomerRepository _customerRepository;
 
-        public HomeController(CategoryService categoryService, FoodItemService foodItemService, CustomerService customerService)
+        public HomeController(CategoryRepository categoryRepository, FoodItemRepository foodItemRepository, CustomerRepository customerRepository)
         {
-            _categoryService = categoryService;
-            _foodItemService = foodItemService;
-            _customerService = customerService;
+            _categoryRepository = categoryRepository;
+            _foodItemRepository = foodItemRepository;
+            _customerRepository = customerRepository;
         }
 
         [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Index(string category, int page = 1, int pageSize = 6)
         {
-            var categories = _categoryService.GetPaginatedCategories(page, pageSize);
+            var categories = _categoryRepository.GetPaginatedCategories(page, pageSize);
             ViewBag.Categories = categories;
 
-            var foodItems = await _foodItemService.GetFoodItemsAsync(page, pageSize);
+            var foodItems = await _foodItemRepository.GetFoodItemsAsync(page, pageSize);
 
             if (!string.IsNullOrEmpty(category) && category.ToLower() != "all")
             {
@@ -52,28 +52,15 @@ namespace FoodDelivery.Controllers
         public async Task<IActionResult> AddToCart(int id)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = await _customerService.GetUserWithDetailsAsync(userId);
+            var customer = await _customerRepository.GetUserWithDetailsAsync(userId);
 
-            if (user != null)
+            if (customer != null)
             {
-                var foodItem = await _foodItemService.GetFoodItemAsync(id);
-                if (foodItem != null)
-                {
-                    var orderItem = new OrderItem
-                    {
-                        FoodItem = foodItem,
-                        Amount = 1,
-                        OrderItemTotal = foodItem.Price,
-                        OrderItemWeight = foodItem.Weight,
-                    };
-
-                    await _foodItemService.AddOrderItemToCartAsync(user.Cart, orderItem);
-
-                    return RedirectToAction(nameof(Index));
-                }
+                await _foodItemRepository.AddToCart(id, customer);
+                return RedirectToAction(nameof(Index));
             }
-
             return RedirectToAction(nameof(Index));
         }
+
     }
 }

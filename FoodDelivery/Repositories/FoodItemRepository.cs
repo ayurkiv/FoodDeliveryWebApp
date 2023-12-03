@@ -7,23 +7,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace FoodDelivery.Services
+namespace FoodDelivery.Repositories
 {
 
-    public class FoodItemService
+    public class FoodItemRepository
     {
         private readonly ApplicationDbContext _context;
         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public FoodItemService(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
+        public FoodItemRepository(ApplicationDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
             _webHostEnvironment = webHostEnvironment;
-        }
-
-        public IEnumerable<Category> GetCategories()
-        {
-            return _context.Categories.ToList();
         }
 
         public async Task<List<FoodItemViewModel>> GetFoodItemsAsync(int page, int pageSize)
@@ -51,11 +46,34 @@ namespace FoodDelivery.Services
             return items;
         }
 
-        public async Task<FoodItem> GetFoodItemAsync(int id)
+        public async Task<FoodItemViewModel> GetFoodItemAsync(int id)
         {
             var foodItem = await _context.FoodItems.FindAsync(id);
 
-            return foodItem;
+            if (foodItem == null)
+            {
+                return null;
+            }
+            else
+            {
+                var viewModel = new FoodItemViewModel
+                {
+                    Id = foodItem.Id,
+                    Name = foodItem.Name,
+                    Description = foodItem.Description,
+                    Price = foodItem.Price,
+                    CategoryId = foodItem.CategoryId,
+                    CategoryName = foodItem?.Category?.Title,
+                    Available = foodItem.Available,
+                    AddedDate = foodItem.AddedDate,
+                    ImageUrl = foodItem.Image,
+                    Weight = foodItem.Weight,
+                    TimeToReady = foodItem.TimeToReady,
+                };
+
+                return viewModel;
+
+            }
         }
 
         public async Task<int> CreateFoodItemAsync(FoodItemViewModel viewModel)
@@ -112,7 +130,7 @@ namespace FoodDelivery.Services
 
             if (foodItem == null)
             {
-                return 0; // FoodItem not found
+                return -1; // FoodItem not found
             }
 
             _context.FoodItems.Remove(foodItem);
@@ -140,5 +158,21 @@ namespace FoodDelivery.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task AddToCart(int FoodItemId, Customer customer)
+        {
+            var foodItem = await _context.FoodItems.FindAsync(FoodItemId);
+            if (foodItem != null)
+            {
+                var orderItem = new OrderItem
+                {
+                    FoodItem = foodItem,
+                    Amount = 1,
+                    OrderItemTotal = foodItem.Price,
+                    OrderItemWeight = foodItem.Weight,
+                };
+
+                await AddOrderItemToCartAsync(customer.Cart, orderItem);
+            }
+        }
     }
 }

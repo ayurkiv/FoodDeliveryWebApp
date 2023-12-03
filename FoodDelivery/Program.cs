@@ -1,6 +1,6 @@
 using FoodDelivery.Data;
 using FoodDelivery.Models;
-using FoodDelivery.Services;
+using FoodDelivery.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,9 +23,9 @@ builder.Services.AddControllersWithViews();
 //  DbInitializer
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 //  Services
-builder.Services.AddScoped<CategoryService>();
-builder.Services.AddScoped<FoodItemService>();
-builder.Services.AddScoped<CustomerService>();
+builder.Services.AddScoped<CategoryRepository>();
+builder.Services.AddScoped<FoodItemRepository>();
+builder.Services.AddScoped<CustomerRepository>();
 
 
 var app = builder.Build();

@@ -1,6 +1,5 @@
 ﻿using FoodDelivery.Models;
 using FoodDelivery.ViewModel;
-using FoodDelivery.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,17 +8,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using FoodDelivery.Utilities;
+using FoodDelivery.Repositories;
 
 namespace FoodDelivery.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class FoodItemController : Controller
     {
-        private readonly FoodItemService _foodItemService;
+        private readonly FoodItemRepository _foodItemService;
+        private readonly CategoryRepository _categoryRepository;
 
-        public FoodItemController(FoodItemService foodItemService)
+        public FoodItemController(FoodItemRepository foodItemService, CategoryRepository categoryRepository)
         {
             _foodItemService = foodItemService;
+            _categoryRepository = categoryRepository;
         }
 
         [HttpGet]
@@ -35,7 +37,7 @@ namespace FoodDelivery.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var categories = _foodItemService.GetCategories(); // Assuming you have a method in the service to get categories
+            var categories = _categoryRepository.GetCategories(); // Assuming you have a method in the service to get categories
             ViewBag.Categories = new SelectList(categories, "Id", "Title");
 
             return View(new FoodItemViewModel());
@@ -50,7 +52,7 @@ namespace FoodDelivery.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var categories = _foodItemService.GetCategories();
+            var categories = _categoryRepository.GetCategories();
             ViewBag.Categories = new SelectList(categories, "Id", "Title");
 
             return View(vm);
@@ -66,7 +68,7 @@ namespace FoodDelivery.Controllers
                 return NotFound();
             }
 
-            var categories = _foodItemService.GetCategories();
+            var categories = _categoryRepository.GetCategories();
             ViewBag.Categories = new SelectList(categories, "Id", "Title");
 
             return View(vm);
@@ -81,16 +83,16 @@ namespace FoodDelivery.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var categories = _foodItemService.GetCategories();
+            var categories = _categoryRepository.GetCategories();
             ViewBag.Categories = new SelectList(categories, "Id", "Title");
 
             return View(vm);
         }
 
         [HttpGet]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var vm = _foodItemService.GetFoodItemAsync(id);
+            var vm = await _foodItemService.GetFoodItemAsync(id);
 
             if (vm == null)
             {
@@ -105,6 +107,7 @@ namespace FoodDelivery.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             await _foodItemService.DeleteFoodItemAsync(id);
+
             return RedirectToAction(nameof(Index));
         }
 

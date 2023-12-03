@@ -3,17 +3,17 @@ using FoodDelivery.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using FoodDelivery.Utilities;
 using Microsoft.AspNetCore.Authorization;
-using FoodDelivery.Services;
 using Microsoft.EntityFrameworkCore;
+using FoodDelivery.Repositories;
 
 namespace FoodDelivery.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
-        private readonly CategoryService _categoryService;
+        private readonly CategoryRepository _categoryService;
 
-        public CategoryController(CategoryService categoryService)
+        public CategoryController(CategoryRepository categoryService)
         {
             _categoryService = categoryService;
         }

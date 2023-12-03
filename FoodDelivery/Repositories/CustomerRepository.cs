@@ -1,13 +1,13 @@
 ﻿using FoodDelivery.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace FoodDelivery.Services
+namespace FoodDelivery.Repositories
 {
-    public class CustomerService
+    public class CustomerRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public CustomerService(ApplicationDbContext context)
+        public CustomerRepository(ApplicationDbContext context)
         {
             _context = context;
         }
