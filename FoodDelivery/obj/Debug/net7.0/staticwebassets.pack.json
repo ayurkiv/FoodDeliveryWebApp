@@ -89,6 +89,10 @@
       "PackagePath": "staticwebassets\\images\\FoodItems\\ead4aa73-8184-46cb-9870-55b991adfbf4_avatars-000778198936-ccrt1j-t500x500.jpg"
     },
     {
+      "Id": "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\eaf5b1fa-0615-42a4-a8a6-e39d8cd85c50_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png",
+      "PackagePath": "staticwebassets\\images\\FoodItems\\eaf5b1fa-0615-42a4-a8a6-e39d8cd85c50_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png"
+    },
+    {
       "Id": "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\Logo\\favicon.svg",
       "PackagePath": "staticwebassets\\images\\Logo\\favicon.svg"
     },

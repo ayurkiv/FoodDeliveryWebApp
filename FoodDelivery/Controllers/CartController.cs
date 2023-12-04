@@ -1,126 +1,130 @@
 ﻿using FoodDelivery.Common;
 using FoodDelivery.Data;
 using FoodDelivery.Models;
-using FoodDelivery.ViewModel;
+using FoodDelivery.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Threading.Tasks;
+
 namespace FoodDelivery.Controllers
 {
     [Authorize(Roles = "Customer")]
     public class CartController : Controller
     {
-		private readonly ApplicationDbContext _context;
-        
-		public CartController(ApplicationDbContext context)
-		{
-			_context = context;
-		}
+        private readonly ApplicationDbContext _context;
+        private readonly CustomerRepository _customerRepository;
+        private readonly OrderItemRepository _orderItemRepository;
+        private readonly OrderRepository _orderRepository;
+        private readonly CartRepository _cartRepository;
 
-        [HttpGet]
-		public IActionResult Index()
+        public CartController(
+            ApplicationDbContext context,
+            CustomerRepository customerRepository,
+            OrderItemRepository orderItemRepository,
+            OrderRepository orderRepository,
+            CartRepository cartRepository)
         {
-			// Отримати ідентифікатор поточного користувача
-			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-			// Отримати дані корзини з бази даних
-			var cartItems = _context.OrderItems
-				.Where(item => item.Cart.Customer.ApplicationUserId == userId)
-				.Select(item => new OrderItemViewModel
-				{
-					OrderItemId = item.Id,
-                    FoodItemImage = item.FoodItem.Image,
-                    FoodItemName = item.FoodItem.Name,
-					Amount = item.Amount,
-					OrderItemTotal = item.OrderItemTotal
-				})
-				.ToList();
-
-			return View(cartItems);
+            _context = context;
+            _customerRepository = customerRepository;
+            _orderItemRepository = orderItemRepository;
+            _orderRepository = orderRepository;
+            _cartRepository = cartRepository;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = await _customerRepository.GetUserWithDetailsAsync(userId);
 
+            if (customer == null || customer == null)
+            {
+                return NotFound();
+            }
 
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public IActionResult Delete(int id)
-		{
-			// Отримати ідентифікатор поточного користувача
-			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var cartItems = await _cartRepository.GetCartItemsViewModelForCustomerAsync(customer.Id);
 
-			// Знайти елемент корзини за його ідентифікатором
-			var orderItem = _context.OrderItems
-				.Include(item => item.Cart.Customer)
-				.SingleOrDefault(item => item.Id == id && item.Cart.Customer.ApplicationUserId == userId);
+            return View(cartItems);
+        }
 
-			if (orderItem == null)
-			{
-				// Обробити ситуацію, коли елемент не знайдено
-				return NotFound();
-			}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddToCart(int foodItemId, int amount)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = await _customerRepository.GetUserWithDetailsAsync(userId);
 
-			// Видалити елемент корзини
-			_context.OrderItems.Remove(orderItem);
-			_context.SaveChanges();
+            if (customer == null || customer == null)
+            {
+                return NotFound();
+            }
 
-            // Перенаправити користувача на сторінку корзини з оновленими даними
+            await _cartRepository.AddCartItemAsync(foodItemId, customer.Id, amount);
+
             return RedirectToAction("Index", "Cart");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Checkout()
+        public async Task<IActionResult> RemoveFromCart(int orderItemId)
         {
-            // Отримати ідентифікатор поточного користувача
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = await _customerRepository.GetUserWithDetailsAsync(userId);
 
-            // Отримати користувача та його корзину з бази даних
-            var user = _context.Users
-                .Include(u => u.Customer)
-                .ThenInclude(c => c.Cart)
-                .SingleOrDefault(u => u.Id == userId);
-
-            if (user == null || user.Customer == null || user.Customer.Cart == null)
+            if (customer == null || customer == null)
             {
-                // Обробити ситуацію, коли користувач або корзина не знайдені
                 return NotFound();
             }
 
-            // Отримати елементи корзини для обробки замовлення
-            var cartItems = _context.OrderItems
-                .Where(item => item.Cart.Customer.ApplicationUserId == userId)
-                .ToList();
+            var success = await _cartRepository.RemoveCartItemAsync(orderItemId, customer.Id);
+
+            if (!success)
+            {
+                return NotFound();
+            }
+
+            return RedirectToAction("Index", "Cart");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Checkout()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = await _customerRepository.GetUserWithDetailsAsync(userId);
+
+            if (customer == null || customer == null || customer.Cart == null)
+            {   
+                return NotFound();
+            }
+
+            var cartItems = await _cartRepository.GetCartItemsForCustomerAsync(customer.Id);
 
             if (cartItems.Count == 0)
             {
-                // Обробити ситуацію, коли корзина порожня
                 return RedirectToAction(nameof(Index));
             }
-
-            // Створити нове замовлення
-
-            // Create a new order with the order address
-            var order = new Order
+            else
             {
-                DeliveryStatus = DeliveryStatus.Pending,
-                PaymentStatus = PaymentStatus.Pending,
-                OrderItems = cartItems,
-                OrderTotal = cartItems.Sum(item => item.OrderItemTotal),
-                WeightTotal = cartItems.Sum(item => item.OrderItemWeight),
-                CustomerId = user.Customer?.Id
-            };
-            // Очистити корзину користувача
-            user.Customer.Cart.OrderItems?.Clear();
+                var order = new Order
+                {
+                    DeliveryStatus = DeliveryStatus.Pending,
+                    PaymentStatus = PaymentStatus.Pending,
+                    OrderItems = cartItems,
+                    OrderTotal = cartItems.Sum(item => item.OrderItemTotal),
+                    WeightTotal = cartItems.Sum(item => item.OrderItemWeight),
+                    CustomerId = customer?.Id
+                };
 
-            // Додати замовлення до бази даних
-            _context.Orders.Add(order);
+                await _orderRepository.AddOrderAsync(order);
+                await _cartRepository.ClearCartAsync(customer?.Cart!);
 
-            // Зберегти зміни в базі даних
-            _context.SaveChanges();
+                return RedirectToAction("Confirmation", "Order", new { id = order.Id });
 
-            // Перенаправити користувача на сторінку підтвердження замовлення
-            return RedirectToAction("Confirmation", "Order", new { id = order.Id });
+            }
+
         }
     }
 }

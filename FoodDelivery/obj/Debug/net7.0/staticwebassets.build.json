@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Bgkie+LvKYxFET+LcF3N1DJCHzttDdbuzc308cdOd1U=",
+  "Hash": "oGy+odj7riRozzHb6YwhWpSGfDWTQ1lb5NMfEuvBj24=",
   "Source": "FoodDelivery",
   "BasePath": "_content/FoodDelivery",
   "Mode": "Default",
@@ -1426,6 +1426,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\FoodItems\\ead4aa73-8184-46cb-9870-55b991adfbf4_avatars-000778198936-ccrt1j-t500x500.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\eaf5b1fa-0615-42a4-a8a6-e39d8cd85c50_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png",
+      "SourceId": "FoodDelivery",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\",
+      "BasePath": "_content/FoodDelivery",
+      "RelativePath": "images/FoodItems/eaf5b1fa-0615-42a4-a8a6-e39d8cd85c50_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\FoodItems\\eaf5b1fa-0615-42a4-a8a6-e39d8cd85c50_5c669b15-9626-4fe6-9878-e4af3eb071f1-826x0.png"
     },
     {
       "Identity": "C:\\Users\\SystemX\\source\\repos\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\Logo\\favicon.svg",

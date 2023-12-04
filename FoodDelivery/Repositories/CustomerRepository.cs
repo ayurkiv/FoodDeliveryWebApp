@@ -31,6 +31,5 @@ namespace FoodDelivery.Repositories
                         .ThenInclude(orderItem => orderItem.FoodItem)
                 .SingleOrDefaultAsync(c => c.ApplicationUserId == userId);
         }
-
     }
 }

@@ -26,6 +26,10 @@ builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddScoped<CategoryRepository>();
 builder.Services.AddScoped<FoodItemRepository>();
 builder.Services.AddScoped<CustomerRepository>();
+builder.Services.AddScoped<OrderRepository>();
+builder.Services.AddScoped<OrderItemRepository>();
+builder.Services.AddScoped<CartRepository>();
+
 
 
 var app = builder.Build();

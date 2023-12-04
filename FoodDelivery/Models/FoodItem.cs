@@ -23,7 +23,9 @@ namespace FoodDelivery.Models
 
 		public ICollection<OrderItem>? OrderItems { get; set; }
 
-		public FoodItem()
+        public bool IsDelete { get; set; }
+
+        public FoodItem()
         {
             AddedDate = DateTime.Now;
             Available = true;

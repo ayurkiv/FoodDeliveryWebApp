@@ -9,5 +9,7 @@ namespace FoodDelivery.Models
         public int Id { get; set; }
         public string? Title { get; set; }
         public ICollection<FoodItem>? FoodItems { get; set; }
+
+        public bool IsDelete { get; set; }
     }
 }

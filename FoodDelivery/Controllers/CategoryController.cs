@@ -35,7 +35,7 @@ namespace FoodDelivery.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            CategoryViewModel newCategory = new CategoryViewModel();
+            CategoryViewModel newCategory = new();
             return View(newCategory);
         }
 
