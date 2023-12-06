@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\FoodDelivery",
+    "\\FoodDelivery\\Controllers",
     "\\FoodDelivery\\Views",
-    "\\FoodDelivery\\Views\\Cart"
+    "\\FoodDelivery\\Views\\Cart",
+    "\\FoodDelivery\\Views\\Shared"
   ],
   "SelectedNode": "\\FoodDelivery\\Views\\Cart\\Index.cshtml",
   "PreviewInSolutionExplorer": false

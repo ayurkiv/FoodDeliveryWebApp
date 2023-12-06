@@ -23,7 +23,7 @@ namespace FoodDelivery.Models
 
 		public ICollection<OrderItem>? OrderItems { get; set; }
 
-        public bool IsDelete { get; set; }
+        public bool? IsDelete { get; set; }
 
         public FoodItem()
         {
