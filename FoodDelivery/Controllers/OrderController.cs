@@ -1,5 +1,4 @@
-﻿using FoodDelivery.Common;
-using FoodDelivery.Data;
+﻿using FoodDelivery.Data;
 using FoodDelivery.Models;
 using FoodDelivery.Repositories;
 using FoodDelivery.ViewModel;
@@ -15,12 +14,10 @@ namespace FoodDelivery.Controllers
     public class OrderController : Controller
     {
         private readonly OrderRepository _orderRepository;
-        private readonly OrderItemRepository _orderItemRepository;
 
-        public OrderController(OrderRepository orderRepository, OrderItemRepository orderItemRepository)
+        public OrderController(OrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
-            _orderItemRepository = orderItemRepository;
         }
 
         [HttpGet]

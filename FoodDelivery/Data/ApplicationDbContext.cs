@@ -6,14 +6,14 @@ using Microsoft.Extensions.Hosting;
 using System.Reflection.Emit;
 using System;
 using Microsoft.AspNetCore.Identity;
+using FoodDelivery.Models.Interfaces;
+using FoodDelivery.Models.Common;
 
 namespace FoodDelivery.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public partial class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-
-
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
         }
@@ -45,12 +45,13 @@ namespace FoodDelivery.Data
                 .WithMany(c => c.Orders)
                 .HasForeignKey(o => o.CustomerId)
                 .OnDelete(DeleteBehavior.Restrict);
+
             builder.Entity<Order>()
                 .HasOne(o => o.Courier)
                 .WithMany(c => c.Orders)
                 .HasForeignKey(o => o.CourierId)
                 .OnDelete(DeleteBehavior.Restrict);
-
+            
 
             builder.ApplyConfiguration(new ApplicationUserEntityConfiguration());
         }

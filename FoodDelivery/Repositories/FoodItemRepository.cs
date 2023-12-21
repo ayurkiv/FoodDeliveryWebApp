@@ -1,4 +1,4 @@
-﻿ using FoodDelivery.Data;
+﻿using FoodDelivery.Data;
 using FoodDelivery.Models;
 using FoodDelivery.ViewModel;
 using Microsoft.AspNetCore.Hosting;
@@ -23,7 +23,9 @@ namespace FoodDelivery.Repositories
 
         public async Task<List<FoodItemViewModel>> GetFoodItemsAsync(int page, int pageSize)
         {
-            var items = await _context.FoodItems.Include(x => x.Category)
+            var items = await _context.FoodItems
+                .Where(item => item.IsDelete != true)
+                .Include(x => x.Category)
                 .OrderBy(x => x.Id)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
@@ -34,12 +36,12 @@ namespace FoodDelivery.Repositories
                     Description = item.Description,
                     Price = item.Price,
                     CategoryId = item.CategoryId,
-                    CategoryName = item.Category.Title,
+                    CategoryName = item.Category!.Title,
+                    AddedDate = item.AddedDate,
                     Available = item.Available,
                     Weight = item.Weight,
                     TimeToReady = item.TimeToReady,
                     ImageUrl = $"/Images/FoodItems/{item.Image}",
-
                 })
                 .ToListAsync();
 
@@ -64,7 +66,7 @@ namespace FoodDelivery.Repositories
                     Price = foodItem.Price,
                     CategoryId = foodItem.CategoryId,
                     CategoryName = foodItem?.Category?.Title,
-                    Available = foodItem.Available,
+                    Available = foodItem!.Available,
                     AddedDate = foodItem.AddedDate,
                     ImageUrl = foodItem.Image,
                     Weight = foodItem.Weight,
@@ -83,7 +85,6 @@ namespace FoodDelivery.Repositories
                 Name = viewModel.Name,
                 Description = viewModel.Description,
                 Price = viewModel.Price,
-                AddedDate = DateTime.Now,
                 TimeToReady = viewModel.TimeToReady,
                 Weight = viewModel.Weight,
                 CategoryId = viewModel.CategoryId,
@@ -132,7 +133,6 @@ namespace FoodDelivery.Repositories
             {
                 return -1; // FoodItem not found
             }
-
             _context.FoodItems.Remove(foodItem);
             return await _context.SaveChangesAsync();
         }
@@ -171,7 +171,7 @@ namespace FoodDelivery.Repositories
                     OrderItemWeight = foodItem.Weight,
                 };
 
-                await AddOrderItemToCartAsync(customer.Cart, orderItem);
+                await AddOrderItemToCartAsync(customer.Cart!, orderItem);
             }
         }
     }

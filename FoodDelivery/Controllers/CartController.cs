@@ -1,6 +1,6 @@
-﻿using FoodDelivery.Common;
-using FoodDelivery.Data;
+﻿using FoodDelivery.Data;
 using FoodDelivery.Models;
+using FoodDelivery.Models.Common;
 using FoodDelivery.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -119,12 +119,12 @@ namespace FoodDelivery.Controllers
                 };
 
                 await _orderRepository.AddOrderAsync(order);
+                await _orderRepository.AddOrderItemsToOrderAsync(order.Id, cartItems);
                 await _cartRepository.ClearCartAsync(customer?.Cart!);
 
                 return RedirectToAction("Confirmation", "Order", new { id = order.Id });
 
             }
-
         }
     }
 }

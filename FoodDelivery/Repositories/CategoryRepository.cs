@@ -18,12 +18,15 @@ namespace FoodDelivery.Repositories
 
         public IEnumerable<Category> GetCategories()
         {
-            return _context.Categories.ToList();
+            return _context.Categories
+                .Where(c => c.IsDelete != true)
+                .ToList();
         }
 
         public List<CategoryViewModel> GetPaginatedCategories(int page, int pageSize)
         {
             var categories = _context.Categories
+                .Where(c => c.IsDelete != true)
                 .OrderBy(x => x.Id)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
@@ -81,10 +84,17 @@ namespace FoodDelivery.Repositories
 
         public void DeleteCategory(int id)
         {
-            var category = _context.Categories.Find(id);
+            var category = _context.Categories.Include(c => c.FoodItems).FirstOrDefault(x => x.Id == id);
 
             if (category != null)
             {
+                // Оновлення FoodItems за Id категорії
+                var foodItemsToUpdate = _context.FoodItems.Where(fi => fi.CategoryId == id);
+                foreach (var foodItem in foodItemsToUpdate)
+                {
+                    foodItem.CategoryId = null;
+                }
+
                 _context.Categories.Remove(category);
                 _context.SaveChanges();
             }

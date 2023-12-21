@@ -873,3 +873,4 @@ C:\Users\proko\Source\Repos\ayurkiv\FoodDeliveryWebApp\FoodDelivery\obj\Debug\ne
 C:\Users\proko\Source\Repos\ayurkiv\FoodDeliveryWebApp\FoodDelivery\obj\Debug\net7.0\ref\FoodDelivery.dll
 C:\Users\SystemX\source\repos\FoodDeliveryWebApp\FoodDelivery\obj\Debug\net7.0\scopedcss\Views\Shared\_AdminLayout.cshtml.rz.scp.css
 C:\Users\proko\Source\Repos\ayurkiv\FoodDeliveryWebApp\FoodDelivery\obj\Debug\net7.0\scopedcss\Views\Shared\_AdminLayout.cshtml.rz.scp.css
+C:\Users\SystemX\source\repos\FoodDeliveryWebApp\FoodDelivery\obj\Debug\net7.0\FoodDelivery.sourcelink.json

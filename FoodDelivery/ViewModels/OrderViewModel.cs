@@ -1,7 +1,7 @@
 ﻿using FoodDelivery.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
-using FoodDelivery.Common;
+using FoodDelivery.Models.Common;
 
 namespace FoodDelivery.ViewModel
 {

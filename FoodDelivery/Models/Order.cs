@@ -1,10 +1,11 @@
-﻿using FoodDelivery.Common;
+﻿using FoodDelivery.Models.Common;
+using FoodDelivery.Models.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodDelivery.Models
 {
-    public class Order
+    public class Order : IModel
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

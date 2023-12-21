@@ -1,4 +1,5 @@
 ﻿using FoodDelivery.Data;
+using FoodDelivery.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace FoodDelivery.Repositories

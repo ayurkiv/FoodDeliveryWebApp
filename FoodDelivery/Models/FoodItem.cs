@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FoodDelivery.Models.Common;
+using FoodDelivery.Models.Interfaces;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FoodDelivery.Models
 {
-    public class FoodItem
+    public class FoodItem : ISoftDeletable
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -23,13 +25,19 @@ namespace FoodDelivery.Models
 
 		public ICollection<OrderItem>? OrderItems { get; set; }
 
-        public bool? IsDelete { get; set; }
+        public bool IsDelete { get; set; }
+
+
+
+
 
         public FoodItem()
         {
             AddedDate = DateTime.Now;
             Available = true;
-			OrderItems = new List<OrderItem>();
-		}
-	}
+            OrderItems = new List<OrderItem>();
+            IsDelete = false;
+        }
+
+    }
 }

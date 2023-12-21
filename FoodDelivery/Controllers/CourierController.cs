@@ -1,5 +1,5 @@
-﻿using FoodDelivery.Common;
-using FoodDelivery.Data;
+﻿using FoodDelivery.Data;
+using FoodDelivery.Models.Common;
 using FoodDelivery.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

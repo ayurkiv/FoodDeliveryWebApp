@@ -12,6 +12,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using FoodDelivery.Data;
 using FoodDelivery.Models;
+using FoodDelivery.Models.Common;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -159,7 +160,7 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                     var courier = new Courier()
                     {
                         ApplicationUserId = user.Id,
-                        CourierStatus = Common.CourierStatus.Free
+                        CourierStatus = CourierStatus.Free
                     };
                     _context.Couriers.Add(courier);
 

@@ -16,6 +16,22 @@ namespace FoodDelivery.Repositories
             _context = context;
         }
 
+        private async Task<bool> DeleteOrderItemFromCartAsync(int orderItemId)
+        {
+            var orderItem = await _context.OrderItems.FindAsync(orderItemId);
+
+            if (orderItem == null)
+            {
+                return false; // Item not found
+            }
+
+            // Set CartId to null to disassociate the item from the cart
+            orderItem.CartId = null;
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
         public async Task<int> GetCurrentCartIdAsync(int customerId)
         {
             var cartId = await _context.Carts
@@ -93,9 +109,15 @@ namespace FoodDelivery.Repositories
                 return false;
             }
 
-            var cartItems = _context.OrderItems.Where(item => item.CartId == cart.Id).ToList();
-            _context.OrderItems.RemoveRange(cartItems);
-            await _context.SaveChangesAsync();
+            var cartItems = await _context.OrderItems
+                .Where(item => item.CartId == cart.Id)
+                .ToListAsync();
+
+            foreach (var cartItem in cartItems)
+            {
+                await DeleteOrderItemFromCartAsync(cartItem.Id);
+            }
+
             return true;
         }
 
@@ -117,6 +139,7 @@ namespace FoodDelivery.Repositories
 
             return cartItems;
         }
+
         public async Task<List<OrderItem>> GetCartItemsForCustomerAsync(int customerId)
         {
             var cartId = await GetCurrentCartIdAsync(customerId);
