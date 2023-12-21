@@ -102,7 +102,7 @@ namespace FoodDelivery.Repositories
 
         public int GetTotalItems()
         {
-            return _context.Categories.Count(); ;
+            return _context.Categories.Count(c => !c.IsDelete);
         }
     }
 }
