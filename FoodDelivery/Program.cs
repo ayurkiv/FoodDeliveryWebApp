@@ -1,6 +1,7 @@
 using FoodDelivery.Data;
 using FoodDelivery.Models;
 using FoodDelivery.Repositories;
+using FoodDelivery.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -37,8 +38,8 @@ builder.Services.AddScoped<CustomerRepository>();
 builder.Services.AddScoped<OrderRepository>();
 builder.Services.AddScoped<OrderItemRepository>();
 builder.Services.AddScoped<CartRepository>();
-
-
+//BackgroundService
+builder.Services.AddHostedService<CourierAssignmentBackgroundService>();
 
 var app = builder.Build();
 

@@ -86,34 +86,20 @@ namespace FoodDelivery.Controllers
         [HttpPost]
         public IActionResult Pay(PaymentViewModel paymentViewModel)
         {
-            // Виконайте обробку платежу тут
-            // Перевірте і збережіть статус оплати у замовленні
             var order = _orderRepository.GetOrderById(paymentViewModel.OrderId);
             if (order == null)
             {
                 return NotFound();
             }
 
-            // Логіка обробки платежу тут
+            // Process payment logic here
 
-            // Позначте замовлення як оплачене
             order.PaymentStatus = PaymentStatus.Completed;
             _orderRepository.UpdateOrderPaymentStatus(order);
 
-            // Attempt to assign a courier to the order
-            var assignmentSuccess = _orderRepository.AssignCourierToOrderAsync(order.Id).Result; // Synchronously waiting for the result
-
-            if (!assignmentSuccess)
-            {
-                // Handle the case when no courier is available
-                // You might want to display a message or take other actions
-                return RedirectToAction("NoCourierAvailable");
-            }
-
-            // Редирект на сторінку відстеження замовлення
+            // Return an immediate response to the client
             return RedirectToAction("Details", new { id = order.Id });
         }
-
 
     }
 }

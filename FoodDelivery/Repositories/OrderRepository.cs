@@ -152,43 +152,33 @@ namespace FoodDelivery.Repositories
                 return false; // Order not found, already has a courier, or not in pending status
             }
 
-            while (true)
+            var freeCourier = await GetFreeCourierAsync();
+
+            if (freeCourier == null)
             {
-                var freeCourier = await GetFreeCourierAsync();
-
-                if (freeCourier != null)
-                {
-                    order.Courier = freeCourier;
-                    freeCourier.CourierStatus = CourierStatus.Busy;
-
-                    await _context.SaveChangesAsync();
-
-                    return true; // Courier successfully assigned
-                }
-
-                // Add a delay or implement a backoff strategy if needed
-                await Task.Delay(TimeSpan.FromSeconds(5)); // Example: wait for 5 seconds before retrying
+                return false; // No available couriers
             }
+
+            order.Courier = freeCourier;
+            freeCourier.CourierStatus = CourierStatus.Busy;
+
+            await _context.SaveChangesAsync();
+
+            return true;
         }
 
         private async Task<Courier> GetFreeCourierAsync()
         {
-            Courier freeCourier = null;
-
-            // Loop until a free courier is found
-            while (freeCourier == null)
-            {
-                freeCourier = await _context.Couriers.FirstOrDefaultAsync(c => c.CourierStatus == CourierStatus.Free);
-
-                if (freeCourier == null)
-                {
-                    // Add a delay or implement a backoff strategy if needed
-                    await Task.Delay(TimeSpan.FromSeconds(5)); // Example: wait for 5 seconds before retrying
-                }
-            }
-
-            return freeCourier;
+            return await _context.Couriers.FirstOrDefaultAsync(c => c.CourierStatus == CourierStatus.Free);
         }
+
+        public List<Order> GetOrdersWithoutCourier()
+        {
+            return _context.Orders
+                .Where(o => o.CourierId == null && o.DeliveryStatus == DeliveryStatus.Pending)
+                .ToList();
+        }
+
 
     }
 }
