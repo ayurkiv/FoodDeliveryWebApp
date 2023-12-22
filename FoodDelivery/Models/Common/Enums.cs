@@ -9,13 +9,15 @@
     public enum PaymentStatus
     {
         Pending,
-        Completed
+        Completed,
+        Cancel,
+        Failed
     }
     public enum CourierStatus
     {
         Free,
         Busy,
-        OnBreak
+        OnBreak,
+        Unavailable
     }
-
 }

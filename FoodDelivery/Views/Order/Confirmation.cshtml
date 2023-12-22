@@ -41,6 +41,4 @@
 </div>
 
 
-<form method="post" action="@Url.Action("Pay", "Order", new { id = Model.Id })">
-    <button type="submit" class="btn btn-warning">Pay</button>
-</form>
+<a href="@Url.Action("Pay", "Order", new { id = Model.Id })" class="btn btn-warning">Pay</a>

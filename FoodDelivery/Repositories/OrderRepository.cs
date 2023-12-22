@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FoodDelivery.Data;
 using FoodDelivery.Models;
+using FoodDelivery.Models.Common;
 using FoodDelivery.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging;
@@ -120,5 +121,74 @@ namespace FoodDelivery.Repositories
 
             return true;
         }
+
+        public void UpdateOrderPaymentStatus(OrderViewModel order)
+        {
+            var existingOrder = _context.Orders.Find(order.Id);
+
+            if (existingOrder == null)
+            {
+                // Можна кинути виняток або взяти інші заходи залежно від ваших потреб
+                throw new InvalidOperationException($"Order with ID {order.Id} not found");
+            }
+
+            // Оновлення всіх полів
+            existingOrder.PaymentStatus = order.PaymentStatus;
+            // Оновлення зв'язаних об'єктів (якщо вони були змінені)
+
+            // Оновіть тут інші властивості замовлення за потребою
+
+            _context.Orders.Update(existingOrder);
+            _context.SaveChanges();
+        }
+
+        public async Task<bool> AssignCourierToOrderAsync(int orderId)
+        {
+            var order = await _context.Orders.Include(o => o.Courier)
+                                              .FirstOrDefaultAsync(o => o.Id == orderId);
+
+            if (order == null || order.Courier != null || order.DeliveryStatus != DeliveryStatus.Pending)
+            {
+                return false; // Order not found, already has a courier, or not in pending status
+            }
+
+            while (true)
+            {
+                var freeCourier = await GetFreeCourierAsync();
+
+                if (freeCourier != null)
+                {
+                    order.Courier = freeCourier;
+                    freeCourier.CourierStatus = CourierStatus.Busy;
+
+                    await _context.SaveChangesAsync();
+
+                    return true; // Courier successfully assigned
+                }
+
+                // Add a delay or implement a backoff strategy if needed
+                await Task.Delay(TimeSpan.FromSeconds(5)); // Example: wait for 5 seconds before retrying
+            }
+        }
+
+        private async Task<Courier> GetFreeCourierAsync()
+        {
+            Courier freeCourier = null;
+
+            // Loop until a free courier is found
+            while (freeCourier == null)
+            {
+                freeCourier = await _context.Couriers.FirstOrDefaultAsync(c => c.CourierStatus == CourierStatus.Free);
+
+                if (freeCourier == null)
+                {
+                    // Add a delay or implement a backoff strategy if needed
+                    await Task.Delay(TimeSpan.FromSeconds(5)); // Example: wait for 5 seconds before retrying
+                }
+            }
+
+            return freeCourier;
+        }
+
     }
 }

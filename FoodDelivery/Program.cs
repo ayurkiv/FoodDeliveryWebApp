@@ -18,6 +18,14 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
+//Validation
+builder.Services.AddMvc()
+        .AddViewOptions(options =>
+        {
+            options.HtmlHelperOptions.ClientValidationEnabled = true;
+        });
+
+
 builder.Services.AddControllersWithViews();
 
 //  DbInitializer
