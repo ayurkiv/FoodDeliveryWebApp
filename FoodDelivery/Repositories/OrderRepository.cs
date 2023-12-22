@@ -18,6 +18,11 @@ namespace FoodDelivery.Repositories
         {
             _context = context;
         }
+        private bool FreeCourierHasDispatchedOrder(int courierId)
+        {
+            // Перевірити, чи у кур'єра є видане замовлення зі статусом "Dispatched"
+            return _context.Orders.Any(o => o.CourierId == courierId && o.DeliveryStatus == DeliveryStatus.Dispatched);
+        }
 
         public List<OrderViewModel> GetOrdersForUser(string userId)
         {
@@ -154,13 +159,14 @@ namespace FoodDelivery.Repositories
 
             var freeCourier = await GetFreeCourierAsync();
 
-            if (freeCourier == null)
+            if (freeCourier == null || FreeCourierHasDispatchedOrder(freeCourier.Id))
             {
-                return false; // No available couriers
+                return false; // No available couriers or the courier already has a dispatched order
             }
 
             order.Courier = freeCourier;
             freeCourier.CourierStatus = CourierStatus.Busy;
+            order.DeliveryStatus = DeliveryStatus.Dispatched;
 
             await _context.SaveChangesAsync();
 

@@ -1,0 +1,9 @@
+﻿@using FoodDelivery.Models.Common;
+@model CourierStatus
+
+<form method="post" action="@Url.Action("ChangeCourierStatus", "Courier")">
+    @Html.AntiForgeryToken() <!-- Include anti-forgery token for security -->
+    <button type="submit" class="btn btn-outline-primary @(Model == CourierStatus.Free ? "active" : "")" name="newCourierStatus" value="Free">Free</button>
+    <button type="submit" class="btn btn-outline-primary @(Model == CourierStatus.Busy ? "active" : "")" name="newCourierStatus" value="Busy">Busy</button>
+    <button type="submit" class="btn btn-outline-primary @(Model == CourierStatus.OnBreak ? "active" : "")" name="newCourierStatus" value="OnBreak">On Break</button>
+</form>

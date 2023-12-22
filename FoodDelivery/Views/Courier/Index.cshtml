@@ -1,18 +1,21 @@
-﻿@using FoodDelivery.ViewModel
+﻿@using FoodDelivery.Models.Common
+@using FoodDelivery.ViewModel
 @model List<OrderViewModel>
 
-<h1>Orders for Courier</h1>
+<h1>Your status</h1>
 
+@await Html.PartialAsync("_CourierStatusButtons", (CourierStatus)ViewBag.CourierStatus)
+<hr>
+<h1>Orders</h1>
 <table class="table">
     <thead>
         <tr>
             <th>Order ID</th>
             <th>Delivery Status</th>
-            <th>Payment Status</th>
             <th>Order Total</th>
             <th>Weight Total</th>
             <th>Order Date</th>
-            <th>Action</th>
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -21,15 +24,32 @@
             <tr>
                 <td>@order.Id</td>
                 <td>@order.DeliveryStatus</td>
-                <td>@order.PaymentStatus</td>
                 <td>@order.OrderTotal</td>
                 <td>@order.WeightTotal</td>
                 <td>@order.OrderDate</td>
                 <td>
-                    <form method="post" action="@Url.Action("ChangeDeliveryStatus", "Courier", new { id = order.Id })">
-                        @Html.AntiForgeryToken() <!-- Include anti-forgery token for security -->
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+                    <div class="d-inline-flex">
+                        
+                        <form method="post" action="@Url.Action("DeliveredOrder", "Courier", new { id = order.Id })">
+                            @Html.AntiForgeryToken() <!-- Include anti-forgery token for security -->
+                            @if (order.DeliveryStatus == DeliveryStatus.Delivered)
+                            {
+                                <button type="button" class="btn btn-outline-success" disabled>Delivered</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-outline-success">Delivered</button>
+                            }
+                        </form>
+                        
+                        @if (order.DeliveryStatus != DeliveryStatus.Delivered)
+                        {
+                            <form method="post" action="@Url.Action("DeclineOrder", "Courier", new { id = order.Id })">
+                                @Html.AntiForgeryToken() <!-- Include anti-forgery token for security -->
+                                <button type="submit" class="btn btn-outline-danger">Decline</button>
+                            </form>
+                        }
+                    </div>
                 </td>
             </tr>
         }
