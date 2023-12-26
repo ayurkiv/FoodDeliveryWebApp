@@ -8,9 +8,10 @@
     "\\FoodDelivery\\Areas\\Identity\\Pages\\Account",
     "\\FoodDelivery\\Views",
     "\\FoodDelivery\\Views\\Home",
+    "\\FoodDelivery\\Views\\Shared",
     "\\FoodDelivery\\wwwroot",
     "\\FoodDelivery\\wwwroot\\js"
   ],
-  "SelectedNode": "\\FoodDelivery\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+  "SelectedNode": "\\FoodDelivery\\Views\\Shared\\_Layout.cshtml",
   "PreviewInSolutionExplorer": false
 }
