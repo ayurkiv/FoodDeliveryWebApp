@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\css\\header.css"
     },
     {
+      "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\css\\manage.css",
+      "PackagePath": "staticwebassets\\css\\manage.css"
+    },
+    {
       "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\css\\register_login.css",
       "PackagePath": "staticwebassets\\css\\register_login.css"
     },

@@ -1,0 +1,26 @@
+﻿.manage__wrapper{
+    padding-top: 100px;
+}
+.nav-pills .nav-link.active {
+    color: #fff;
+    background-color: #ff6a00;
+}
+.nav-link, .nav-link:focus, .nav-link:hover{
+    color: #000;
+}
+.form-control {
+    border-radius: 10px;
+}
+
+    .form-control:focus {
+        box-shadow: 0 0 2px 0.1rem #FC8019;
+    }
+
+.form-check-input:checked {
+    background-color: #FC8019;
+    border-color: #FC8019;
+}
+
+.form-check-input:focus {
+    box-shadow: none;
+}

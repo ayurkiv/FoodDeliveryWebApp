@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "qmg//O/nZEZ4uqnI8nw1+1Jz/gKlexL/eYL+WmVS4VU=",
+  "Hash": "OeX+SwetnoZjIS4SS/g30k6GgAl1cu0jofAnk0QFtws=",
   "Source": "FoodDelivery",
   "BasePath": "_content/FoodDelivery",
   "Mode": "Default",
@@ -1137,6 +1137,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\header.css"
+    },
+    {
+      "Identity": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\css\\manage.css",
+      "SourceId": "FoodDelivery",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\",
+      "BasePath": "_content/FoodDelivery",
+      "RelativePath": "css/manage.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\manage.css"
     },
     {
       "Identity": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\css\\register_login.css",
