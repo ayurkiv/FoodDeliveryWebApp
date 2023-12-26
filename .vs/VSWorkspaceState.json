@@ -2,11 +2,15 @@
   "ExpandedNodes": [
     "",
     "\\FoodDelivery",
-    "\\FoodDelivery\\Controllers",
+    "\\FoodDelivery\\Areas",
+    "\\FoodDelivery\\Areas\\Identity",
+    "\\FoodDelivery\\Areas\\Identity\\Pages",
+    "\\FoodDelivery\\Areas\\Identity\\Pages\\Account",
     "\\FoodDelivery\\Views",
-    "\\FoodDelivery\\Views\\Cart",
-    "\\FoodDelivery\\Views\\Shared"
+    "\\FoodDelivery\\Views\\Home",
+    "\\FoodDelivery\\wwwroot",
+    "\\FoodDelivery\\wwwroot\\js"
   ],
-  "SelectedNode": "\\FoodDelivery\\Views\\Cart\\Index.cshtml",
+  "SelectedNode": "\\FoodDelivery\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
   "PreviewInSolutionExplorer": false
 }

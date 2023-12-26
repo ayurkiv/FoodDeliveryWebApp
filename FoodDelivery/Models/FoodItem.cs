@@ -1,5 +1,4 @@
-﻿using FoodDelivery.Models.Common;
-using FoodDelivery.Models.Interfaces;
+﻿using FoodDelivery.Models.Interfaces;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

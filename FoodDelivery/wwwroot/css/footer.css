@@ -1,3 +1,10 @@
 ﻿.footer-container {
-    background-color: #F6F1E9;
+    padding-inline: 5%;
+}
+.footer-info {
+    margin: 0;
+}
+.footer-info:nth-child(2){
+    text-decoration: none;
+    color: black;
 }

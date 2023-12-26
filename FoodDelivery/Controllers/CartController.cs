@@ -39,7 +39,7 @@ namespace FoodDelivery.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = await _customerRepository.GetUserWithDetailsAsync(userId);
 
-            if (customer == null || customer == null)
+            if (customer == null)
             {
                 return NotFound();
             }
@@ -56,7 +56,7 @@ namespace FoodDelivery.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = await _customerRepository.GetUserWithDetailsAsync(userId);
 
-            if (customer == null || customer == null)
+            if (customer == null)
             {
                 return NotFound();
             }
@@ -73,7 +73,7 @@ namespace FoodDelivery.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = await _customerRepository.GetUserWithDetailsAsync(userId);
 
-            if (customer == null || customer == null)
+            if (customer == null)
             {
                 return NotFound();
             }
@@ -95,7 +95,7 @@ namespace FoodDelivery.Controllers
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = await _customerRepository.GetUserWithDetailsAsync(userId);
 
-            if (customer == null || customer == null || customer.Cart == null)
+            if (customer == null || customer.Cart == null)
             {   
                 return NotFound();
             }

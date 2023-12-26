@@ -13,6 +13,7 @@
 .cart-container {
     width: 70%;
     padding: 3% 5% 4%;
+    margin-top: 80px;
     border-radius: 20px;
     background-color: #F8F8F8;
 }

@@ -16,8 +16,8 @@ function openFoodItemModal(name, category, price, imageUrl, description, weight,
     // Set data attribute on the "Add to Cart" button
     var addToCartButton = document.getElementById('addToCartButton');
     addToCartButton.dataset.itemId = id;
-
     // Open the modal
+    $('#addToCartButton').data('item-id', id);
     $('#foodItemModal').modal('show');
 }
 
@@ -28,10 +28,8 @@ $('#foodItemModal').on('click', '#addToCartButton', function () {
 
     // Call the addToCart function with the item ID
     addToCart(itemId);
-
     // Hide the modal
     $('#foodItemModal').modal('hide');
-    location.reload();
 });
 
 // Function to add item to the cart
