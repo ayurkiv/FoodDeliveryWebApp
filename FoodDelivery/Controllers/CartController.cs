@@ -68,7 +68,7 @@ namespace FoodDelivery.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemoveFromCart(int orderItemId)
+        public async Task<IActionResult> Delete(int orderItemId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var customer = await _customerRepository.GetUserWithDetailsAsync(userId);

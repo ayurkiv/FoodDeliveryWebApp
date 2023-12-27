@@ -52,7 +52,7 @@
                             @Html.DisplayFor(modelItem => item.OrderItemTotal)
                             </td>-->
                             <td>
-                                <form method="post" action="@Url.Action("Delete", "Cart", new { id = item.OrderItemId })" class="d-flex align-item-center justify-content-center">
+                                <form method="post" action="@Url.Action("Delete", "Cart", new { orderItemId = item.OrderItemId })" class="d-flex align-item-center justify-content-center">
                                     @Html.AntiForgeryToken() <!-- Include anti-forgery token for security -->
                                     <button type="submit" class="btn btn-danger btn-delete"><img src="/svg/recycle-bin.svg" class="cart-delete-btn" /></button>
                                 </form>
