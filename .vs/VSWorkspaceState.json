@@ -5,13 +5,8 @@
     "\\FoodDelivery\\Areas",
     "\\FoodDelivery\\Areas\\Identity",
     "\\FoodDelivery\\Areas\\Identity\\Pages",
-    "\\FoodDelivery\\Areas\\Identity\\Pages\\Account",
-    "\\FoodDelivery\\Views",
-    "\\FoodDelivery\\Views\\Home",
-    "\\FoodDelivery\\Views\\Shared",
-    "\\FoodDelivery\\wwwroot",
-    "\\FoodDelivery\\wwwroot\\js"
+    "\\FoodDelivery\\Areas\\Identity\\Pages\\Account"
   ],
-  "SelectedNode": "\\FoodDelivery\\Views\\Shared\\_Layout.cshtml",
+  "SelectedNode": "\\FoodDelivery\\FoodDelivery.sln",
   "PreviewInSolutionExplorer": false
 }

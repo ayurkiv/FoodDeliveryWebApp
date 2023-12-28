@@ -89,7 +89,8 @@ namespace FoodDelivery.Repositories
                     OrderItemId = oi.Id,
                     FoodItemName = oi.FoodItem?.Name,
                     Amount = oi.Amount,
-                    OrderItemTotal = oi.OrderItemTotal
+                    OrderItemTotal = oi.OrderItemTotal,
+                    FoodItemImage = oi.FoodItem.Image
                 }).ToList(),
                 AddressId = order.Address?.Id,
                 CustomerId = order.Customer?.Id,

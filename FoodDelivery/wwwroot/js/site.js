@@ -47,23 +47,3 @@ function addToCart(itemId) {
         }
     });
 }
-
-//function deleteCartItem(orderItemId) {
-//    //if (confirm('Are you sure you want to delete this item?')) {
-//    var token = $('input[name="__RequestVerificationToken"]').val();
-
-//    $.ajax({
-//        url: '/Cart/Delete/' + orderItemId,
-//        type: 'DELETE',
-//        headers: {
-//            'RequestVerificationToken': token
-//        },
-//        success: function () {
-//            location.reload(); // or update the view accordingly
-//        },
-//        error: function () {
-//            alert('Error deleting item.');
-//        }
-//    });
-//    //}
-//}
