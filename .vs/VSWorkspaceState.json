@@ -5,8 +5,11 @@
     "\\FoodDelivery\\Areas",
     "\\FoodDelivery\\Areas\\Identity",
     "\\FoodDelivery\\Areas\\Identity\\Pages",
-    "\\FoodDelivery\\Areas\\Identity\\Pages\\Account"
+    "\\FoodDelivery\\Areas\\Identity\\Pages\\Account",
+    "\\FoodDelivery\\Views",
+    "\\FoodDelivery\\Views\\Home",
+    "\\FoodDelivery\\Views\\Shared"
   ],
-  "SelectedNode": "\\FoodDelivery\\FoodDelivery.sln",
+  "SelectedNode": "\\FoodDelivery\\Views\\Home\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }
