@@ -25,12 +25,26 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+                    <ul class="navbar-nav flex-grow-1 d-flex justify-content-between">
                         <li class="nav-item">
                             <a class="nav-link text-dark font-popins fs-6" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-primary text-end" asp-controller="Category" asp-action="Index">Go to admin panel</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Courier"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark font-popins fs-6 text-end" asp-controller="Courier" asp-action="Index">My deliveries</a>
+                            </li>
+                        }
 
                     </ul>
+
+
                     <partial name="_LoginPartial" />
                 </div>
             </div>

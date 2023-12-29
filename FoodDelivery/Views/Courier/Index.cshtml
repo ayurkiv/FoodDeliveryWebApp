@@ -8,7 +8,7 @@
         <h1>Your status</h1>
 
         @await Html.PartialAsync("_CourierStatusButtons", (CourierStatus)ViewBag.CourierStatus)
-        <table class="table">
+        <table class="table mt-4">
             <thead>
                 <tr>
                     <th>Order ID</th>
@@ -47,7 +47,7 @@
                                 {
                                     <form method="post" action="@Url.Action("DeclineOrder", "Courier", new { id = order.Id })">
                                         @Html.AntiForgeryToken() <!-- Include anti-forgery token for security -->
-                                        <button type="submit" class="btn cart-btn-sub btn-courier-decline">Decline</button>
+                                        <button type="submit" class="btn cart-btn-sub btn-courier-decline ms-1">Decline</button>
                                     </form>
                                 }
                             </div>
