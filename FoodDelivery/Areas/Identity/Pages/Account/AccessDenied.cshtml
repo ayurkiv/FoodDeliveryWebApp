@@ -1,0 +1,15 @@
+﻿@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Access denied";
+}
+
+<div class="container d-flex align-items-center justify-content-center w-100">
+    <div class="access-denied-container">
+        <div class="d-flex align-items-center justify-content-center">
+            <img src="~/images/BackGround/Cat.png" class="access-denied-image" />
+        </div>
+        <h1 class="text-danger text-center mt-3">@ViewData["Title"]</h1>
+        <p class="text-danger text-center">You do not have access to this resource.</p>
+    </div>
+</div>

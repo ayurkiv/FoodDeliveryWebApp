@@ -39,7 +39,19 @@ body {
     width: 100%;
 }
 .present-block__image {
+    margin-top: 80px;
     position: center;
-    margin-left: -8.6%;
-    width: 117.2%;
+    width: 100%;
+    border-radius: 20px;
+}
+.access-denied-container {
+    width: 70%;
+    padding: 3% 5% 4%;
+    margin-top: 80px;
+}
+.access-denied-image {
+    width: 25%;
+}
+.login-partial-icon {
+    width: 24px;
 }

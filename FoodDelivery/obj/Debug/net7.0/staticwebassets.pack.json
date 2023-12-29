@@ -45,6 +45,10 @@
       "PackagePath": "staticwebassets\\images\\BackGround\\Back.jpg"
     },
     {
+      "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\BackGround\\Cat.png",
+      "PackagePath": "staticwebassets\\images\\BackGround\\Cat.png"
+    },
+    {
       "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\0dc0d048-51a9-456b-9bc2-7407795ca9ed_e5adddf5-6f73-48aa-87ef-619b27614c0f-826x0.png",
       "PackagePath": "staticwebassets\\images\\FoodItems\\0dc0d048-51a9-456b-9bc2-7407795ca9ed_e5adddf5-6f73-48aa-87ef-619b27614c0f-826x0.png"
     },
@@ -439,6 +443,10 @@
     {
       "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\svg\\account.svg",
+      "PackagePath": "staticwebassets\\svg\\account.svg"
     },
     {
       "Id": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\svg\\cart.svg",

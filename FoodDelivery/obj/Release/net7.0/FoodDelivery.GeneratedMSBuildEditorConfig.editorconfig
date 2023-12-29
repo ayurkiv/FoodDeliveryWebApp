@@ -16,6 +16,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\proko\Source\Repos\ayurkiv\FoodDeliveryWebApp\FoodDelivery
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/proko/Source/Repos/ayurkiv/FoodDeliveryWebApp/FoodDelivery/Areas/Identity/Pages/Account/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxBY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/proko/Source/Repos/ayurkiv/FoodDeliveryWebApp/FoodDelivery/Areas/Identity/Pages/Account/CourierRegister.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxDb3VyaWVyUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

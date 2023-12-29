@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "zTDYYlV8R5o36/xJ2rzTaKfaGGXtikn2DnG1lBfh9Lg=",
+  "Hash": "XyW5ZBCRk2FDFaEab/Zv6BKZGWo0xS7uB0bKR8Tz07E=",
   "Source": "FoodDelivery",
   "BasePath": "_content/FoodDelivery",
   "Mode": "Default",
@@ -1239,6 +1239,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\BackGround\\Back.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\BackGround\\Cat.png",
+      "SourceId": "FoodDelivery",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\",
+      "BasePath": "_content/FoodDelivery",
+      "RelativePath": "images/BackGround/Cat.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\BackGround\\Cat.png"
     },
     {
       "Identity": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\images\\FoodItems\\0dc0d048-51a9-456b-9bc2-7407795ca9ed_e5adddf5-6f73-48aa-87ef-619b27614c0f-826x0.png",
@@ -2922,6 +2939,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\svg\\account.svg",
+      "SourceId": "FoodDelivery",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\",
+      "BasePath": "_content/FoodDelivery",
+      "RelativePath": "svg/account.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\svg\\account.svg"
     },
     {
       "Identity": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\wwwroot\\svg\\cart.svg",

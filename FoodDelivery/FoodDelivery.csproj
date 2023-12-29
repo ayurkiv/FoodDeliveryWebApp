@@ -23,11 +23,9 @@
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Views\Cart\" />
-    <Folder Include="wwwroot\images\BackGround\" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\svg\cart.svg" />
     <None Include="wwwroot\svg\price.svg" />
     <None Include="wwwroot\svg\timeToReady.svg" />
     <None Include="wwwroot\svg\weight.svg" />

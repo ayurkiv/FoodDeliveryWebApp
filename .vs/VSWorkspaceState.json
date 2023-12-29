@@ -4,8 +4,11 @@
     "\\FoodDelivery",
     "\\FoodDelivery\\Services",
     "\\FoodDelivery\\Views",
-    "\\FoodDelivery\\Views\\Home"
+    "\\FoodDelivery\\Views\\Courier",
+    "\\FoodDelivery\\Views\\Home",
+    "\\FoodDelivery\\wwwroot",
+    "\\FoodDelivery\\wwwroot\\svg"
   ],
-  "SelectedNode": "\\FoodDelivery\\Services\\CourierAssignmentBackgroundService.cs",
+  "SelectedNode": "\\FoodDelivery\\wwwroot\\svg\\phone.svg",
   "PreviewInSolutionExplorer": false
 }
