@@ -135,6 +135,11 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                         // В іншому випадку, перенаправте його на сторінку FoodItem
                         return Redirect("/");
                     }
+                    else if (roles.Contains("Courier"))
+                    {
+                        return Redirect("/Courier");
+                    }
+
                     if (result.RequiresTwoFactor)
                     {
                         return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
