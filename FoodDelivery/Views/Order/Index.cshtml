@@ -5,8 +5,8 @@
     ViewData["Title"] = "Order History";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="row container">
-    <div class="mt-5 pt-4">
+<div class="container d-flex align-items-center justify-content-center">
+    <div class="cart-container w-75">
 
         <h1 class="topic-register">@ViewData["Title"]</h1>
 
@@ -14,11 +14,11 @@
             <thead>
                 <tr>
                     <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Order ID</h5></th>
-                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Delivery Status</h5></th>
-                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Payment Status</h5></th>
-                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Order Total</h5></th>
-                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Weight Total</h5></th>
-                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Order Date</h5></th>
+                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Delivery</h5></th>
+                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Payment</h5></th>
+                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Price</h5></th>
+                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Weight</h5></th>
+                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Date</h5></th>
                     <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Actions</h5></th>
                 </tr>
             </thead>
@@ -29,11 +29,11 @@
                         <td><p class="font-popins fw-medium fs-6 m-0">@order.Id</p></td>
                         <td><p class="font-popins fw-medium fs-6 m-0">@order.DeliveryStatus</p></td>
                         <td><p class="font-popins fw-medium fs-6 m-0">@order.PaymentStatus</p></td>
-                        <td><p class="font-popins fw-medium fs-6 m-0">@order.OrderTotal</p></td>
+                        <td><p class="font-popins fw-medium fs-6 m-0">@order.OrderTotal$</p></td>
                         <td><p class="font-popins fw-medium fs-6 m-0">@order.WeightTotal</p></td>
                         <td><p class="font-popins fw-medium fs-6 m-0">@order.OrderDate</p></td>
                         <td>
-                            <a class="btn btn-register cart-btn-sub font-popins fw-medium fs-5 w-75" asp-controller="Order" asp-action="Details" asp-route-id="@order.Id">Details</a>
+                            <a class="btn btn-register cart-btn-sub font-popins fw-medium fs-5 pt-1 pb-1" asp-controller="Order" asp-action="Details" asp-route-id="@order.Id">Details</a>
                         </td>
                     </tr>
                 }

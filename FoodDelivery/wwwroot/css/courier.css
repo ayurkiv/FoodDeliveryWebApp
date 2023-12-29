@@ -1,0 +1,24 @@
+﻿.btn-courier, .btn-courier:focus {
+    font-family: 'Poppins', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 500;
+    color: #FC8019;
+    background-color: transparent;
+    border: 1px #FC8019 solid;
+}
+.btn-courier:hover, .btn-courier:active {
+    border: 1px #FC8019 solid;
+    color: #FFFFFF;
+    background-color: #FC8019;
+}
+.btn-courier-decline, .btn-courier-decline:focus {
+    font-family: 'Poppins', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 500;
+    color: #dc3545;
+    background-color: transparent;
+    border: 1px #dc3545 solid;
+}
+.btn-courier-decline:hover, .btn-courier-decline:active {
+    border: 1px #dc3545 solid;
+    color: #FFFFFF;
+    background-color: #dc3545;
+}

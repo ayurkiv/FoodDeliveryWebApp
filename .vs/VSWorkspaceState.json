@@ -2,14 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\FoodDelivery",
-    "\\FoodDelivery\\Areas",
-    "\\FoodDelivery\\Areas\\Identity",
-    "\\FoodDelivery\\Areas\\Identity\\Pages",
-    "\\FoodDelivery\\Areas\\Identity\\Pages\\Account",
+    "\\FoodDelivery\\Services",
     "\\FoodDelivery\\Views",
-    "\\FoodDelivery\\Views\\Home",
-    "\\FoodDelivery\\Views\\Shared"
+    "\\FoodDelivery\\Views\\Home"
   ],
-  "SelectedNode": "\\FoodDelivery\\Views\\Home\\Index.cshtml",
+  "SelectedNode": "\\FoodDelivery\\Services\\CourierAssignmentBackgroundService.cs",
   "PreviewInSolutionExplorer": false
 }
