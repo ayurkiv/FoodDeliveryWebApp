@@ -109,6 +109,7 @@
 .pagination-link:hover{
     color: #FC8019;
 }
+
 .pagination-bg.active .pagination-link {
     background-color: #FC8019;
     border-color: #FC8019;

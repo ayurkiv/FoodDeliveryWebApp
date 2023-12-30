@@ -1,14 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\FoodDelivery",
-    "\\FoodDelivery\\Services",
-    "\\FoodDelivery\\Views",
-    "\\FoodDelivery\\Views\\Courier",
-    "\\FoodDelivery\\Views\\Home",
-    "\\FoodDelivery\\wwwroot",
-    "\\FoodDelivery\\wwwroot\\svg"
+    ""
   ],
-  "SelectedNode": "\\FoodDelivery\\wwwroot\\svg\\phone.svg",
   "PreviewInSolutionExplorer": false
 }

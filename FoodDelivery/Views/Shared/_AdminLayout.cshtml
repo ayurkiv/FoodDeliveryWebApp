@@ -4,10 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FoodDelivery</title>
+    <link rel="icon" type="image/x-icon" href="~/favicon.ico" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/register_login.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/card.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/cart.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/header.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/manage.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/courier.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/FoodDelivery.styles.css" asp-append-version="true" />
 </head>
 <body>
@@ -28,7 +34,7 @@
                             <a class="nav-link text-dark" asp-area="Admin" asp-controller="fooditem" asp-action="Index">Manage Products</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary" asp-controller="Home" asp-action="Index">Go to home page</a>
+                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Go to home page</a>
                         </li>
                     </ul>
                     <partial name="_AdminLoginPartial" />
@@ -42,9 +48,13 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - FoodDelivery - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <footer class="border-top footer text-muted d-flex justify-content-between footer-container">
+        <div>
+            <p class="font-popins footer-info">&copy; 2023 - FoodDelivery - All rights reserved</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-center">
+            <img src="/svg/phone.svg" />
+            <a class="font-popins footer-info" href="tel:">+380502334698</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
