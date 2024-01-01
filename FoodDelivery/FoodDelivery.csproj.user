@@ -17,5 +17,6 @@
     <WebStackScaffolding_LayoutPageFile>~/Views/Shared/_Layout.cshtml</WebStackScaffolding_LayoutPageFile>
     <WebStackScaffolding_DependencyDialogWidth>650,4</WebStackScaffolding_DependencyDialogWidth>
     <WebStackScaffolding_EnablerDialogWidth>650,4</WebStackScaffolding_EnablerDialogWidth>
+    <NameOfLastUsedPublishProfile>C:\Users\SystemX\source\repos\FoodDeliveryWebApp\FoodDelivery\Properties\PublishProfiles\FoodDelivery20240101122737 - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

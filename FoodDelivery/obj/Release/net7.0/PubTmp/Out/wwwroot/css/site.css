@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+* {
+    font-family: 'Poppins', 'Arial Narrow', Arial, sans-serif;
+}
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px;
+}
+.font-popins {
+    font-family: 'Poppins', 'Arial Narrow', Arial, sans-serif;
+}
+.bg-form-reister-container {
+    margin-top: 2%;
+    padding: 3% 5%;
+    background-color: orange;
+    border-radius: 10%;
+}
+.present-block {
+    position: page;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.present-block__image {
+    margin-top: 80px;
+    position: center;
+    width: 100%;
+    border-radius: 20px;
+}
+.access-denied-container {
+    width: 70%;
+    padding: 3% 5% 4%;
+    margin-top: 80px;
+}
+.access-denied-image {
+    width: 25%;
+}
+.login-partial-icon {
+    width: 24px;
+}

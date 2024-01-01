@@ -32,12 +32,7 @@ namespace FoodDelivery.Controllers
             var categories = _categoryRepository.GetPaginatedCategories(page, pageSize);
             ViewBag.Categories = categories;
 
-            var foodItems = await _foodItemRepository.GetFoodItemsAsync(page, pageSize);
-
-            if (!string.IsNullOrEmpty(category) && category.ToLower() != "all")
-            {
-                foodItems = foodItems.Where(item => item.CategoryName.ToLower() == category.ToLower()).ToList();
-            }
+            var foodItems = await _foodItemRepository.GetFoodItemsAsync(category, page, pageSize);
 
             var paginatedList = new PaginatedList<FoodItemViewModel>(
                 foodItems, foodItems.Count, page, pageSize);
@@ -61,6 +56,5 @@ namespace FoodDelivery.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
-
     }
 }

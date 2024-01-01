@@ -21,31 +21,44 @@ namespace FoodDelivery.Repositories
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public async Task<List<FoodItemViewModel>> GetFoodItemsAsync(int page, int pageSize)
+        public async Task<List<FoodItemViewModel>> GetFoodItemsAsync(string category, int page, int pageSize)
         {
-            var items = await _context.FoodItems
+            var query = _context.FoodItems
                 .Where(item => item.IsDelete != true)
                 .Include(x => x.Category)
-                .OrderBy(x => x.Id)
+                .AsQueryable(); // Make it explicitly queryable
+
+            if (!string.IsNullOrEmpty(category) && category.ToLower() != "all")
+            {
+                query = query.Where(item => item.Category.Title.ToLower() == category.ToLower());
+            }
+
+            // Explicitly order the query
+            query = query.OrderBy(x => x.Id);
+
+            var totalItems = await query.CountAsync(); // Count after filtering
+
+            var items = await query
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize)
-                .Select(item => new FoodItemViewModel
-                {
-                    Id = item.Id,
-                    Name = item.Name,
-                    Description = item.Description,
-                    Price = item.Price,
-                    CategoryId = item.CategoryId,
-                    CategoryName = item.Category!.Title,
-                    AddedDate = item.AddedDate,
-                    Available = item.Available,
-                    Weight = item.Weight,
-                    TimeToReady = item.TimeToReady,
-                    ImageUrl = $"/Images/FoodItems/{item.Image}",
-                })
                 .ToListAsync();
 
-            return items;
+            var viewModels = items.Select(item => new FoodItemViewModel
+            {
+                Id = item.Id,
+                Name = item.Name,
+                Description = item.Description,
+                Price = item.Price,
+                CategoryId = item.CategoryId,
+                CategoryName = item.Category!.Title,
+                AddedDate = item.AddedDate,
+                Available = item.Available,
+                Weight = item.Weight,
+                TimeToReady = item.TimeToReady,
+                ImageUrl = $"/Images/FoodItems/{item.Image}",
+            }).ToList();
+
+            return viewModels;
         }
 
         public async Task<FoodItemViewModel> GetFoodItemAsync(int id)
@@ -174,5 +187,10 @@ namespace FoodDelivery.Repositories
                 await AddOrderItemToCartAsync(customer.Cart!, orderItem);
             }
         }
+        public int GetTotalItems()
+        {
+            return _context.FoodItems.Count(c => !c.IsDelete);
+        }
+
     }
 }

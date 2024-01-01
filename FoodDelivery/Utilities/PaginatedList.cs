@@ -19,7 +19,8 @@ namespace FoodDelivery.Utilities
             CurrentPage = currentPage;
             PageSize = pageSize;
             TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-            Items = items.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
+            Items = items;
         }
+
     }
 }

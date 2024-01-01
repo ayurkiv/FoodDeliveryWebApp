@@ -1,0 +1,25 @@
+﻿.cart-table{
+    width: 50%;
+}
+.cart-btn-sub{
+    color: #FFFFFF;
+    width: 100%;
+    letter-spacing: 1px;
+}
+.cart-image{
+    border-radius: 10px;
+    width: 250px;
+}
+.cart-container {
+    width: 70%;
+    padding: 3% 5% 4%;
+    margin-top: 80px;
+    border-radius: 20px;
+    background-color: #F8F8F8;
+}
+.cart-delete-btn{
+    width: 25px;
+}
+.btn-delete{
+    padding: 8px 10px;
+}

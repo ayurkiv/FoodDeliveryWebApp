@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="~/css/footer.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/manage.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/courier.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/FoodDelivery.styles.css" asp-append-version="true" />
 </head>
 <body>
     <header>
@@ -28,10 +27,10 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="category" asp-action="Index">Manage Categories</a>
+                            <a class="nav-link text-dark" asp-controller="category" asp-action="Index">Manage Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="fooditem" asp-action="Index">Manage Products</a>
+                            <a class="nav-link text-dark" asp-controller="FoodItem" asp-action="Index">Manage Products</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Go to home page</a>
@@ -53,7 +52,7 @@
             <p class="font-popins footer-info">&copy; 2023 - FoodDelivery - All rights reserved</p>
         </div>
         <div class="d-flex align-items-center justify-content-center">
-            <img src="/svg/phone.svg" />
+            <img alt="phone" src="/svg/phone.svg" />
             <a class="font-popins footer-info" href="tel:">+380502334698</a>
         </div>
     </footer>

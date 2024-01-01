@@ -1,35 +1,31 @@
-﻿using FoodDelivery.Models;
-using FoodDelivery.ViewModel;
+﻿using FoodDelivery.ViewModel;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using FoodDelivery.Utilities;
 using FoodDelivery.Repositories;
+using FoodDelivery.Utilities;
 
 namespace FoodDelivery.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class FoodItemController : Controller
     {
-        private readonly FoodItemRepository _foodItemService;
+        private readonly FoodItemRepository _foodItemRepository;
         private readonly CategoryRepository _categoryRepository;
 
         public FoodItemController(FoodItemRepository foodItemService, CategoryRepository categoryRepository)
         {
-            _foodItemService = foodItemService;
+            _foodItemRepository = foodItemService;
             _categoryRepository = categoryRepository;
         }
 
         [HttpGet]
         public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
         {
-            var items = await _foodItemService.GetFoodItemsAsync(page, pageSize);
+            var items = await _foodItemRepository.GetFoodItemsAsync("all", page, pageSize);
+            var totalItems = _foodItemRepository.GetTotalItems();
 
-            var paginatedList = new PaginatedList<FoodItemViewModel>(items, items.Count, page, pageSize);
+            var paginatedList = new PaginatedList<FoodItemViewModel>(items, totalItems, page, pageSize);
 
             return View(paginatedList);
         }
@@ -48,7 +44,7 @@ namespace FoodDelivery.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _foodItemService.CreateFoodItemAsync(vm);
+                await _foodItemRepository.CreateFoodItemAsync(vm);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -61,7 +57,7 @@ namespace FoodDelivery.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var vm = await _foodItemService.GetFoodItemAsync(id);
+            var vm = await _foodItemRepository.GetFoodItemAsync(id);
 
             if (vm == null)
             {
@@ -79,7 +75,7 @@ namespace FoodDelivery.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _foodItemService.UpdateFoodItemAsync(vm);
+                await _foodItemRepository.UpdateFoodItemAsync(vm);
                 return RedirectToAction(nameof(Index));
             }
 
@@ -92,7 +88,7 @@ namespace FoodDelivery.Controllers
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var vm = await _foodItemService.GetFoodItemAsync(id);
+            var vm = await _foodItemRepository.GetFoodItemAsync(id);
 
             if (vm == null)
             {
@@ -106,7 +102,7 @@ namespace FoodDelivery.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await _foodItemService.DeleteFoodItemAsync(id);
+            await _foodItemRepository.DeleteFoodItemAsync(id);
 
             return RedirectToAction(nameof(Index));
         }
@@ -114,7 +110,7 @@ namespace FoodDelivery.Controllers
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
-            var vm = await _foodItemService.GetFoodItemAsync(id);
+            var vm = await _foodItemRepository.GetFoodItemAsync(id);
 
             if (vm == null)
             {
