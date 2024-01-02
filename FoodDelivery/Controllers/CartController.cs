@@ -13,22 +13,16 @@ namespace FoodDelivery.Controllers
     [Authorize(Roles = "Customer")]
     public class CartController : Controller
     {
-        private readonly ApplicationDbContext _context;
         private readonly CustomerRepository _customerRepository;
-        private readonly OrderItemRepository _orderItemRepository;
         private readonly OrderRepository _orderRepository;
         private readonly CartRepository _cartRepository;
 
         public CartController(
-            ApplicationDbContext context,
             CustomerRepository customerRepository,
-            OrderItemRepository orderItemRepository,
             OrderRepository orderRepository,
             CartRepository cartRepository)
         {
-            _context = context;
             _customerRepository = customerRepository;
-            _orderItemRepository = orderItemRepository;
             _orderRepository = orderRepository;
             _cartRepository = cartRepository;
         }

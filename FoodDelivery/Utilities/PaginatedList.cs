@@ -21,6 +21,5 @@ namespace FoodDelivery.Utilities
             TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
             Items = items;
         }
-
     }
 }
