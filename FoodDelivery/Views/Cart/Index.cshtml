@@ -14,7 +14,7 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="col-1" scope="col">
+                        <th class="col-1 hidden-item__elem" scope="col">
                             <h5 class="font-popins fw-medium fs-5 m-0">Image</h5>
                             <!--@Html.DisplayNameFor(model => model.FoodItemImage)-->
                         </th>
@@ -22,7 +22,7 @@
                             <h5 class="font-popins fw-medium fs-5 m-0">Name</h5>
                             <!--@Html.DisplayNameFor(model => model.FoodItemName)-->
                         </th>
-                        <th class="col-1" scope="col">
+                        <th class="col-1 hidden-item" scope="col">
                             <h5 class="font-popins fw-medium fs-5 m-0 text-center">Amount</h5>
                             <!-- @Html.DisplayNameFor(model => model.Amount)-->
                         </th>
@@ -37,7 +37,7 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td>
+                            <td class="hidden-item__elem">
                                 <img src="@Url.Content($"~/images/FoodItems/{item.FoodItemImage}")" alt="Food Image" class="cart-image" />
                             </td>
                             <td>
@@ -45,7 +45,7 @@
 
                                 <p class="font-popins fw-medium m-0 text-muted">$@Html.DisplayFor(modelItem => item.OrderItemTotal)</p>
                             </td>
-                            <td class="font-popins fw-medium fs-6 m-0 text-center">
+                            <td class="font-popins fw-medium fs-6 m-0 text-center hidden-item">
                                 @Html.DisplayFor(modelItem => item.Amount)
                             </td>
                             <!--<td class="text-center">

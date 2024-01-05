@@ -43,10 +43,10 @@
 
 <div class="mt-4 container">
     <div class="mt-4 mb-2">
-        <a href="@Url.Action("Index", new { category = "All", page = Model.CurrentPage, pageSize = Model.PageSize })" class="btn btn-outline-primary rounded-pill pt-1 pb-1 ps-4 pe-4 @(ViewBag.Category == null || ViewBag.Category == "All" ? "active" : "")">All</a>
+        <a href="@Url.Action("Index", new { category = "All", page = Model.CurrentPage, pageSize = Model.PageSize })" class="btn btn-outline-primary rounded-pill pt-1 pb-1 ps-4 pe-4 mb-2 @(ViewBag.Category == null || ViewBag.Category == "All" ? "active" : "")">All</a>
         @foreach (var category in ViewBag.Categories)
         {
-            <a href="@Url.Action("Index", new { category = category.Title, page = Model.CurrentPage, pageSize = Model.PageSize })" class="btn btn-outline-primary rounded-pill pt-1 pb-1 ps-4 pe-4  @(ViewBag.Category == category.Title ? "active" : "")">@category.Title</a>
+            <a href="@Url.Action("Index", new { category = category.Title, page = Model.CurrentPage, pageSize = Model.PageSize })" class="btn btn-outline-primary rounded-pill pt-1 pb-1 ps-4 pe-4 mb-2 @(ViewBag.Category == category.Title ? "active" : "")">@category.Title</a>
         }
     </div>
 
@@ -75,8 +75,8 @@
         }
     </div>
 
-    <p>Total Pages: @Model.TotalPages</p>
-    <p>Total Items: @Model.TotalItems</p>
+    <!--<p>Total Pages: @Model.TotalPages</p>-->
+    <!--<p>Total Items: @Model.TotalItems</p>-->
 
     <!-- Pagination -->
     <nav aria-label="Page navigation">

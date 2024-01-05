@@ -14,11 +14,11 @@
             <thead>
                 <tr>
                     <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">ID</h5></th>
-                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Delivery</h5></th>
-                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Payment</h5></th>
+                    <th class="col-1 hidden-item__elem" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Delivery</h5></th>
+                    <th class="col-1 hidden-item" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Payment</h5></th>
                     <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Price</h5></th>
-                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Weight</h5></th>
-                    <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Date</h5></th>
+                    <th class="col-1 hidden-item__elem" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Weight</h5></th>
+                    <th class="col-1 hidden-item" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Date</h5></th>
                     <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Actions</h5></th>
                 </tr>
             </thead>
@@ -27,13 +27,13 @@
                 {
                     <tr>
                         <td><p class="font-popins fw-medium fs-6 m-0">@order.Id</p></td>
-                        <td><p class="font-popins fw-medium fs-6 m-0">@order.DeliveryStatus</p></td>
-                        <td><p class="font-popins fw-medium fs-6 m-0">@order.PaymentStatus</p></td>
+                        <td class="hidden-item__elem"><p class="font-popins fw-medium fs-6 m-0">@order.DeliveryStatus</p></td>
+                        <td class="hidden-item"><p class="font-popins fw-medium fs-6 m-0">@order.PaymentStatus</p></td>
                         <td><p class="font-popins fw-medium fs-6 m-0">@order.OrderTotal$</p></td>
-                        <td><p class="font-popins fw-medium fs-6 m-0">@order.WeightTotal</p></td>
-                        <td><p class="font-popins fw-medium fs-6 m-0">@order.OrderDate</p></td>
+                        <td class="hidden-item__elem"><p class="font-popins fw-medium fs-6 m-0">@order.WeightTotal</p></td>
+                        <td class="hidden-item"><p class="font-popins fw-medium fs-6 m-0">@order.OrderDate</p></td>
                         <td>
-                            <a class="btn btn-register cart-btn-sub font-popins fw-medium fs-5 pt-1 pb-1" asp-controller="Order" asp-action="Details" asp-route-id="@order.Id">Details</a>
+                            <a class="btn btn-register cart-btn-sub font-popins fw-medium fs-6 pt-1 pb-1" asp-controller="Order" asp-action="Details" asp-route-id="@order.Id">Details</a>
                         </td>
                     </tr>
                 }

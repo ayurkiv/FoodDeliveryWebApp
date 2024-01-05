@@ -10,9 +10,9 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Image</h5></th>
+                        <th class="col-1 hidden-item__elem" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Image</h5></th>
                         <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0">Name</h5></th>
-                        <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0 text-center">Amount</h5></th>
+                    <th class="col-1 hidden-item" scope="col"><h5 class="font-popins fw-medium fs-5 m-0 text-center">Amount</h5></th>
                         <th class="col-1" scope="col"><h5 class="font-popins fw-medium fs-5 m-0 text-center">Total</h5></th>
                     </tr>
                 </thead>
@@ -20,9 +20,9 @@
                     @foreach (var item in Model.OrderItems)
                     {
                         <tr>
-                            <td><img src="@Url.Content($"~/images/FoodItems/{item.FoodItemImage}")" alt="Food Image" class="cart-image" /></td>
+                            <td class="hidden-item__elem"><img src="@Url.Content($"~/images/FoodItems/{item.FoodItemImage}")" alt="Food Image" class="cart-image" /></td>
                             <td><p class="font-popins fw-medium fs-6 m-0">@item.FoodItemName</p></td>
-                            <td><p class="font-popins fw-medium fs-6 m-0 text-center">@item.Amount</p></td>
+                            <td class="hidden-item"><p class="font-popins fw-medium fs-6 m-0 text-center">@item.Amount</p></td>
                             <td><p class="font-popins fw-medium fs-6 m-0 text-center">@item.OrderItemTotal</p></td>
                         </tr>
                     }
