@@ -27,18 +27,13 @@ namespace FoodDelivery.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> Index(string category, int page = 1, int pageSize = 6)
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 6)
         {
-            var categories = _categoryRepository.GetPaginatedCategories(page, pageSize);
-            ViewBag.Categories = categories;
+            var items = await _foodItemRepository.GetFoodItemsAsync(page, pageSize);
+            var totalItems = _foodItemRepository.GetTotalItems();
 
-            var foodItems = await _foodItemRepository.GetFoodItemsAsync(category, page, pageSize);
-
-            var paginatedList = new PaginatedList<FoodItemViewModel>(
-                foodItems, foodItems.Count, page, pageSize);
-
-            ViewBag.Category = category;
-
+            var paginatedList = new PaginatedList<FoodItemViewModel>(items, totalItems, page, pageSize);
+            
             return View(paginatedList);
         }
 

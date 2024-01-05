@@ -22,7 +22,7 @@ namespace FoodDelivery.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
         {
-            var items = await _foodItemRepository.GetFoodItemsAsync("all", page, pageSize);
+            var items = await _foodItemRepository.GetFoodItemsAsync(page, pageSize);
             var totalItems = _foodItemRepository.GetTotalItems();
 
             var paginatedList = new PaginatedList<FoodItemViewModel>(items, totalItems, page, pageSize);
