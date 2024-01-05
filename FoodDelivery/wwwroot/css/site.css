@@ -29,9 +29,6 @@ html {
         margin: 0;
         display: none;
     }
-    .cart-container{
-        background-color: transparent;
-    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {

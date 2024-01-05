@@ -4,57 +4,51 @@
 
 <div class="container d-flex align-items-center justify-content-center">
     <div class="cart-container">
+        <div class="d-flex justify-content-center">
+            <div>
 
-        <h1>Your status</h1>
+                <h1>Your status</h1>
 
-        @await Html.PartialAsync("_CourierStatusButtons", (CourierStatus)ViewBag.CourierStatus)
-        <table class="table mt-4">
-            <thead>
-                <tr>
-                    <th>Order ID</th>
-                    <th>Delivery</th>
-                    <th>Price</th>
-                    <th>Weight</th>
-                    <th>Date</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var order in Model)
-                {
-                    <tr>
-                        <td>@order.Id</td>
-                        <td>@order.DeliveryStatus</td>
-                        <td>@order.OrderTotal$</td>
-                        <td>@order.WeightTotal</td>
-                        <td>@order.OrderDate</td>
-                        <td>
-                            <div class="d-inline-flex">
-                        
-                                <form method="post" action="@Url.Action("DeliveredOrder", "Courier", new { id = order.Id })">
-                                    @Html.AntiForgeryToken() <!-- Include anti-forgery token for security -->
-                                    @if (order.DeliveryStatus == DeliveryStatus.Delivered)
-                                    {
-                                        <button type="button" class="btn cart-btn-sub btn-courier" disabled>Delivered</button>
-                                    }
-                                    else
-                                    {
-                                        <button type="submit" class="btn cart-btn-sub btn-courier">Delivered</button>
-                                    }
-                                </form>
-                        
-                                @if (order.DeliveryStatus != DeliveryStatus.Delivered)
-                                {
-                                    <form method="post" action="@Url.Action("DeclineOrder", "Courier", new { id = order.Id })">
-                                        @Html.AntiForgeryToken() <!-- Include anti-forgery token for security -->
-                                        <button type="submit" class="btn cart-btn-sub btn-courier-decline ms-1">Decline</button>
-                                    </form>
-                                }
+                @await Html.PartialAsync("_CourierStatusButtons", (CourierStatus)ViewBag.CourierStatus)
+
+                <div class="order-list mt-4">
+                    @foreach (var order in Model)
+                    {
+                        <div class="order-item container mb-3">
+                            <div class="order-info">
+                                <div class="mb-1"><strong>Order ID:</strong> @order.Id</div>
+                                <div class="mb-1"><strong>Delivery:</strong> @order.DeliveryStatus</div>
+                                <div class="mb-1"><strong>Price:</strong> @order.OrderTotal$</div>
+                                <div class="mb-1"><strong>Weight:</strong> @order.WeightTotal</div>
+                                <div class="mb-1"><strong>Date:</strong> @order.OrderDate</div>
                             </div>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                            <div class="actions w-100 mt-1">
+                                <div class="d-inline-flex">
+                                    <form method="post" action="@Url.Action("DeliveredOrder", "Courier", new { id = order.Id })">
+                                        @Html.AntiForgeryToken()
+                                        @if (order.DeliveryStatus == DeliveryStatus.Delivered)
+                                        {
+                                            <button type="button" class="btn cart-btn-sub btn-courier" disabled>Delivered</button>
+                                        }
+                                        else
+                                        {
+                                            <button type="submit" class="btn cart-btn-sub btn-courier">Delivered</button>
+                                        }
+                                    </form>
+
+                                    @if (order.DeliveryStatus != DeliveryStatus.Delivered)
+                                    {
+                                        <form method="post" action="@Url.Action("DeclineOrder", "Courier", new { id = order.Id })">
+                                            @Html.AntiForgeryToken()
+                                            <button type="submit" class="btn cart-btn-sub btn-courier-decline ms-1">Decline</button>
+                                        </form>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
 </div>
