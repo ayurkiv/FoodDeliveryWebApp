@@ -21,24 +21,24 @@
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
             <div class="container-fluid">
                 <a asp-area="" asp-controller="Home" asp-action="Index" class="d-flex align-items-center justify-content-center"><img src="/images/Logo/favicon.svg" class="logo m-0 me-1" /></a><a class="navbar-brand font-popins fw-medium fs-5 m-0" asp-area="" asp-controller="Home" asp-action="Index">FoodDelivery</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler burger-menu" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1 d-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark font-popins fs-6" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark text-end" asp-controller="Category" asp-action="Index">Go to admin panel</a>
+                                <a class="nav-link text-dark" asp-controller="Category" asp-action="Index">Go to admin panel</a>
                             </li>
                         }
                         @if (User.IsInRole("Courier"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark font-popins fs-6 text-end" asp-controller="Courier" asp-action="Index">My deliveries</a>
+                                <a class="nav-link text-dark font-popins fs-6" asp-controller="Courier" asp-action="Index">My deliveries</a>
                             </li>
                         }
 

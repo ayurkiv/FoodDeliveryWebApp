@@ -74,3 +74,8 @@ body {
 .login-partial-icon {
     width: 24px;
 }
+.burger-menu{
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
