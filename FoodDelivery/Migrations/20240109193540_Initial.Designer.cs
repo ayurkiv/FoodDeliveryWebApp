@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodDelivery.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231229142929_MigrationDb")]
-    partial class MigrationDb
+    [Migration("20240109193540_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
