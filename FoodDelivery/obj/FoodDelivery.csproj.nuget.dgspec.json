@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj": {}
+    "C:\\Users\\proko\\OneDrive\\Desktop\\Нова папка\\FoodDelivery\\FoodDelivery.csproj": {}
   },
   "projects": {
-    "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj": {
+    "C:\\Users\\proko\\OneDrive\\Desktop\\Нова папка\\FoodDelivery\\FoodDelivery.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj",
+        "projectUniqueName": "C:\\Users\\proko\\OneDrive\\Desktop\\Нова папка\\FoodDelivery\\FoodDelivery.csproj",
         "projectName": "FoodDelivery",
-        "projectPath": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj",
+        "projectPath": "C:\\Users\\proko\\OneDrive\\Desktop\\Нова папка\\FoodDelivery\\FoodDelivery.csproj",
         "packagesPath": "C:\\Users\\proko\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\obj\\",
+        "outputPath": "C:\\Users\\proko\\OneDrive\\Desktop\\Нова папка\\FoodDelivery\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\proko\\AppData\\Roaming\\NuGet\\NuGet.Config",

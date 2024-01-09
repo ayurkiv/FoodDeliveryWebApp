@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xLfWMCx+7du0utRmoNStpFw9abEkJiaJ0CpVuZNiuA76cUHC2rqU9xOk41kWYJy/oHyO/8uA4qb+G0IBZ9WPsg==",
+  "dgSpecHash": "uqo4UYhiT+PZGiwxSxedlRQQ0yjzs++PW03xhdvIMhsyy0jzyDHupBBJSmBNFJhpnB2xSRO5c9/cNbYn8bl8Vw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\proko\\Source\\Repos\\ayurkiv\\FoodDeliveryWebApp\\FoodDelivery\\FoodDelivery.csproj",
+  "projectFilePath": "C:\\Users\\proko\\OneDrive\\Desktop\\Нова папка\\FoodDelivery\\FoodDelivery.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\proko\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\proko\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
