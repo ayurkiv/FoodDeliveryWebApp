@@ -146,7 +146,6 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
 
 				var result = await _userManager.CreateAsync(user, Input.Password);
 
-				await _userManager.AddToRoleAsync(user, "Courier");
 
 				user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
@@ -164,6 +163,8 @@ namespace FoodDelivery.Areas.Identity.Pages.Account
                     };
                     _context.Couriers.Add(courier);
 
+                    _context.SaveChanges();
+                    await _userManager.AddToRoleAsync(user, "Courier");
                     _context.SaveChanges();
 
                     _logger.LogInformation("User created a new account with password.");

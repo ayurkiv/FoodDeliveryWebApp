@@ -1,5 +1,9 @@
 ﻿.footer-container {
     padding-inline: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
 }
 .footer-info {
     margin: 0;
@@ -7,4 +11,19 @@
 .footer-info:nth-child(2){
     text-decoration: none;
     color: black;
+}
+.contact-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@media (max-width: 765px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+        height: auto;
+    }
+    .contact-info {
+        display: none;
+    }
 }

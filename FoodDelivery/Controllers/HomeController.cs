@@ -4,8 +4,8 @@ using FoodDelivery.Repositories;
 using FoodDelivery.Utilities;
 using FoodDelivery.ViewModel;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
@@ -27,17 +27,13 @@ namespace FoodDelivery.Controllers
 
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> Index(int page = 1, int pageSize = 3)
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 6)
         {
-            var categories = _categoryRepository.GetCategories();
-            ViewBag.Categories = categories;
-
             var items = await _foodItemRepository.GetFoodItemsAsync(page, pageSize);
             var totalItems = _foodItemRepository.GetTotalItems();
 
             var paginatedList = new PaginatedList<FoodItemViewModel>(items, totalItems, page, pageSize);
-
-
+            
             return View(paginatedList);
         }
 

@@ -20,7 +20,6 @@ namespace FoodDelivery.Repositories
         }
         private bool FreeCourierHasDispatchedOrder(int courierId)
         {
-            // Перевірити, чи у кур'єра є видане замовлення зі статусом "Dispatched"
             return _context.Orders.Any(o => o.CourierId == courierId && o.DeliveryStatus == DeliveryStatus.Dispatched);
         }
 

@@ -1,0 +1,92 @@
+[
+  {
+    "Name": "Margherita",
+    "Description": "Classic pizza with tomato, mozzarella, and basil.",
+    "Image": "1.png",
+    "Available": true,
+    "TimeToReady": 15,
+    "Weight": 300,
+    "Price": 10.99
+  },
+  {
+    "Name": "Pepperoni",
+    "Description": "Pizza with spicy pepperoni slices and melted cheese.",
+    "Image": "2.png",
+    "Available": true,
+    "TimeToReady": 18,
+    "Weight": 350,
+    "Price": 12.99
+  },
+  {
+    "Name": "Vegetarian",
+    "Description": "Delicious pizza loaded with assorted vegetables.",
+    "Image": "3.png",
+    "Available": true,
+    "TimeToReady": 20,
+    "Weight": 320,
+    "Price": 11.99
+  },
+  {
+    "Name": "BBQ Chicken",
+    "Description": "Tasty pizza topped with barbecue chicken and onions.",
+    "Image": "4.png",
+    "Available": true,
+    "TimeToReady": 22,
+    "Weight": 380,
+    "Price": 13.99
+  },
+  {
+    "Name": "Hawaiian",
+    "Description": "Classic Hawaiian pizza with ham and pineapple.",
+    "Image": "5.png",
+    "Available": true,
+    "TimeToReady": 17,
+    "Weight": 340,
+    "Price": 12.49
+  },
+  {
+    "Name": "Mushroom Lovers",
+    "Description": "Pizza for mushroom enthusiasts with a variety of mushrooms.",
+    "Image": "6.png",
+    "Available": true,
+    "TimeToReady": 19,
+    "Weight": 360,
+    "Price": 11.79
+  },
+  {
+    "Name": "Meat Lovers",
+    "Description": "Hearty pizza loaded with various meats and cheese.",
+    "Image": "7.png",
+    "Available": true,
+    "TimeToReady": 23,
+    "Weight": 400,
+    "Price": 14.99
+  },
+  {
+    "Name": "Spinach and Feta",
+    "Description": "Healthy pizza option with spinach and feta cheese.",
+    "Image": "8.png",
+    "Available": true,
+    "TimeToReady": 21,
+    "Weight": 330,
+    "Price": 11.29
+  },
+  {
+    "Name": "Buffalo Chicken",
+    "Description": "Spicy pizza featuring buffalo chicken and blue cheese.",
+    "Image": "9.png",
+    "Available": true,
+    "TimeToReady": 25,
+    "Weight": 420,
+    "Price": 13.79
+  },
+  {
+    "Name": "Four Cheese",
+    "Description": "Rich and savory pizza with a blend of four cheeses.",
+    "Image": "10.png",
+    "Available": true,
+    "TimeToReady": 16,
+    "Weight": 310,
+    "Price": 12.89
+  }
+]
