@@ -41,13 +41,15 @@ To run this project on your device, you will need the following:
 
 4. Change the database connection settings in the `appsettings.json` file.
 
-5. Run the application.
+5. Update your database in package manager console `update-database`.
+
+6. Run the application.
 
      ```bash
      dotnet run
      ```
 
-6. Open your web browser and go to `http://localhost:5000`.
+7. Open your web browser and go to `http://localhost:5000`.
 
 ## Contribution
 
