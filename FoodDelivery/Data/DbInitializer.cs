@@ -18,9 +18,6 @@ public class DbInitializer : IDbInitializer
 
     public void Initialize()
     {
-        string jsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "InitialItem.json");
-
-        ImportDataFromJson(jsonFilePath);
         
         if (!_roleManager.RoleExistsAsync("Admin").GetAwaiter().GetResult())
         {
@@ -44,6 +41,12 @@ public class DbInitializer : IDbInitializer
 
             _userManager.CreateAsync(Admin, password).GetAwaiter().GetResult();
             _userManager.AddToRoleAsync(Admin, "Admin").GetAwaiter().GetResult();
+            
+            
+            
+            string jsonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data", "InitialItem.json");
+            ImportDataFromJson(jsonFilePath);
+
         }
         else
         {
